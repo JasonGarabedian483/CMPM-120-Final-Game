@@ -10,7 +10,6 @@ class loadingScene extends Phaser.Scene{
         this.load.image('background', 'main menu.jpg')
     }
     create(){  
-        //this.cameras.main.setBackgroundColor('#000000');
         let background = this.add.image(1920 / 2, 540, 'background');
             background.setScale(2).setTint(0x7f7f7f);
         
