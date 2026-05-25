@@ -6,7 +6,7 @@ class loadingScene extends Phaser.Scene{
         this.nextScene = data.next || 'mainmenu';
     }
     preload(){
-        this.load.path = 'Assets/';
+        this.load.path = 'assets/';
         this.load.image('background', 'main menu.jpg')
     }
     create(){  
