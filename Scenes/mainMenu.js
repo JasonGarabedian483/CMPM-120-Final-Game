@@ -6,7 +6,7 @@ class mainMenu extends Phaser.Scene {
     preload() {
         this.load.path = 'Assets/';
         this.load.image('background', 'main menu.jpg')
-        //this.load.image('menuicon', 'alien rice.png') <- change alien rice to menu icon
+        this.load.image('menuicon', 'alien rice.png')  //<- change alien rice to menu icon
         this.load.image('play', 'placeholder play.png')
         this.load.image('options', 'placeholder options.png')
         this.load.image('quit', 'placeholder quit.png')
@@ -16,7 +16,7 @@ class mainMenu extends Phaser.Scene {
         let background = this.add.image(1920 / 2, 540, 'background');
             background.setScale(2);
         
-        /*let menuIcon = this.add.image(1920 / 2, 200, 'menuicon').setOrigin(0.5);
+        let menuIcon = this.add.image(1920 / 2, 200, 'menuicon').setOrigin(0.5);
             menuIcon.setScale(1.5);
             this.tweens.add({
                 targets: menuIcon,
@@ -26,7 +26,7 @@ class mainMenu extends Phaser.Scene {
                 ease: 'Power1',
                 yoyo: true,
                 loop: -1
-            }) */
+            })
 
         let playButton = this.add.image(1920 / 2, 600, 'play').setScale(.5).setOrigin(.5);
             playButton.setInteractive({useHandCursor: true});
