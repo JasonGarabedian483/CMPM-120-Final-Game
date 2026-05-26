@@ -6,7 +6,7 @@ class mainMenu extends Phaser.Scene {
     preload() {
         this.load.path = 'assets/images/';
         this.load.image('background', 'main_menu.png')
-        this.load.image('menuicon', 'title logo.png')  //<- change alien rice to menu icon
+        this.load.image('menuicon', 'titleLogo.png')  //<- change alien rice to menu icon
         this.load.image('play', 'placeholder_play.png') // <- change placeholder play to actual play button
         this.load.image('options', 'placeholder_options.png') // <- change playholder options to actual options button
         this.load.image('quit', 'placeholder_quit.png') // <- change placeholder quit to actual quit button
@@ -16,7 +16,7 @@ class mainMenu extends Phaser.Scene {
         let background = this.add.image(1920 / 2, 540, 'background');
             background.setScale(2);
         
-        let menuIcon = this.add.image(1920 / 2, 300, 'menuicon');
+        let menuIcon = this.add.image(1920 / 2 - 60, 300, 'menuicon');
             menuIcon.setScale(1.5);
             this.tweens.add({
                 targets: menuIcon,
