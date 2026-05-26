@@ -8,9 +8,18 @@
     <script src="Scenes/mainMenu.js"></script>
     <script src="Scenes/logoScene.js"></script>
     <script src="Scenes/loadingScene.js"></script>
-    <script src="game.js"></script> <!-- Must go at end of list -->>
+    <script src="game.js"></script> <!-- Must go at end of list -->
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        #font-loader {
+            font-family: 'Pixelify Sans';
+            visibility: hidden;
+            position: absolute;
+            top: -1000px;
+        }
+    </style>
 </head>
 <body>
-    this is a test screen
+    <div id="font-loader">Force Load Pixelify Sans</div> 
 </body>
 </html>

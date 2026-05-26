@@ -4,7 +4,7 @@ class mainMenu extends Phaser.Scene {
     }
 
     preload() {
-        this.load.path = 'assets/';
+        this.load.path = 'assets/images/';
         this.load.image('background', 'main_menu.png')
         this.load.image('menuicon', 'title logo.png')  //<- change alien rice to menu icon
         this.load.image('play', 'placeholder_play.png') // <- change placeholder play to actual play button
@@ -47,7 +47,7 @@ class mainMenu extends Phaser.Scene {
             quitButton.setInteractive({useHandCursor: true});
             quitButton.on("pointerover", () => this.getBigger(quitButton));
             quitButton.on("pointerdown", () => {
-
+                window.close();
             })
             quitButton.on("pointerout", () => this.getSmaller(quitButton));
 
