@@ -7,7 +7,7 @@ class loadingScene extends Phaser.Scene{
     }
     preload(){
         this.load.path = 'assets/';
-        this.load.image('background', 'main menu.jpg')
+        this.load.image('background', 'main_menu.png')
     }
     create(){  
         let background = this.add.image(1920 / 2, 540, 'background');
