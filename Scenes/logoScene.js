@@ -15,7 +15,7 @@ class logoScene extends Phaser.Scene {
 
         this.cameras.main.setBackgroundColor('#000000');
 
-        //Star Background
+        //starry bacckground
         for(let i = 0; i < 100; i++) {
             let star = this.add.circle(
                 Phaser.Math.Between(0, 1920),
@@ -50,7 +50,7 @@ class logoScene extends Phaser.Scene {
             ease: 'Back.Out'
         });
 
-        //pulsing effect
+        //pulsing effect for logo
         this.time.delayedCall(3000, () => {
             this.tweens.add({
                 targets: logo,
@@ -87,7 +87,7 @@ class logoScene extends Phaser.Scene {
         this.time.delayedCall(8000, () => {
             this.cameras.main.fadeOut(1000);
             this.cameras.main.once('camerafadeoutcomplete', () => {
-                this.scene.start('loadingScene'); 
+                this.scene.start('loadingscene'); 
             });
         });
     }

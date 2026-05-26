@@ -1,6 +1,6 @@
 # CMPM-120-Final-Game
 
-Write names here
+Game Credits
 ----------------
 Jason Garabedian
 Alexander Flores

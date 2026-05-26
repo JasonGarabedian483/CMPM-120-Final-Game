@@ -1,6 +1,6 @@
 class loadingScene extends Phaser.Scene{
     constructor(){
-        super('loading');
+        super('loadingscene');
     }
     init(data){
         this.nextScene = data.next || 'mainmenu';
