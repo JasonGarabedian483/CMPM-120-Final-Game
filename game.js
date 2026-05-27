@@ -8,6 +8,7 @@ const game = new Phaser.Game({
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
     },
-    scene: [logoScene, loadingScene, mainMenu],
+    scene: [logoScene, loadingScene, mainMenu, Level1, Credits, ReplayScene],
+    //scene: [mainMenu, Level1, ReplayScene, Credits],
     title: "Placeholder Title",
 });

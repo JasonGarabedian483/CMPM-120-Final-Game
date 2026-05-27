@@ -33,7 +33,7 @@ class mainMenu extends Phaser.Scene {
             playButton.on("pointerover", () => this.getBigger(playButton));
             playButton.on("pointerdown", () => {
                 this.cameras.main.fade(1000, 0, 0, 0);
-                this.time.delayedCall(1000, () => this.scene.start('logoscene'));
+                this.time.delayedCall(1000, () => this.scene.start('level1'));
             });
             playButton.on("pointerout", ()  => this.getSmaller(playButton))
         let optionsButton = this.add.image(1920 / 2, 750, 'options').setScale(0.5).setOrigin(0.5);
@@ -50,6 +50,20 @@ class mainMenu extends Phaser.Scene {
                 window.close();
             })
             quitButton.on("pointerout", () => this.getSmaller(quitButton));
+
+        let creditsButton = this.add.rectangle(1920 / 2, 1010, 100, 40, 0xffffff).setScale(2).setOrigin(0.5);
+            creditsButton.setInteractive({useHandCursor: true});
+            creditsButton.on("pointerover", () => this.getBigger(creditsButton));
+            creditsButton.on("pointerdown", () => {
+                this.cameras.main.fade(1000, 0, 0, 0);
+                this.time.delayedCall(1000, () => this.scene.start('credits'));
+            });
+            creditsButton.on("pointerout", () => this.getSmaller(creditsButton));
+        let creditsText = this.add.text(1920 / 2, 1010, "Credits", {
+            fontSize: '32px',
+            fill: '#000000'
+        }).setOrigin(0.5);
+
 
     }
 
