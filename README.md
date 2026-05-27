@@ -31,11 +31,11 @@ Scene types:
 - Gameplay/Level 1 scene
 
 Communication between scenes:
-- [Add Text]
+- Music mute button toggle saves state between scenes, allowing for music choice to be saved
 
 Reachability:
 - In Level 1 there are different buttons as placeholders for different end level results. If players don't reach a score threshold they will get a replay scene, and then they can return to the main menu. If they pass the score threshold they can either return to the main menu or start Level 2.
 - When viewing the credits scene players are also able to return to the main menu.
 
 Transitions:
-- [Add Text]
+- Coordinated fade to black and fade from black between main menu and credits screen
