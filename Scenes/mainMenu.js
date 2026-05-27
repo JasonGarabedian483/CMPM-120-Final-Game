@@ -10,9 +10,21 @@ class mainMenu extends Phaser.Scene {
         this.load.image('play', 'placeholder_play.png') // <- change placeholder play to actual play button
         this.load.image('options', 'placeholder_options.png') // <- change playholder options to actual options button
         this.load.image('quit', 'placeholder_quit.png') // <- change placeholder quit to actual quit button
+
+        this.load.path = 'assets/audio/';
+        this.load.audio('backgroundMusic', 'alien-invasion.mp3');
     }
 
     create() {
+        //launch the persistent audio scene as an overlay on top of this scene
+        //the audio scene runs independently and persists even when this scene tranistions to another
+        if(!this.scene.isActive('audio')){
+            this.scene.launch('audio');
+        };
+        if(!this.sound.get('backgroundMusic')){
+            this.sound.add('backgroundMusic', {loop: true, volume: 0.3}).play();
+        };
+
         let background = this.add.image(1920 / 2, 540, 'background');
             background.setScale(2);
         
