@@ -7,7 +7,8 @@ class Credits extends Phaser.Scene {
         let centerX = this.cameras.main.width / 2;
         let centerY = this.cameras.main.height / 2;
     
-        this.cameras.main.setBackgroundColor('#000000');
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
+        this.cameras.main.setBackgroundColor('#003c73');
 
         this.add.text(centerX, centerY, "[Credits go here]", {
             fontSize: '32px',
