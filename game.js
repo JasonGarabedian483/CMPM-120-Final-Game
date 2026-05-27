@@ -10,7 +10,14 @@ const game = new Phaser.Game({
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
     },
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 500 },
+            debug: true
+        }
+    },
     scene: [logoScene, loadingScene, mainMenu, Level1, Credits, ReplayScene, Audio],
-    //scene: [mainMenu, Level1, ReplayScene, Credits],
+    //scene: [Level1],
     title: "Placeholder Title",
 });

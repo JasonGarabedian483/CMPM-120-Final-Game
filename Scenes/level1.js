@@ -2,6 +2,12 @@ class Level1 extends Phaser.Scene {
     constructor() {
         super('level1');
     }
+
+    preload() {
+        this.load.path = 'assets/images/';
+        this.load.image('alienbuns', 'alien_buns.png')
+    }
+
     create() {
         let centerX = this.cameras.main.width / 2;
         let centerY = this.cameras.main.height / 2;
@@ -51,5 +57,32 @@ class Level1 extends Phaser.Scene {
             this.cameras.main.fade(1000, 0, 0, 0);
             this.time.delayedCall(1000, () => this.scene.start('level2'));
         });
+
+        // creating conveyor and adding physics to it
+        this.conveyor = this.add.rectangle(450, 300, 900, 40, 0x666666);
+        this.physics.add.existing(this.conveyor, true);
+        this.conveyorSpeed = 100;
+        this.conveyor.body.setSize(900, 40);
+
+        // creating test icon
+        let testItem = this.physics.add.image(20, 0, 'alienbuns'); // create test item
+            testItem.setInteractive({ draggable: true }) 
+
+        // adding collider between testItem and conveyor, and making item move when colliding
+        this.physics.add.collider(this.conveyor, testItem, () => {
+            if (testItem.body.touching.down) {
+                testItem.setVelocityX(this.conveyorSpeed);
+            }
+        });
+        
+        // dragging of item
+        this.input.on('drag', function (pointer, gameObject, dragX, dragY) { // enables test object to be dragged around
+            gameObject.x = dragX
+            gameObject.y = dragY
+        });
+    }
+    
+    update() {
+
     }
 }
