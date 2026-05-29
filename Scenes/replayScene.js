@@ -4,6 +4,7 @@ class ReplayScene extends Phaser.Scene {
     }
     
     create() {
+        this.scene.stop('timer');
         let centerX = this.cameras.main.width / 2;
         let centerY = this.cameras.main.height / 2;
         this.cameras.main.setBackgroundColor('#000000');

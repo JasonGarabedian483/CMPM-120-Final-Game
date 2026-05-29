@@ -1,9 +1,6 @@
 class Timer extends Phaser.Scene{
     constructor(){
         super('timer')
-        this.finished = false;
-        this.halfTriggered = false;
-        this.quaterTriggered = false;
     }
 
     preload(){
@@ -15,6 +12,9 @@ class Timer extends Phaser.Scene{
         this.total = data.totalSeconds;
         this.remaining = data.totalSeconds;
         this.levelkey = data.levelkey;
+        this.finished = false;
+        this.halfTriggered = false;
+        this.quaterTriggered = false;
     }
 
     create(){
@@ -125,7 +125,7 @@ class Timer extends Phaser.Scene{
         this.alarm.play();
         this.tweens.killTweensOf(this.timerText);
         window.levelData[this.levelkey].time = this.remaining;
-        this.time.delayedCall(4800, () => {
+        this.time.delayedCall(3000, () => {
             this.alarm.stop();
         });
         this.tempSummary();

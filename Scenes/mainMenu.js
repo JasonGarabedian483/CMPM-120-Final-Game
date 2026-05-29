@@ -25,6 +25,7 @@ class mainMenu extends Phaser.Scene {
         if(!this.sound.get('backgroundMusic')){
             this.sound.add('backgroundMusic', {loop: true, volume: 0.3}).play();
         };
+        this.scene.stop('timer');
 
         let background = this.add.image(1920 / 2, 540, 'background');
             background.setScale(2);
