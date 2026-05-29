@@ -39,3 +39,22 @@ Reachability:
 
 Transitions:
 - Coordinated fade to black and fade from black between main menu and credits screen
+
+# Core Gameplay Prototype Requirements
+
+Audio:
+- Looping background sound (Menu music)
+- Button clicking sound effect when player clicks on a button in the main menu
+
+Visual:
+- Image based sprites
+- Need another one
+
+Motion:
+- Draggable object on conveyor belt in level 1 scene
+
+Progression:
+- 
+
+Prefabs:
+- Need two

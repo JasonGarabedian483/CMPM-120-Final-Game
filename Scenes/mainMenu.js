@@ -13,6 +13,7 @@ class mainMenu extends Phaser.Scene {
 
         this.load.path = 'assets/audio/';
         this.load.audio('backgroundMusic', 'alien-invasion.mp3');
+        this.load.audio('button', 'button.mp3');
     }
 
     create() {
@@ -44,6 +45,7 @@ class mainMenu extends Phaser.Scene {
             playButton.setInteractive({useHandCursor: true});
             playButton.on("pointerover", () => this.getBigger(playButton));
             playButton.on("pointerdown", () => {
+                this.sound.play('button');
                 this.cameras.main.fade(1000, 0, 0, 0);
                 this.time.delayedCall(1000, () => this.scene.start('level1'));
             });
@@ -52,13 +54,14 @@ class mainMenu extends Phaser.Scene {
             optionsButton.setInteractive({useHandCursor: true});
             optionsButton.on("pointerover", () => this.getBigger(optionsButton));
             optionsButton.on("pointerdown", () => {
-                
+                this.sound.play('button');
             });
             optionsButton.on("pointerout", () => this.getSmaller(optionsButton));
         let quitButton = this.add.image(1920 / 2, 900, 'quit').setScale(0.5).setOrigin(0.5);
             quitButton.setInteractive({useHandCursor: true});
             quitButton.on("pointerover", () => this.getBigger(quitButton));
             quitButton.on("pointerdown", () => {
+                this.sound.play('button');
                 window.close();
             })
             quitButton.on("pointerout", () => this.getSmaller(quitButton));
@@ -67,6 +70,7 @@ class mainMenu extends Phaser.Scene {
             creditsButton.setInteractive({useHandCursor: true});
             creditsButton.on("pointerover", () => this.getBigger(creditsButton));
             creditsButton.on("pointerdown", () => {
+                this.sound.play('button');
                 this.cameras.main.fade(1000, 0, 0, 0);
                 this.time.delayedCall(1000, () => this.scene.start('credits'));
             });
