@@ -6,7 +6,7 @@ class loadingSceneCinematics extends Phaser.Scene{
         this.nextScene = (data && data.next) ? data.next : 'mainmenucinematics';
     }
     preload(){
-        this.load.path = '../assets/images/';
+        this.load.path = 'assets/images/';
         this.load.image('background', 'main_menu.png')
     }
     create(){  

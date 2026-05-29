@@ -4,7 +4,7 @@ class logoSceneCinematics extends Phaser.Scene {
     }
     
     preload() {
-        this.load.path = '../assets/images/';
+        this.load.path = 'assets/images/';
         this.load.image('titleLogo', 'titleLogo.png');
 
     }

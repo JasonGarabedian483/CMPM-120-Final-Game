@@ -4,14 +4,14 @@ class mainMenuCinematics extends Phaser.Scene {
     }
 
     preload() {
-        this.load.path = '../assets/images/';
+        this.load.path = 'assets/images/';
         this.load.image('background', 'main_menu.png')
         this.load.image('menuicon', 'titleLogo.png')  //<- change alien rice to menu icon
         this.load.image('play', 'placeholder_play.png') // <- change placeholder play to actual play button
         this.load.image('options', 'placeholder_options.png') // <- change playholder options to actual options button
         this.load.image('quit', 'placeholder_quit.png') // <- change placeholder quit to actual quit button
 
-        this.load.path = '../assets/audio/';
+        this.load.path = 'assets/audio/';
         this.load.audio('backgroundMusic', 'alien-invasion.mp3');
         this.load.audio('button', 'button.mp3');
     }
