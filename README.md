@@ -49,7 +49,7 @@ Audio:
 
 Visual:
 - Image based sprites
-- Need another one
+- Proceduraly made assets like conveyors and timer bar at top
 
 Motion:
 - Draggable object on conveyor belt in level 1 scene
