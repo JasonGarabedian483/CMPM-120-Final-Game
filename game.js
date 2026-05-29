@@ -1,6 +1,11 @@
 'use strict';
 //Global mute shared across all scenes
 window.isMuted = false;
+window.levelData = {
+    1: {time: 0},
+    2: {time: 0},
+    3: {time: 0}
+};
 
 const game = new Phaser.Game({
     width: 1920,
@@ -17,7 +22,7 @@ const game = new Phaser.Game({
             debug: true
         }
     },
-    scene: [logoScene, loadingScene, mainMenu, Level1, Credits, ReplayScene, Audio],
+    scene: [logoScene, loadingScene, mainMenu, Level1, Credits, ReplayScene, Audio, Timer],
     //scene: [Level1],
     title: "Placeholder Title",
 });

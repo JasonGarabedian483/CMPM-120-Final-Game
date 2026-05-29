@@ -6,9 +6,11 @@ class Level1 extends Phaser.Scene {
     preload() {
         this.load.path = 'assets/images/';
         this.load.image('alienbuns', 'alien_buns.png')
+
     }
 
     create() {
+        this.scene.launch('timer', {totalSeconds: 60, levelkey: '1'});
         let centerX = this.cameras.main.width / 2;
         let centerY = this.cameras.main.height / 2;
         this.cameras.main.setBackgroundColor('#000000');
