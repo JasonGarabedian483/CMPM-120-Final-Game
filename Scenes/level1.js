@@ -68,8 +68,7 @@ class Level1 extends Phaser.Scene {
         this.conveyor.body.setSize(900, 40);
 
         // creating test icon
-        let testItem = this.physics.add.image(20, 0, 'alienbuns'); // create test item
-            testItem.setInteractive({ draggable: true }) 
+        let testItem = new AlienBun(this, 20, 0, 'alienbuns'); 
 
         // adding collider between testItem and conveyor, and making item move when colliding
         this.physics.add.collider(this.conveyor, testItem, () => {
@@ -88,4 +87,23 @@ class Level1 extends Phaser.Scene {
     update() {
 
     }
+}
+
+//Alien Bun prefab object
+class AlienBun extends Phaser.Physics.Arcade.Image {
+  constructor(scene, x, y) {
+    super(scene, x, y, 'alienbuns');
+
+    scene.add.existing(this);
+    scene.physics.add.existing(this);
+
+    this.setInteractive({ draggable: true });
+
+    scene.input.setDraggable(this);
+
+    this.on('drag', (pointer, dragX, dragY) => {
+      this.setPosition(dragX, dragY);
+      this.body.setVelocity(0);
+    });
+  }
 }
