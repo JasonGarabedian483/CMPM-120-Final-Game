@@ -44,15 +44,15 @@ Transitions:
 
 Audio:
 - Looping background sound (Menu music)
-- Button clicking sound effect when player clicks on a button in the main menu
-- Timer audio that increases in tempo as the timer gets closer to 0
+- Button clicking sound effect when player clicks on a button in the main menu (source in scenes/mainMenu.js)
+- Timer audio that increases in tempo as the timer gets closer to 0 (source in scenes/timer.js)
 
 Visual:
-- Image based sprites
-- Proceduraly made assets like conveyors and timer bar at top
+- Image based sprites (source in scenes/mainMenu.js)
+- Proceduraly made assets like conveyors and timer bar at top (source in scenes/timer.js)
 
 Motion:
-- Draggable object on conveyor belt in level 1 scene
+- Draggable object on conveyor belt in level 1 and 2 scenes (source in scenes/level1.js and scenes/level2.js)
 
 Progression:
 - Level 1 has a single slow conveyor that food ingredients will move along. Level 2 introduces a second faster and shorter conveyor that the player will have to interact with quickly while still interacting with the first one. This increase in difficulty forces the player to decide which ingredients they will need to prioritize
