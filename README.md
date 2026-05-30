@@ -58,4 +58,5 @@ Progression:
 - Level 1 has a single slow conveyor that food ingredients will move along. Level 2 introduces a second faster and shorter conveyor that the player will have to interact with quickly while still interacting with the first one. This increase in difficulty forces the player to decide which ingredients they will need to prioritize
 
 Prefabs:
-- Need two
+- AlienBun prefab object in level1.js
+- Need one more

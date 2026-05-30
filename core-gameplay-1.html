@@ -1,12 +1,32 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Core Gameplay</title>
-        <script src="lib/phaser.js"></script>
-    </head>
-    <body>
-        Core Gameplay
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Gameplay Prototype</title>
+    <script src="lib/phaser.js"></script>
+    <script src="GameplayPrototype/mainMenuGameplay.js"></script>
+    <script src="GameplayPrototype/logoSceneGameplay.js"></script>
+    <script src="GameplayPrototype/loadingSceneGameplay.js"></script>
+    <script src="GameplayPrototype/creditsGameplay.js"></script>
+    <script src="GameplayPrototype/level1Gameplay.js"></script>
+    <script src="GameplayPrototype/replayGameplay.js"></script>
+    <script src="GameplayPrototype/audioGameplay.js"></script>
+    <script src="GameplayPrototype/timerGameplay.js"></script>
+    <script src="GameplayPrototype/level2Gameplay.js"></script>
+
+    <script src="GameplayPrototype/gameplayGame.js"></script> <!-- Must go at end of list -->
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        #font-loader {
+            font-family: 'Pixelify Sans';
+            visibility: hidden;
+            position: absolute;
+            top: -1000px;
+        }
+    </style>
+</head>
+<body>
+    <div id="font-loader">Force Load Pixelify Sans</div> 
+</body>
 </html>
