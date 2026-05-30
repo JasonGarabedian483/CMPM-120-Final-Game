@@ -1,12 +1,31 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Scene Flow</title>
-        <script src="lib/phaser.js"></script>
-    </head>
-    <body>
-        Scene Flow
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scene Flow Prototype</title>
+    <script src="lib/phaser.js"></script>
+    <script src="SceneFlowPrototype/mainMenuSceneFlow.js"></script>
+    <script src="SceneFlowPrototype/logoSceneFlow.js"></script>
+    <script src="SceneFlowPrototype/loadingSceneFlow.js"></script>
+    <script src="SceneFlowPrototype/creditsSceneFlow.js"></script>
+    <script src="SceneFlowPrototype/level1SceneFlow.js"></script>
+    <script src="SceneFlowPrototype/replaySceneFlow.js"></script>
+    <script src="SceneFlowPrototype/audioSceneFlow.js"></script>
+    
+
+    <script src="SceneFlowPrototype/sceneFlowGame.js"></script> <!-- Must go at end of list -->
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        #font-loader {
+            font-family: 'Pixelify Sans';
+            visibility: hidden;
+            position: absolute;
+            top: -1000px;
+        }
+    </style>
+</head>
+<body>
+    <div id="font-loader">Force Load Pixelify Sans</div> 
+</body>
 </html>
