@@ -62,26 +62,44 @@ class Level1 extends Phaser.Scene {
         });
 
         // creating conveyor and adding physics to it
-        this.conveyor = this.add.rectangle(450, 300, 900, 40, 0x666666);
+        this.conveyor = this.add.rectangle(600, 300, 1200, 40, 0x666666);
         this.physics.add.existing(this.conveyor, true);
         this.conveyorSpeed = 100;
-        this.conveyor.body.setSize(900, 40);
+        this.conveyor.body.setSize(1200, 40);
 
         // creating test icon
-        let testItem = new AlienBun(this, 20, 0, 'alienbuns'); 
+        this.items = this.physics.add.group();
+        let alienBuns = new AlienBun(this, 20, 0, 'alienbuns');
+             this.items.add(alienBuns);
 
-        // adding collider between testItem and conveyor, and making item move when colliding
-        this.physics.add.collider(this.conveyor, testItem, () => {
-            if (testItem.body.touching.down) {
-                testItem.setVelocityX(this.conveyorSpeed);
+        let 
+
+        // adding collider between alienBuns and conveyor, and making item move when colliding
+        this.physics.add.collider(this.conveyor, alienBuns, () => {
+            if (alienBuns.body.touching.down) {
+                alienBuns.setVelocityX(this.conveyorSpeed);
             }
         });
         
         // dragging of item
+        this.input.on('dragstart', (pointer, gameObject) => {
+            gameObject.body.enable = false;
+        });
         this.input.on('drag', function (pointer, gameObject, dragX, dragY) { // enables test object to be dragged around
             gameObject.x = dragX
             gameObject.y = dragY
         });
+        this.input.on('dragend', (pointer, gameObject) => {
+            gameObject.body.enable = true;
+        });
+
+        // trashbin that deletes items when they overlap it
+        this.trashBin = this.add.rectangle(1400, 800, 200, 200, 0xff0000, 0.5);
+            this.physics.add.existing(this.trashBin, true);
+
+            this.physics.add.overlap(this.items, this.trashBin, (bin, item) => {
+                item.destroy();
+            });
     }
     
     update() {
@@ -91,8 +109,8 @@ class Level1 extends Phaser.Scene {
 
 //Alien Bun prefab object
 class AlienBun extends Phaser.Physics.Arcade.Image {
-  constructor(scene, x, y) {
-    super(scene, x, y, 'alienbuns');
+  constructor(scene, x, y, imagename) {
+    super(scene, x, y, imagename);
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
