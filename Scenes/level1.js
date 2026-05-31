@@ -67,10 +67,10 @@ class Level1 extends Phaser.Scene {
         });
 
         // creating conveyor and adding physics to it
-        this.conveyor = this.add.rectangle(600, 300, 1200, 40, 0x666666);
-        this.physics.add.existing(this.conveyor, true);
-        this.conveyorSpeed = 100;
-        this.conveyor.body.setSize(1200, 40);
+        let conveyor = this.add.rectangle(600, 300, 1200, 40, 0x666666);
+        this.physics.add.existing(conveyor, true);
+        const conveyorSpeed = 100;
+        conveyor.body.setSize(1200, 40);
 
         // Creating key for each item and group
         this.items = this.physics.add.group();
@@ -97,14 +97,14 @@ class Level1 extends Phaser.Scene {
 
         // randomly spawns one of the items in the itemTypes list
         this.time.addEvent({
-            delay: 2000,
+            delay: 3000,
             loop: true,
             callback: this.spawnItem,
             callbackScope: this
         });
         // adding collider between alienBuns and conveyor, and making item move when colliding
-        this.physics.add.collider(this.conveyor, this.items, (conveyor, item) => {
-            item.setVelocityX(this.conveyorSpeed);
+        this.physics.add.collider(conveyor, this.items, (conveyor, item) => {
+            item.setVelocityX(conveyorSpeed);
         });
         
         // dragging of item

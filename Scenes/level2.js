@@ -5,8 +5,13 @@ class Level2 extends Phaser.Scene {
 
     preload() {
         this.load.path = 'assets/images/';
-        this.load.image('alienbuns', 'alien_buns.png');
-        this.load.image('alienrice', 'alien_rice.png');
+        this.load.image('alienbuns', 'alien_buns.png')
+        this.load.image('alienburger', 'alien_burger.png')
+        this.load.image('aliennori', 'alien_nori.png')
+        this.load.image('alienpatty', 'alien_patty.png')
+        this.load.image('alienrice', 'alien_rice.png')
+        this.load.image('aliensushi', 'alien_sushi.png')
+        this.load.image('fish', 'fish.png')
     }
 
     create() {
@@ -44,29 +49,70 @@ class Level2 extends Phaser.Scene {
 
         // creating test icon
         this.items = this.physics.add.group();
-        let testItem1 = this.physics.add.image(20, 0, 'alienbuns'); // create test item
-            testItem1.setInteractive({ draggable: true }) 
-        
-        let testItem2 = this.physics.add.image(20, 450, 'alienrice');
-            testItem2.setInteractive({ draggable: true })
+        this.itemTypes = [
+            {key: 'alienbuns'},
+            {key: 'alienburger'},
+            {key: 'aliennori', scale: 0.4},
+            {key: 'alienpatty'},
+            {key: 'alienrice'},
+            {key: 'aliensushi'},
+            {key: 'fish'},
+        ];
 
-        // adding collider between testItem and conveyor, and making item move when colliding
-        this.physics.add.collider(conveyor1, testItem1, () => {
-            if (testItem1.body.touching.down) {
-                testItem1.setVelocityX(conveyor1Speed);
+        // creation of items from the itemTypes list using the gameItem function
+        this.spawnItem1 = () => {
+            const data = Phaser.Utils.Array.GetRandom(this.itemTypes);
+            const item = new gameItem(this, 20, 0, data.key);
+
+            if (data.scale) {
+                item.setScale(data.scale);
             }
+            this.items.add(item);
+        };
+
+        this.spawnItem2 = () => {
+            const data = Phaser.Utils.Array.GetRandom(this.itemTypes);
+            const item = new gameItem(this, 20, 400, data.key);
+
+            if (data.scale) {
+                item.setScale(data.scale);
+            }
+            this.items.add(item);
+        };
+
+        // randomly spawns one of the items in the itemTypes list
+        this.time.addEvent({
+            delay: 3000,
+            loop: true,
+            callback: this.spawnItem1,
+            callbackScope: this
         });
 
-        this.physics.add.collider(conveyor2, testItem2, () => {
-            if (testItem2.body.touching.down) {
-                testItem2.setVelocityX(conveyor2Speed);
-            }
+        this.time.addEvent({
+            delay: 5000,
+            loop: true,
+            callback: this.spawnItem2,
+            callbackScope: true
+        });
+        // adding collider between alienBuns and conveyor, and making item move when colliding
+        this.physics.add.collider(conveyor1, this.items, (conveyor, item) => {
+            item.setVelocityX(conveyor1Speed);
+        });
+
+        this.physics.add.collider(conveyor2, this.items, (conveyor, item) => {
+            item.setVelocityX(conveyor2Speed);
         })
-        
+
         // dragging of item
+        this.input.on('dragstart', (pointer, gameObject) => {
+            gameObject.body.enable = false;
+        });
         this.input.on('drag', function (pointer, gameObject, dragX, dragY) { // enables test object to be dragged around
             gameObject.x = dragX
             gameObject.y = dragY
+        });
+        this.input.on('dragend', (pointer, gameObject) => {
+            gameObject.body.enable = true;
         });
     }
 
