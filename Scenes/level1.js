@@ -11,6 +11,7 @@ class Level1 extends Phaser.Scene {
         this.load.image('alienpatty', 'alien_patty.png')
         this.load.image('alienrice', 'alien_rice.png')
         this.load.image('aliensushi', 'alien_sushi.png')
+        this.load.image('fish', 'fish.png')
     }
 
     create() {
@@ -79,7 +80,8 @@ class Level1 extends Phaser.Scene {
             {key: 'aliennori', scale: 0.4},
             {key: 'alienpatty'},
             {key: 'alienrice'},
-            {key: 'aliensushi'}
+            {key: 'aliensushi'},
+            {key: 'fish'},
         ];
 
         // creation of items from the itemTypes list using the gameItem function
