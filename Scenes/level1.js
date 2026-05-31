@@ -6,7 +6,11 @@ class Level1 extends Phaser.Scene {
     preload() {
         this.load.path = 'assets/images/';
         this.load.image('alienbuns', 'alien_buns.png')
-
+        this.load.image('alienburger', 'alien_burger.png')
+        this.load.image('aliennori', 'alien_nori.png')
+        this.load.image('alienpatty', 'alien_patty.png')
+        this.load.image('alienrice', 'alien_rice.png')
+        this.load.image('aliensushi', 'alien_sushi.png')
     }
 
     create() {
@@ -67,18 +71,38 @@ class Level1 extends Phaser.Scene {
         this.conveyorSpeed = 100;
         this.conveyor.body.setSize(1200, 40);
 
-        // creating test icon
+        // Creating key for each item and group
         this.items = this.physics.add.group();
-        let alienBuns = new AlienBun(this, 20, 0, 'alienbuns');
-             this.items.add(alienBuns);
+        this.itemTypes = [
+            {key: 'alienbuns'},
+            {key: 'alienburger'},
+            {key: 'aliennori', scale: 0.4},
+            {key: 'alienpatty'},
+            {key: 'alienrice'},
+            {key: 'aliensushi'}
+        ];
 
-        let 
+        // creation of items from the itemTypes list using the gameItem function
+        this.spawnItem = () => {
+            const data = Phaser.Utils.Array.GetRandom(this.itemTypes);
+            const item = new gameItem(this, 20, 0, data.key);
 
-        // adding collider between alienBuns and conveyor, and making item move when colliding
-        this.physics.add.collider(this.conveyor, alienBuns, () => {
-            if (alienBuns.body.touching.down) {
-                alienBuns.setVelocityX(this.conveyorSpeed);
+            if (data.scale) {
+                item.setScale(data.scale);
             }
+            this.items.add(item);
+        };
+
+        // randomly spawns one of the items in the itemTypes list
+        this.time.addEvent({
+            delay: 2000,
+            loop: true,
+            callback: this.spawnItem,
+            callbackScope: this
+        });
+        // adding collider between alienBuns and conveyor, and making item move when colliding
+        this.physics.add.collider(this.conveyor, this.items, (conveyor, item) => {
+            item.setVelocityX(this.conveyorSpeed);
         });
         
         // dragging of item
@@ -108,7 +132,7 @@ class Level1 extends Phaser.Scene {
 }
 
 //Alien Bun prefab object
-class AlienBun extends Phaser.Physics.Arcade.Image {
+class gameItem extends Phaser.Physics.Arcade.Image {
   constructor(scene, x, y, imagename) {
     super(scene, x, y, imagename);
 
