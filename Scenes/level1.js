@@ -12,6 +12,8 @@ class Level1 extends Phaser.Scene {
         this.load.image('alienrice', 'alien_rice.png')
         this.load.image('aliensushi', 'alien_sushi.png')
         this.load.image('fish', 'fish.png')
+        this.load.image('trashcan', 'trashcan.png')
+        this.load.image('crafting', 'craftingstation.png')
     }
 
     create() {
@@ -127,7 +129,7 @@ class Level1 extends Phaser.Scene {
         });
 
         // trashbin that deletes items when they overlap it
-        this.trashBin = this.add.rectangle(1400, 800, 200, 200, 0xff0000, 0.5);
+        this.trashBin = this.add.image(1400, 800, 'trashcan').setScale(4);
             this.physics.add.existing(this.trashBin, true);
 
             this.physics.add.overlap(this.items, this.trashBin, (bin, item) => {
@@ -135,8 +137,11 @@ class Level1 extends Phaser.Scene {
             });
 
         let crafingText = this.add.text(300, 700, "Crafting").setOrigin(0.5);
-        this.crafting1 = this.add.rectangle(300, 900, 200, 40, 0xffa600, 0.5);
+        //this.crafting1 = this.add.(300, 900, 200, 40, 0xffa600, 0.5);
+        this.crafting1 = this.add.image(239, 840, 'crafting').setScale(3);
             this.physics.add.existing(this.crafting1, true);
+            this.crafting1.body.setSize(480, 300);
+            this.crafting1.body.setOffset(0, 300);
 
         this.physics.add.collider(this.crafting1, this.items, (box, item) => {
             if (item.texture.key === 'alienrice') {
@@ -158,7 +163,7 @@ class Level1 extends Phaser.Scene {
                 this.riceInBox = null;
                 this.fishInBox = null;
 
-                const sushi = new gameItem(this, this.crafting1.x, this.crafting1.y - 100, 'aliensushi');
+                const sushi = new gameItem(this, this.crafting1.x - 20, this.crafting1.y - 30, 'aliensushi');
                 this.items.add(sushi);
             }
             // crafting of burger
@@ -168,7 +173,7 @@ class Level1 extends Phaser.Scene {
                 this.bunsinBox = null
                 this.pattyinBox = null;
 
-                const burger = new gameItem(this, this.crafting1.x, this.crafting1.y - 100, 'alienburger');
+                const burger = new gameItem(this, this.crafting1.x + 20, this.crafting1.y - 30, 'alienburger');
                 this.items.add(burger);
             }
         });
