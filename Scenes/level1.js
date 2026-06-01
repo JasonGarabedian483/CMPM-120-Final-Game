@@ -139,12 +139,15 @@ class Level1 extends Phaser.Scene {
                 console.log('destroyed');
             });
 
-        let crafingText = this.add.text(300, 700, "Crafting").setOrigin(0.5);
-        //this.crafting1 = this.add.(300, 900, 200, 40, 0xffa600, 0.5);
-        this.crafting1 = this.add.image(239, 840, 'crafting').setScale(3);
+        let crafingText = this.add.text(300, 550, "Crafting").setOrigin(0.5);
+        this.crafting1 = this.add.image(300, 838, 'crafting').setScale(3.5);
             this.physics.add.existing(this.crafting1, true);
-            this.crafting1.body.setSize(480, 300);
-            this.crafting1.body.setOffset(0, 300);
+            this.crafting1.body.setSize(550, 300);
+            this.crafting1.body.setOffset(22, 290);
+            this.add.image(93, 675, 'alienrice').setScale(.75);
+            this.add.image(215, 675, 'aliennori').setScale(.3);
+            this.add.image(337, 675, 'fish').setScale(.75).setAngle(-45);
+            this.add.image(503, 675, 'aliensushi').setScale(.75);
 
         this.physics.add.collider(this.crafting1, this.items, (box, item) => {
             // Sushi
