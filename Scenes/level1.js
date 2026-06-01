@@ -84,6 +84,13 @@ class Level1 extends Phaser.Scene {
             {key: 'fish'},
         ];
 
+        // variables of ingredients in crafting zone
+        this.riceInBox = null;
+        this.fishInBox = null;
+        this.bunsinBox = null;
+        this.pattyinBox = null;
+
+
         // creation of items from the itemTypes list using the gameItem function
         this.spawnItem = () => {
             const data = Phaser.Utils.Array.GetRandom(this.itemTypes);
@@ -126,7 +133,47 @@ class Level1 extends Phaser.Scene {
             this.physics.add.overlap(this.items, this.trashBin, (bin, item) => {
                 item.destroy();
             });
+
+        let crafingText = this.add.text(300, 700, "Crafting").setOrigin(0.5);
+        this.crafting1 = this.add.rectangle(300, 900, 200, 40, 0xffa600, 0.5);
+            this.physics.add.existing(this.crafting1, true);
+
+        this.physics.add.collider(this.crafting1, this.items, (box, item) => {
+            if (item.texture.key === 'alienrice') {
+                this.riceInBox = item;
+            }
+            if (item.texture.key === 'fish') {
+                this.fishInBox = item;
+            }
+            if (item.texture.key === 'alienbuns') {
+                this.bunsinBox = item;
+            }
+            if (item.texture.key === 'alienpatty') {
+                this.pattyinBox = item;
+            }
+            // crafting of sushi
+            if (this.riceInBox && this.fishInBox) {
+                this.riceInBox.destroy();
+                this.fishInBox.destroy();
+                this.riceInBox = null;
+                this.fishInBox = null;
+
+                const sushi = new gameItem(this, this.crafting1.x, this.crafting1.y - 100, 'aliensushi');
+                this.items.add(sushi);
+            }
+            // crafting of burger
+            if (this.bunsinBox && this.pattyinBox) {
+                this.bunsinBox.destroy();
+                this.pattyinBox.destroy();
+                this.bunsinBox = null
+                this.pattyinBox = null;
+
+                const burger = new gameItem(this, this.crafting1.x, this.crafting1.y - 100, 'alienburger');
+                this.items.add(burger);
+            }
+        });
     }
+
     
     update() {
 
