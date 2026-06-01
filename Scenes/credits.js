@@ -4,6 +4,10 @@ class Credits extends Phaser.Scene {
     }
     
     create() {
+        this.scene.stop('timer');
+        this.scene.stop('level1');
+        this.scene.stop('level2');
+        this.scene.stop('level3');
         let centerX = this.cameras.main.width / 2;
         let centerY = this.cameras.main.height / 2;
     
