@@ -23,11 +23,12 @@ class Level1 extends Phaser.Scene {
         let centerY = this.cameras.main.height / 2;
         this.cameras.main.setBackgroundColor('#000000');
 
-        this.add.text(centerX, centerY, "[Level 1]", {
+        this.add.text(centerX, 100, "[Level 1]", {
             fontSize: '32px',
             fill: '#ffffff'
         }).setOrigin(0.5);
 
+        /*
         //placeholder buttons for if the player dosen't pass score threshold and needs to go to replay scene or if they do pass score threshold and can go to next level or main menu
         //these placeholder buttons are to showcase the possible outcomes of a level that will be implemented later
         let replayButton = this.add.text(centerX, centerY + 100, "Didn't pass score threshold.\nGo to Replay Scene", {
@@ -67,12 +68,12 @@ class Level1 extends Phaser.Scene {
             this.cameras.main.fade(1000, 0, 0, 0);
             this.time.delayedCall(1000, () => this.scene.start('level2'));
         });
-
+ */
         // creating conveyor and adding physics to it
-        let conveyor = this.add.rectangle(600, 300, 1200, 40, 0x666666);
+        let conveyor = this.add.rectangle(1000, 150, 2000, 40, 0x666666);
         this.physics.add.existing(conveyor, true);
         const conveyorSpeed = 100;
-        conveyor.body.setSize(1200, 40);
+        conveyor.body.setSize(2000, 40);
 
         // Creating key for each item and group
         this.items = this.physics.add.group();
@@ -89,6 +90,7 @@ class Level1 extends Phaser.Scene {
         // variables of ingredients in crafting zone
         this.riceInBox = null;
         this.fishInBox = null;
+        this.noriinBox = null;
         this.bunsinBox = null;
         this.pattyinBox = null;
 
@@ -96,7 +98,7 @@ class Level1 extends Phaser.Scene {
         // creation of items from the itemTypes list using the gameItem function
         this.spawnItem = () => {
             const data = Phaser.Utils.Array.GetRandom(this.itemTypes);
-            const item = new gameItem(this, 20, 0, data.key);
+            const item = new gameItem(this, 60, 0, data.key);
 
             if (data.scale) {
                 item.setScale(data.scale);
@@ -129,11 +131,12 @@ class Level1 extends Phaser.Scene {
         });
 
         // trashbin that deletes items when they overlap it
-        this.trashBin = this.add.image(1400, 800, 'trashcan').setScale(4);
+        this.trashBin = this.add.image(2150, 200, 'trashcan').setScale(4);
             this.physics.add.existing(this.trashBin, true);
 
             this.physics.add.overlap(this.items, this.trashBin, (bin, item) => {
                 item.destroy();
+                console.log('destroyed');
             });
 
         let crafingText = this.add.text(300, 700, "Crafting").setOrigin(0.5);
@@ -144,12 +147,17 @@ class Level1 extends Phaser.Scene {
             this.crafting1.body.setOffset(0, 300);
 
         this.physics.add.collider(this.crafting1, this.items, (box, item) => {
+            // Sushi
             if (item.texture.key === 'alienrice') {
                 this.riceInBox = item;
             }
             if (item.texture.key === 'fish') {
                 this.fishInBox = item;
             }
+            if (item.texture.key === 'aliennori') {
+                this.noriinBox = item;
+            }
+            // Burger
             if (item.texture.key === 'alienbuns') {
                 this.bunsinBox = item;
             }
@@ -157,11 +165,13 @@ class Level1 extends Phaser.Scene {
                 this.pattyinBox = item;
             }
             // crafting of sushi
-            if (this.riceInBox && this.fishInBox) {
+            if (this.riceInBox && this.fishInBox && this.noriinBox) {
                 this.riceInBox.destroy();
                 this.fishInBox.destroy();
+                this.noriinBox.destroy();
                 this.riceInBox = null;
                 this.fishInBox = null;
+                this.noriinBox = null;
 
                 const sushi = new gameItem(this, this.crafting1.x - 20, this.crafting1.y - 30, 'aliensushi');
                 this.items.add(sushi);
