@@ -17,6 +17,9 @@ class mainMenu extends Phaser.Scene {
     }
 
     create() {
+        this.scene.stop('level1');
+        this.scene.stop('level2');
+        this.scene.stop('level3');
         //launch the persistent audio scene as an overlay on top of this scene
         //the audio scene runs independently and persists even when this scene tranistions to another
         if(!this.scene.isActive('audio')){

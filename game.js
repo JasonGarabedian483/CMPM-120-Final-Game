@@ -2,9 +2,9 @@
 //Global mute shared across all scenes
 window.isMuted = false;
 window.levelData = {
-    1: {time: 0},
-    2: {time: 0},
-    3: {time: 0}
+    1: {time: 0, limit: 60, currLevel: 'level1', nextLevel: 'level2'},
+    2: {time: 0, limit: 45, currLevel: 'level2', nextLevel: 'level3'},
+    3: {time: 0, limit: 30, currLevel: 'level3', nextLevel: 'mainmenu'}
 };
 
 const game = new Phaser.Game({
@@ -22,7 +22,7 @@ const game = new Phaser.Game({
             debug: true
         }
     },
-    scene: [logoScene, loadingScene, mainMenu, Level1, Level2, Level3, Credits, ReplayScene, Audio, Timer],
+    scene: [logoScene, loadingScene, mainMenu, Level1, Level2, Level3, Credits, ReplayScene, Audio, Timer, Summary],
     //scene: [Level1],
     title: "Placeholder Title",
 });

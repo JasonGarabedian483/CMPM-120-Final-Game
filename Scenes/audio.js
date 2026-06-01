@@ -28,6 +28,9 @@ class Audio extends Phaser.Scene{
                         scene.sound.mute = window.isMuted;
                     }
                 });
+
+                //mute Tone.js separately since it is not part of Phaser's sound system
+                Tone.getDestination().mute = window.isMuted;
             });
     }
 }

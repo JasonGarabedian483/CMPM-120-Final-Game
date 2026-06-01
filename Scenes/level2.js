@@ -15,6 +15,8 @@ class Level2 extends Phaser.Scene {
     }
 
     create() {
+        this.scene.stop('timer');
+        this.scene.launch('timer', {totalSeconds: 45, levelkey: 2});
         let centerX = this.cameras.main.width / 2;
         let centerY = this.cameras.main.height / 2;
         this.cameras.main.setBackgroundColor('#000000');
