@@ -131,14 +131,14 @@ class Level2 extends Phaser.Scene {
             this.physics.add.existing(this.crafting1, true);
             this.crafting1.body.setSize(550, 300);
             this.crafting1.body.setOffset(22, 290);
-            this.add.image(93, 675, 'aliensushi').setScale(.75);
-            this.add.image(503, 675, 'alienburger').setScale(.75);
+            let alienImage = this.add.image(93, 675, 'aliensushi').setScale(.75);
+            let burgerImage = this.add.image(503, 675, 'alienburger').setScale(.75);
 
         this.crafting2 = this.add.image(950, 838, 'crafting').setScale(3.5);
             this.physics.add.existing(this.crafting2, true);
             this.crafting2.body.setSize(550, 300);
             this.crafting2.body.setOffset(22, 290);
-            this.add.image(745, 680, 'pizza').setScale(1.75);
+            let pizzaImage = this.add.image(745, 680, 'pizza').setScale(1.75);
 
         // Food crafting station 1 collision
         this.physics.add.collider(this.crafting1, this.items, (box, item) => {
