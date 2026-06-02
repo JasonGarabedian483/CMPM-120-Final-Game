@@ -72,7 +72,7 @@ class Level1 extends Phaser.Scene {
         // creating conveyor and adding physics to it
         let conveyor = this.add.rectangle(1000, 150, 2000, 40, 0x666666);
         this.physics.add.existing(conveyor, true);
-        const conveyorSpeed = 100;
+        const conveyorSpeed = 150;
         conveyor.body.setSize(2000, 40);
 
         // Creating key for each item and group
@@ -109,7 +109,7 @@ class Level1 extends Phaser.Scene {
 
         // randomly spawns one of the items in the itemTypes list
         this.time.addEvent({
-            delay: 3000,
+            delay: 2000,
             loop: true,
             callback: this.spawnItem,
             callbackScope: this
