@@ -68,7 +68,7 @@ class Level1 extends Phaser.Scene {
             this.cameras.main.fade(1000, 0, 0, 0);
             this.time.delayedCall(1000, () => this.scene.start('level2'));
         });
- */
+        */
         // creating conveyor and adding physics to it
         let conveyor = this.add.rectangle(1000, 150, 2000, 40, 0x666666);
         this.physics.add.existing(conveyor, true);
@@ -91,6 +91,9 @@ class Level1 extends Phaser.Scene {
         this.noriinBox = null;
         this.bunsinBox = null;
         this.pattyinBox = null;
+
+        let turnedInSushi = 0;
+        let turnedInBurger = 0;
 
 
         // creation of items from the itemTypes list using the gameItem function
@@ -137,6 +140,7 @@ class Level1 extends Phaser.Scene {
                 console.log('destroyed');
             });
 
+        // creation of crafting station 1
         let crafingText = this.add.text(300, 550, "Crafting").setOrigin(0.5);
         this.crafting1 = this.add.image(300, 838, 'crafting').setScale(3.5);
             this.physics.add.existing(this.crafting1, true);
@@ -147,6 +151,7 @@ class Level1 extends Phaser.Scene {
             this.add.image(337, 675, 'fish').setScale(.75).setAngle(-45);
             this.add.image(503, 675, 'aliensushi').setScale(.75);
 
+        // Food crafting
         this.physics.add.collider(this.crafting1, this.items, (box, item) => {
             // Sushi
             if (item.texture.key === 'alienrice') {
@@ -188,9 +193,57 @@ class Level1 extends Phaser.Scene {
                 this.items.add(burger);
             }
         });
+
+        let turnInStation = this.add.rectangle(1000, 400, 200, 40, 0xff0000);
+        this.physics.add.existing(turnInStation, true);
+        this.physics.add.collider(turnInStation, this.items, (box, item) => {
+            if (item.texture.key === 'aliensushi' || item.texture.key === 'alienburger') {
+                currentTurnInItem = item;
+                turnInButton.setVisible(true);
+            }
+        });
+
+        let turnInButton = this.add.text(1150, 400, "TURN IN", {
+            fontSize: '24px',
+            backgroundColor: '#00ff00',
+            color: '#000'
+        }).setInteractive().setVisible(false);
+        let currentTurnInItem = null;
+
+        turnInButton.on('pointerdown', () => {
+            if (!currentTurnInItem) {
+                return;
+            };
+
+            if (currentTurnInItem.texture.key === 'aliensushi') {
+                turnedInSushi++;
+                console.log("Sushi turned in:", turnedInSushi)
+            };
+
+            if (currentTurnInItem.texture.key === 'alienburger') {
+                turnedInBurger++;
+                console.log('Burgers turned in:', turnedInBurger);
+            };
+
+            if(turnedInBurger >= 2 && turnedInSushi >= 2) {
+                this.cameras.main.fade(1000, 0, 0, 0);
+                this.time.delayedCall(1000, () => this.scene.start('level2'));
+            };
+
+            currentTurnInItem.destroy();
+            currentTurnInItem = null;
+            turnInButton.setVisible(false);
+            menu.setText(`Sushi: ${turnedInSushi}\nBurgers: ${turnedInBurger}`);
+        });
+
+        let menu = this.add.text(200, 300, 'Sushi: 0\nBurgers: 0', {
+            fontSize: '36px',
+            fill: '#ffffff'
+        });
+
+        
     }
 
-    
     update() {
 
     }
