@@ -227,7 +227,7 @@ class Level1 extends Phaser.Scene {
 
             if(turnedInBurger >= 2 && turnedInSushi >= 2) {
                 this.cameras.main.fade(1000, 0, 0, 0);
-                this.time.delayedCall(1000, () => this.scene.start('level2'));
+                this.time.delayedCall(1000, () => this.scene.get('timer').completed());
             };
 
             currentTurnInItem.destroy();
