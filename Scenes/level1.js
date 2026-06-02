@@ -14,6 +14,8 @@ class Level1 extends Phaser.Scene {
         this.load.image('fish', 'sushi/fish.png')
         this.load.image('trashcan', 'trashcan.png')
         this.load.image('crafting', 'craftingstation.png')
+        this.load.image('menu', 'menu.png')
+        this.load.image('arrow', 'arrow.png')
     }
 
     create() {
@@ -199,6 +201,23 @@ class Level1 extends Phaser.Scene {
             fontSize: '36px',
             fill: '#ffffff'
         });
+
+        let menuImage = this.add.image(1500, 830, 'menu').setScale(5.8);
+            this.add.text(1500, 625, "Recipes", {
+                fontSize: '40px',
+                fill: '#ff9327'
+            }).setOrigin(0.5);
+            // burger recipe
+            this.add.image(1350, 680, 'alienbuns').setScale(.5);
+            this.add.image(1425, 680, 'alienpatty').setScale(.5);
+            this.add.image(1580, 680, 'arrow').setScale(2);
+            this.add.image(1650, 680, 'alienburger').setScale(.5);
+            // sushi recipe
+            this.add.image(1350, 780, 'alienrice').setScale(.5);
+            this.add.image(1425, 780, 'fish').setScale(.5);
+            this.add.image(1510, 780, 'aliennori').setScale(.2);
+            this.add.image(1580, 780, 'arrow').setScale(2);
+            this.add.image(1650, 780, 'aliensushi').setScale(.5);
 
         
     }

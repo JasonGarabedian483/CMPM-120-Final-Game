@@ -18,6 +18,8 @@ class Level2 extends Phaser.Scene {
         this.load.image('pizza', 'pizza/pizza.png')
         this.load.image('trashcan', 'trashcan.png')
         this.load.image('crafting', 'craftingstation.png')
+        this.load.image('menu', 'menu.png')
+        this.load.image('arrow', 'arrow.png')
 
     }
 
@@ -274,6 +276,31 @@ class Level2 extends Phaser.Scene {
             fontSize: '36px',
             fill: '#ffffff'
         });
+
+        // recipe board
+        let menuImage = this.add.image(1500, 830, 'menu').setScale(5.8);
+            this.add.text(1500, 625, "Recipes", {
+                fontSize: '40px',
+                fill: '#ff9327'
+            }).setOrigin(0.5);
+            // burger recipe
+            this.add.image(1350, 680, 'alienbuns').setScale(.5);
+            this.add.image(1425, 680, 'alienpatty').setScale(.5);
+            this.add.image(1580, 680, 'arrow').setScale(2);
+            this.add.image(1650, 680, 'alienburger').setScale(.5);
+            // sushi recipe
+            this.add.image(1350, 780, 'alienrice').setScale(.5);
+            this.add.image(1425, 780, 'fish').setScale(.5);
+            this.add.image(1510, 780, 'aliennori').setScale(.2);
+            this.add.image(1580, 780, 'arrow').setScale(2);
+            this.add.image(1650, 780, 'aliensushi').setScale(.5);
+            // pizza recipe
+            this.add.image(1350, 880, 'pizzadough');
+            this.add.image(1425, 880, 'pizzacheese');
+            this.add.image(1510, 880, 'pizzapep').setScale(2);
+            this.add.image(1580, 880, 'arrow').setScale(2);
+            this.add.image(1650, 880, 'pizza')
+
     }
 
     update() {
