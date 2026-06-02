@@ -79,11 +79,9 @@ class Level1 extends Phaser.Scene {
         this.items = this.physics.add.group();
         this.itemTypes = [
             {key: 'alienbuns'},
-            {key: 'alienburger'},
             {key: 'aliennori', scale: 0.4},
             {key: 'alienpatty'},
             {key: 'alienrice'},
-            {key: 'aliensushi'},
             {key: 'fish'},
         ];
 
