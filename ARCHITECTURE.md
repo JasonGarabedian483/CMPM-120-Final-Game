@@ -125,14 +125,14 @@ Timer ..> Summary : opens
 
 ## Notes
 
-Methods inherited from Phaser and overridden by the project include:
+Phaser inherited methods
 
 * `preload()`
 * `init()`
 * `create()`
 * `update()`
 
-Custom methods authored by the team include:
+Custom methods
 
 * `getBigger()`
 * `getSmaller()`
@@ -140,5 +140,3 @@ Custom methods authored by the team include:
 * `completed()`
 * `timeUp()`
 * `tempSummary()`
-
-The architecture follows a scene-based design in which most gameplay systems are implemented as subclasses of `Phaser.Scene`, while reusable ingredient objects are implemented through the `gameItem` prefab class, which extends `Phaser.Physics.Arcade.Image`.
