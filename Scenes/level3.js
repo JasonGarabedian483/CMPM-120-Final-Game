@@ -29,7 +29,7 @@ class Level3 extends Phaser.Scene {
 
     create() {
         this.scene.stop('timer');
-        this.scene.launch('timer', {totalSeconds: 30, levelkey: 3});
+        this.scene.launch('timer', {totalSeconds: 45, levelkey: 3});
         let centerX = this.cameras.main.width / 2;
         let centerY = this.cameras.main.height / 2;
         this.cameras.main.setBackgroundColor('#000000');
