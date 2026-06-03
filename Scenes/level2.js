@@ -36,18 +36,6 @@ class Level2 extends Phaser.Scene {
             fill: '#ffffff'
         }).setOrigin(0.5);
 
-        let level3Button = this.add.text(centerX, centerY + 300, "Passed score threshold!\nGo to Level 3", {
-            fontSize: '24px',
-            fill: '#ffffff',
-            backgroundColor: '#0000ff',
-            padding: { x: 10, y: 5 },
-            borderRadius: 5
-        }).setOrigin(0.5).setInteractive();
-        level3Button.on('pointerdown', () => {
-            this.cameras.main.fade(1000, 0, 0, 0);
-            this.time.delayedCall(1000, () => this.scene.start('level3'));
-        });
-
         // creating conveyor and adding physics to it
         let conveyor1 = this.add.rectangle(1000, 150, 2000, 40, 0x666666);
             this.physics.add.existing(conveyor1, true);
