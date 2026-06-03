@@ -181,19 +181,15 @@ class Level1 extends Phaser.Scene {
             if (!currentTurnInItem) {
                 return;
             };
-
             if (currentTurnInItem.texture.key === 'aliensushi') {
                 turnedInSushi++;
                 console.log("Sushi turned in:", turnedInSushi)
             };
-
             if (currentTurnInItem.texture.key === 'alienburger') {
                 turnedInBurger++;
                 console.log('Burgers turned in:', turnedInBurger);
             };
-
             if(turnedInBurger >= 2 && turnedInSushi >= 2) {
-                //this.cameras.main.fade(1000, 0, 0, 0);
                 this.time.delayedCall(1000, () => this.scene.get('timer').completed());
             };
 
@@ -225,8 +221,6 @@ class Level1 extends Phaser.Scene {
             this.add.image(1510, 780, 'aliennori').setScale(.2);
             this.add.image(1580, 780, 'arrow').setScale(2);
             this.add.image(1650, 780, 'aliensushi').setScale(.5);
-
-        
     }
 
     update() {

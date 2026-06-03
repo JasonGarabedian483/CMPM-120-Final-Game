@@ -38,49 +38,7 @@ class Level3 extends Phaser.Scene {
             fontSize: '32px',
             fill: '#ffffff'
         }).setOrigin(0.5);
- /*
-        let winText = this.add.text(centerX, centerY, "You win! :)", {
-            fontSize: '150px',
-            fill: '#42f55a'
-        }).setOrigin(0.5).setAlpha(0);
 
-        let loseText = this.add.text(centerX, centerY, "You lose! :(", {
-            fontSize: '150px',
-            fill: '#f54242'
-        }).setOrigin(0.5).setAlpha(0);
-        // win button
-        let winButton = this.add.text(centerX, centerY + 300, "Press this button to win!", {
-            fontSize: '24px',
-            fill: '#ffffff',
-            backgroundColor: '#0000ff',
-            padding: { x: 10, y: 5 },
-            borderRadius: 5
-        }).setOrigin(0.5).setInteractive();
-        winButton.on('pointerdown', () => {
-            this.time.delayedCall(200, () => {
-                winButton.destroy();
-                loseButton.destroy();
-                levelText.destroy();
-                winText.setAlpha(1);
-            });
-        });
-
-        let loseButton = this.add.text(centerX, centerY + 400, "Press this button to lose :(", {
-            fontSize: '24px',
-            fill: '#ffffff',
-            backgroundColor: '#0000ff',
-            padding: { x: 10, y: 5 },
-            borderRadius: 5
-        }).setOrigin(0.5).setInteractive();
-        loseButton.on('pointerdown', () => {
-            this.time.delayedCall(200, () => {
-                winButton.destroy();
-                loseButton.destroy();
-                levelText.destroy();
-                loseText.setAlpha(1);
-            });
-        });
- */
         // creating conveyor and adding physics to it
         let conveyor1 = this.add.rectangle(1000, 150, 2000, 40, 0x666666);
             this.physics.add.existing(conveyor1, true);
@@ -301,27 +259,22 @@ class Level3 extends Phaser.Scene {
             if (!currentTurnInItem) {
                 return;
             };
-
             if (currentTurnInItem.texture.key === 'aliensushi') {
                 turnedInSushi++;
                 console.log("Sushi turned in:", turnedInSushi)
             };
-
             if (currentTurnInItem.texture.key === 'alienburger') {
                 turnedInBurger++;
                 console.log('Burgers turned in:', turnedInBurger);
             };
-
             if (currentTurnInItem.texture.key === 'pizza') {
                 turnedInPizza++;
                 console.log('Pizzas turned in:', turnedInPizza)
             }
-
             if (currentTurnInItem.texture.key === 'parfait') {
                 turnedInParfait++;
                 console.log('Parfaits turned in:', turnedInParfait)
             }
-
             if(turnedInBurger >= 2 && turnedInSushi >= 2 && turnedInPizza >= 2 && turnedInParfait >= 2) {
                 this.time.delayedCall(1000, () => this.scene.get('timer').completed());
             };
