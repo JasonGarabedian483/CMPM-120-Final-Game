@@ -26,7 +26,7 @@ class mainMenu extends Phaser.Scene {
             this.scene.launch('audio');
         };
         if(!this.sound.get('backgroundMusic')){
-            this.sound.add('backgroundMusic', {loop: true, volume: 0.3}).play();
+            this.sound.add('backgroundMusic', {loop: true, volume: window.volume.music}).play();
         };
         this.scene.stop('timer');
 
@@ -59,6 +59,7 @@ class mainMenu extends Phaser.Scene {
             optionsButton.on("pointerover", () => this.getBigger(optionsButton));
             optionsButton.on("pointerdown", () => {
                 this.sound.play('button');
+                this.scene.launch('options');
             });
             optionsButton.on("pointerout", () => this.getSmaller(optionsButton));
         let quitButton = this.add.image(1920 / 2, 900, 'quit').setScale(0.5).setOrigin(0.5);

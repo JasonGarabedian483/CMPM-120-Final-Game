@@ -39,13 +39,15 @@ class Timer extends Phaser.Scene{
         //oscillator: 'sine' is the smoothes tone
         //decay controls how long each beep last before fading out
         //sustain: 0 means the sound doesn't hold - its a short blip
+        //Tone.gainToDb converts our volume (0 to 1) into decibels for the synth's volume control
         this.tickSynth = new Tone.Synth({
             oscillator: {type: 'sine'},
             envelope: {attack: 0.001, decay: 0.08, sustain: 0, release: 0.05},
-            volume: -18
+            volume: Tone.gainToDb(window.volume.ticker)
         }).toDestination();
 
-        this.alarm = this.sound.add('alarm', {loop: true, volume: 0.3});
+        this.alarm = this.sound.add('alarm', {loop: true, volume: window.volume.alarm});
+
 
         //force stop
         this.add.text(w / 2, 100, 'LOSE', {

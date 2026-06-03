@@ -6,12 +6,13 @@ class Audio extends Phaser.Scene{
     preload(){
         this.load.image('soundOn', 'assets/images/volume.png');
         this.load.image('soundOff', 'assets/images/mute.png');
+        this.load.image('settingsIcon', 'assets/images/setting.png');
     }
 
     create(){
         //window.isMuted to show the correct icon
         //this ensure the button reflects the saved state when relaunched
-        let soundBtn = this.add.image(25, 1055, window.isMuted ? 'soundOff' : 'soundOn')
+        let soundBtn = this.add.image(1810, 1042, window.isMuted ? 'soundOff' : 'soundOn')
             soundBtn.setInteractive({useHandCursor: true});
             soundBtn.setScale(0.1);
             soundBtn.setDepth(67);
@@ -32,5 +33,13 @@ class Audio extends Phaser.Scene{
                 //mute Tone.js separately since it is not part of Phaser's sound system
                 Tone.getDestination().mute = window.isMuted;
             });
+
+        let settingBtn = this.add.image(1880, 1040, 'settingsIcon')
+            settingBtn.setInteractive({useHandCursor: true});
+            settingBtn.setScale(0.1);
+            settingBtn.setDepth(67);
+            settingBtn.on('pointerdown', () => {
+                this.scene.launch('options');
+        });
     }
 }
