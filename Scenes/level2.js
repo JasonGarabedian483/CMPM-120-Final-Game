@@ -8,6 +8,7 @@ class Level2 extends Phaser.Scene {
         this.load.image('alienbuns', 'burger/alien_buns.png')
         this.load.image('alienburger', 'burger/alien_burger.png')
         this.load.image('alienpatty', 'burger/alien_patty.png')
+        this.load.image('burgercheese', 'burger/alien_cheese.png')
         this.load.image('aliennori', 'sushi/alien_nori.png')
         this.load.image('alienrice', 'sushi/alien_rice.png')
         this.load.image('aliensushi', 'sushi/alien_sushi.png')
@@ -64,6 +65,7 @@ class Level2 extends Phaser.Scene {
             {key: 'pizzacheese', scale: 2.0},
             {key: 'pizzadough', scale: 2.0},
             {key: 'pizzapep', scale: 3.0},
+            {key: 'burgercheese', scale: .1},
         ];
 
          // variables of ingredients in crafting zone
@@ -71,6 +73,7 @@ class Level2 extends Phaser.Scene {
         this.fishInBox = null;
         this.noriinBox = null;
         this.bunsinBox = null;
+        this.burgercheeseinBox = null;
         this.pattyinBox = null;
         this.cheeseinBox = null;
         this.doughinBox = null;
@@ -159,6 +162,9 @@ class Level2 extends Phaser.Scene {
             if (item.texture.key === 'alienpatty') {
                 this.pattyinBox = item;
             }
+            if (item.texture.key === 'burgercheese') {
+                this.burgercheeseinBox = item;
+            }
             // crafting of sushi
             if (this.riceInBox && this.fishInBox && this.noriinBox) {
                 this.riceInBox.destroy();
@@ -172,11 +178,13 @@ class Level2 extends Phaser.Scene {
                 this.items.add(sushi);
             }
             // crafting of burger
-            if (this.bunsinBox && this.pattyinBox) {
+            if (this.bunsinBox && this.pattyinBox && this.burgercheeseinBox) {
                 this.bunsinBox.destroy();
                 this.pattyinBox.destroy();
-                this.bunsinBox = null
+                this.burgercheeseinBox.destroy();
+                this.bunsinBox = null;
                 this.pattyinBox = null;
+                this.burgercheeseinBox = null;
 
                 const burger = new gameItem(this, this.crafting1.x + 20, this.crafting1.y - 30, 'alienburger');
                 this.items.add(burger);
@@ -194,14 +202,7 @@ class Level2 extends Phaser.Scene {
             if (item.texture.key === 'pizzapep') {
                 this.pepinBox = item;
             }
-            // Burger
-            if (item.texture.key === 'alienbuns') {
-                this.bunsinBox = item;
-            }
-            if (item.texture.key === 'alienpatty') {
-                this.pattyinBox = item;
-            }
-            // crafting of sushi
+            // crafting of pizza
             if (this.cheeseinBox && this.doughinBox && this.pepinBox) {
                 this.cheeseinBox.destroy();
                 this.doughinBox.destroy();
@@ -212,16 +213,6 @@ class Level2 extends Phaser.Scene {
 
                 const pizza = new gameItem(this, this.crafting2.x - 20, this.crafting2.y - 30, 'pizza').setScale(2);
                 this.items.add(pizza);
-            }
-            // crafting of burger
-            if (this.bunsinBox && this.pattyinBox) {
-                this.bunsinBox.destroy();
-                this.pattyinBox.destroy();
-                this.bunsinBox = null
-                this.pattyinBox = null;
-
-                const burger = new gameItem(this, this.crafting2.x + 20, this.crafting2.y - 30, 'alienburger');
-                this.items.add(burger);
             }
         });
 
@@ -286,6 +277,7 @@ class Level2 extends Phaser.Scene {
             // burger recipe
             this.add.image(1350, 680, 'alienbuns').setScale(.5);
             this.add.image(1425, 680, 'alienpatty').setScale(.5);
+            this.add.image(1510, 675, 'burgercheese').setScale(.06);
             this.add.image(1580, 680, 'arrow').setScale(2);
             this.add.image(1650, 680, 'alienburger').setScale(.5);
             // sushi recipe
