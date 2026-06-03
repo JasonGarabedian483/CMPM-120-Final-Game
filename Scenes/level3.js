@@ -100,7 +100,7 @@ class Level3 extends Phaser.Scene {
             callbackScope: this
         });
 
-        // adding collider between alienBuns and conveyor, and making item move when colliding
+        // adding collider between items and conveyor
         this.physics.add.collider(conveyor1, this.items, (conveyor, item) => {
             item.setVelocityX(conveyor1Speed);
         });
@@ -117,7 +117,7 @@ class Level3 extends Phaser.Scene {
             gameObject.body.enable = true;
         });
 
-        // trashbin that deletes items when they overlap it
+        // trashbin that deletes items when they overlap it at end of conveyor
         this.trashBin = this.add.image(2150, 200, 'trashcan').setScale(4);
             this.physics.add.existing(this.trashBin, true);
 
@@ -126,15 +126,15 @@ class Level3 extends Phaser.Scene {
                 console.log('destroyed');
             });
 
-        // creation of crafting station 1
         let crafingText = this.add.text(300, 550, "Crafting").setOrigin(0.5);
+        // creation of crafting station 1
         this.crafting1 = this.add.image(300, 838, 'crafting').setScale(3.5);
             this.physics.add.existing(this.crafting1, true);
             this.crafting1.body.setSize(550, 300);
             this.crafting1.body.setOffset(22, 290);
             let sushiImage = this.add.image(93, 675, 'aliensushi').setScale(.75);
             let burgerImage = this.add.image(503, 675, 'alienburger').setScale(.75);
-
+        // creation of crafting station 2
         this.crafting2 = this.add.image(950, 838, 'crafting').setScale(3.5);
             this.physics.add.existing(this.crafting2, true);
             this.crafting2.body.setSize(550, 300);
@@ -142,7 +142,7 @@ class Level3 extends Phaser.Scene {
             let pizzaImage = this.add.image(745, 680, 'pizza').setScale(1.75);
             let parfaitImage = this.add.image(1160, 680, 'parfait').setScale(3);
 
-        // Food crafting station 1 collision
+        // Food crafting station 1 collision and crafting
         this.physics.add.collider(this.crafting1, this.items, (box, item) => {
             // Sushi
             if (item.texture.key === 'alienrice') {
@@ -189,7 +189,7 @@ class Level3 extends Phaser.Scene {
                 this.items.add(burger);
             }
         });
-
+        // Food crafting station 2 collision and crafting
         this.physics.add.collider(this.crafting2, this.items, (box, item) => {
             // Pizza
             if (item.texture.key === 'pizzacheese') {

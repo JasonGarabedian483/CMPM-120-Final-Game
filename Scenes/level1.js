@@ -78,7 +78,7 @@ class Level1 extends Phaser.Scene {
             callback: this.spawnItem,
             callbackScope: this
         });
-        // adding collider between alienBuns and conveyor, and making item move when colliding
+        // adding collider between items and conveyor
         this.physics.add.collider(conveyor, this.items, (conveyor, item) => {
             item.setVelocityX(conveyorSpeed);
         });
@@ -87,7 +87,7 @@ class Level1 extends Phaser.Scene {
         this.input.on('dragstart', (pointer, gameObject) => {
             gameObject.body.enable = false;
         });
-        this.input.on('drag', function (pointer, gameObject, dragX, dragY) { // enables test object to be dragged around
+        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
             gameObject.x = dragX
             gameObject.y = dragY
         });
@@ -95,7 +95,7 @@ class Level1 extends Phaser.Scene {
             gameObject.body.enable = true;
         });
 
-        // trashbin that deletes items when they overlap it
+        // trashbin that deletes items when they overlap it at end of conveyor
         this.trashBin = this.add.image(2150, 200, 'trashcan').setScale(4);
             this.physics.add.existing(this.trashBin, true);
 
@@ -104,8 +104,8 @@ class Level1 extends Phaser.Scene {
                 console.log('destroyed');
             });
 
-        // creation of crafting station 1
         let crafingText = this.add.text(300, 550, "Crafting").setOrigin(0.5);
+        // creation of crafting station 1
         this.crafting1 = this.add.image(300, 838, 'crafting').setScale(3.5);
             this.physics.add.existing(this.crafting1, true);
             this.crafting1.body.setSize(550, 300);
@@ -113,7 +113,7 @@ class Level1 extends Phaser.Scene {
             let sushiImage = this.add.image(93, 675, 'aliensushi').setScale(.75);
             let burgerImage = this.add.image(503, 675, 'alienburger').setScale(.75);
 
-        // Food crafting
+        // Food crafting and collision
         this.physics.add.collider(this.crafting1, this.items, (box, item) => {
             // Sushi
             if (item.texture.key === 'alienrice') {

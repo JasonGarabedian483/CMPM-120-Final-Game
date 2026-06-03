@@ -37,10 +37,10 @@ class Level2 extends Phaser.Scene {
         }).setOrigin(0.5);
 
         // creating conveyor and adding physics to it
-        let conveyor1 = this.add.rectangle(1000, 150, 2000, 40, 0x666666);
-            this.physics.add.existing(conveyor1, true);
-            const conveyor1Speed = 225;
-            conveyor1.body.setSize(2000, 40);
+        let conveyor = this.add.rectangle(1000, 150, 2000, 40, 0x666666);
+            this.physics.add.existing(conveyor, true);
+            const conveyorSpeed = 225;
+            conveyor.body.setSize(2000, 40);
 
         // creating item group for spawning
         this.items = this.physics.add.group();
@@ -90,9 +90,9 @@ class Level2 extends Phaser.Scene {
             callbackScope: this
         });
 
-        // adding collider between alienBuns and conveyor, and making item move when colliding
-        this.physics.add.collider(conveyor1, this.items, (conveyor, item) => {
-            item.setVelocityX(conveyor1Speed);
+        // adding collider between items and conveyor
+        this.physics.add.collider(conveyor, this.items, (conveyor, item) => {
+            item.setVelocityX(conveyorSpeed);
         });
  
         // dragging of item
@@ -107,7 +107,7 @@ class Level2 extends Phaser.Scene {
             gameObject.body.enable = true;
         });
 
-        // trashbin that deletes items when they overlap it
+        // trashbin that deletes items when they overlap it at end of conveyor
         this.trashBin = this.add.image(2150, 200, 'trashcan').setScale(4);
             this.physics.add.existing(this.trashBin, true);
 
@@ -116,8 +116,9 @@ class Level2 extends Phaser.Scene {
                 console.log('destroyed');
             });
 
-        // creation of crafting station 1
         let crafingText = this.add.text(300, 550, "Crafting").setOrigin(0.5);
+        
+        // creation of crafting station 1
         this.crafting1 = this.add.image(300, 838, 'crafting').setScale(3.5);
             this.physics.add.existing(this.crafting1, true);
             this.crafting1.body.setSize(550, 300);
@@ -125,13 +126,14 @@ class Level2 extends Phaser.Scene {
             let alienImage = this.add.image(93, 675, 'aliensushi').setScale(.75);
             let burgerImage = this.add.image(503, 675, 'alienburger').setScale(.75);
 
+        // creation of crafting station 2
         this.crafting2 = this.add.image(950, 838, 'crafting').setScale(3.5);
             this.physics.add.existing(this.crafting2, true);
             this.crafting2.body.setSize(550, 300);
             this.crafting2.body.setOffset(22, 290);
             let pizzaImage = this.add.image(745, 680, 'pizza').setScale(1.75);
 
-        // Food crafting station 1 collision
+        // Food crafting station 1 collision / crafting
         this.physics.add.collider(this.crafting1, this.items, (box, item) => {
             // Sushi
             if (item.texture.key === 'alienrice') {
@@ -178,7 +180,7 @@ class Level2 extends Phaser.Scene {
                 this.items.add(burger);
             }
         });
-
+        // Food crafting station 2 collision / crafting
         this.physics.add.collider(this.crafting2, this.items, (box, item) => {
             // Pizza
             if (item.texture.key === 'pizzacheese') {
@@ -213,7 +215,6 @@ class Level2 extends Phaser.Scene {
                 turnInButton.setVisible(true);
             }
         });
-
         let turnInButton = this.add.text(1150, 400, "TURN IN", {
             fontSize: '24px',
             backgroundColor: '#00ff00',
@@ -247,6 +248,7 @@ class Level2 extends Phaser.Scene {
             menu.setText(`Sushi: ${turnedInSushi}\nBurgers: ${turnedInBurger}\nPizzas: ${turnedInPizza}`);
         });
 
+        // menu
         let menu = this.add.text(200, 300, 'Sushi: 0\nBurgers: 0\nPizzas: 0', {
             fontSize: '36px',
             fill: '#ffffff'
