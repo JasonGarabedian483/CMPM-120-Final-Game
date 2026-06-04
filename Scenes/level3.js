@@ -81,6 +81,11 @@ class Level3 extends Phaser.Scene {
         let turnedInPizza = 0;
         let turnedInParfait = 0;
 
+        let requiredSushi = 1
+        let requiredBurger = 3;
+        let requiredPizza = 2;
+        let requiredParfaita = 2;
+
         // creation of items from the itemTypes list using the gameItem function
         this.spawnItem1 = () => {
             const data = Phaser.Utils.Array.GetRandom(this.itemTypes);
@@ -275,7 +280,7 @@ class Level3 extends Phaser.Scene {
                 turnedInParfait++;
                 console.log('Parfaits turned in:', turnedInParfait)
             }
-            if(turnedInBurger >= 2 && turnedInSushi >= 2 && turnedInPizza >= 2 && turnedInParfait >= 2) {
+            if(turnedInBurger >= requiredBurger && turnedInSushi >= requiredSushi && turnedInPizza >= requiredPizza && turnedInParfait >= requiredParfait) {
                 this.time.delayedCall(1000, () => this.scene.get('timer').completed());
             };
 

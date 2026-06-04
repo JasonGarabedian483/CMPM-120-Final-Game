@@ -59,6 +59,9 @@ class Level1 extends Phaser.Scene {
         let turnedInSushi = 0;
         let turnedInBurger = 0;
 
+        let requiredSushi = 2;
+        let requiredBurger = 2;
+
 
         // creation of items from the itemTypes list using the gameItem function
         this.spawnItem = () => {
@@ -189,7 +192,7 @@ class Level1 extends Phaser.Scene {
                 turnedInBurger++;
                 console.log('Burgers turned in:', turnedInBurger);
             };
-            if(turnedInBurger >= 2 && turnedInSushi >= 2) {
+            if(turnedInBurger >= requiredBurger && turnedInSushi >= requiredSushi) {
                 this.time.delayedCall(1000, () => this.scene.get('timer').completed());
             };
 
