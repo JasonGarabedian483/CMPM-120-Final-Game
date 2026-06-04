@@ -1,6 +1,6 @@
 'use strict';
 //Global mute shared across all scenes
-window.isMuted = false;
+window.isMuted = localStorage.getItem('isMuted') === 'true';
 window.volume = {
     music: 1, //background music
     alarm: 1, //alarm audio file

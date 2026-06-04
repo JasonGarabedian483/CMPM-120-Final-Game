@@ -26,7 +26,9 @@ class mainMenu extends Phaser.Scene {
             this.scene.launch('audio');
         };
         if(!this.sound.get('backgroundMusic')){
-            this.sound.add('backgroundMusic', {loop: true, volume: window.volume.music}).play();
+           window.bgMusic = this.sound.add('backgroundMusic', {loop: true, volume: window.volume.music});
+           window.bgMusic.play();
+           window.bgMusic.mute = window.isMuted;
         };
         this.scene.stop('timer');
 
