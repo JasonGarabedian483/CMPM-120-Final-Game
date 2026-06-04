@@ -3,6 +3,7 @@ List each asset you made and the filename and path within the repo. Also name th
 
 ## Visual
 - Main Menu Background (assets/images/newMenubg.png) by Alicia Zhang using Procreate
+- Arrow, Craftingstation, and Recipe board (arrow / craftingstation / menu.png) by Jason Garabedian using PixilArt.com
 
 ## Audio
-- 
+- Button clicking sound effect taken from Minecraft

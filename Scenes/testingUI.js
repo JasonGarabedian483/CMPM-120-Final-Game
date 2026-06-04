@@ -1,3 +1,4 @@
+// TO BE DELETED, THIS IS JUST A TESTING SCENE FOR QUICKLY ACCESSING OTHER SCENES IN THE GAME
 class TestingUI extends Phaser.Scene {
     constructor(){
         super('testingui');
