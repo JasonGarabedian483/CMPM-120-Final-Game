@@ -263,29 +263,29 @@ class Level2 extends Phaser.Scene {
         });
 
         // recipe board
-        let menuImage = this.add.image(1700 - 110, 830, 'menu').setScale(5.4);
-            this.add.text(1700 - 110, 650, "Recipes", {
+        let menuImage = this.add.image(1700 - 110, 850, 'menu').setScale(5.4);
+            this.add.text(1700 - 110, 670, "Recipes", {
                 fontSize: '40px',
                 fill: '#ff9327'
             }).setOrigin(0.5);
             // burger recipe
-            this.add.image(1440, 700, 'alienbuns').setScale(.5);
-            this.add.image(1515, 700, 'alienpatty').setScale(.5);
-            this.add.image(1600, 700, 'burgercheese').setScale(.06);
-            this.add.image(1670, 700, 'arrow').setScale(2);
-            this.add.image(1740, 700, 'alienburger').setScale(.5);
+            this.add.image(1440, 720, 'alienbuns').setScale(.5);
+            this.add.image(1515, 720, 'alienpatty').setScale(.5);
+            this.add.image(1600, 720, 'burgercheese').setScale(.06);
+            this.add.image(1670, 720, 'arrow').setScale(2);
+            this.add.image(1740, 720, 'alienburger').setScale(.5);
             // sushi recipe
-            this.add.image(1440, 780, 'alienrice').setScale(.5);
-            this.add.image(1515, 780, 'fish').setScale(.5);
-            this.add.image(1600, 780, 'aliennori').setScale(.2);
-            this.add.image(1670, 780, 'arrow').setScale(2);
-            this.add.image(1740, 780, 'aliensushi').setScale(.5);
+            this.add.image(1440, 800, 'alienrice').setScale(.5);
+            this.add.image(1515, 800, 'fish').setScale(.5);
+            this.add.image(1600, 800, 'aliennori').setScale(.2);
+            this.add.image(1670, 800, 'arrow').setScale(2);
+            this.add.image(1740, 800, 'aliensushi').setScale(.5);
             // pizza recipe
-            this.add.image(1550 - 110, 870, 'pizzadough');
-            this.add.image(1625 - 110, 870, 'pizzacheese');
-            this.add.image(1710 - 110, 870, 'pizzapep').setScale(2);
-            this.add.image(1780 - 110, 870, 'arrow').setScale(2);
-            this.add.image(1850 - 110, 870, 'pizza')
+            this.add.image(1440, 890, 'pizzadough');
+            this.add.image(1515, 890, 'pizzacheese');
+            this.add.image(1600, 890, 'pizzapep').setScale(2);
+            this.add.image(1670, 890, 'arrow').setScale(2);
+            this.add.image(1740, 890, 'pizza')
     }
 
     update() {

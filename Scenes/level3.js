@@ -137,19 +137,20 @@ class Level3 extends Phaser.Scene {
 
         let crafingText = this.add.text(300, 550, "Crafting").setOrigin(0.5);
         // creation of crafting station 1
-        this.crafting1 = this.add.image(300, 838, 'crafting').setScale(3.5);
+        this.crafting1 = this.add.image(280 + 120, 838, 'crafting').setScale(3.25);
             this.physics.add.existing(this.crafting1, true);
             this.crafting1.body.setSize(550, 300);
-            this.crafting1.body.setOffset(22, 290);
-            let sushiImage = this.add.image(93, 675, 'aliensushi').setScale(.75);
-            let burgerImage = this.add.image(503, 675, 'alienburger').setScale(.75);
+            this.crafting1.body.setOffset(0, 290);
+            let sushiImage = this.add.image(89 + 120, 690, 'aliensushi').setScale(.65);
+            let burgerImage = this.add.image(468 + 120, 690, 'alienburger').setScale(.65);
+
         // creation of crafting station 2
-        this.crafting2 = this.add.image(950, 838, 'crafting').setScale(3.5);
+        this.crafting2 = this.add.image(950 + 60, 838, 'crafting').setScale(3.25);
             this.physics.add.existing(this.crafting2, true);
             this.crafting2.body.setSize(550, 300);
-            this.crafting2.body.setOffset(22, 290);
-            let pizzaImage = this.add.image(745, 680, 'pizza').setScale(1.75);
-            let parfaitImage = this.add.image(1160, 680, 'parfait').setScale(3);
+            this.crafting2.body.setOffset(0, 290);
+            let pizzaImage = this.add.image(820, 694, 'pizza').setScale(1.5);
+            let parfaitImage = this.add.image(1205, 690, 'parfait').setScale(3);
 
         // Food crafting station 1 collision and crafting
         this.physics.add.collider(this.crafting1, this.items, (box, item) => {
@@ -248,7 +249,7 @@ class Level3 extends Phaser.Scene {
         });
 
         // Turn in station WIP
-        let turnInStation = this.add.rectangle(1000, 400, 200, 40, 0xff0000);
+        let turnInStation = this.add.rectangle(1590, 575, 300, 40, 0xff0000).setAlpha(0);
         this.physics.add.existing(turnInStation, true);
         this.physics.add.collider(turnInStation, this.items, (box, item) => {
             if (item.texture.key === 'aliensushi' || item.texture.key === 'alienburger' || item.texture.key === 'pizza' || item.texture.key === 'parfait') {
@@ -299,35 +300,35 @@ class Level3 extends Phaser.Scene {
             fill: '#ffffff'
         });
 
-        let menuImage = this.add.image(1500, 830, 'menu').setScale(5.8);
-            this.add.text(1500, 625, "Recipes", {
+        let menuImage = this.add.image(1700 - 110, 850, 'menu').setScale(5.4);
+            this.add.text(1700 - 110, 670, "Recipes", {
                 fontSize: '40px',
                 fill: '#ff9327'
             }).setOrigin(0.5);
             // burger recipe
-            this.add.image(1350, 680, 'alienbuns').setScale(.5);
-            this.add.image(1425, 680, 'alienpatty').setScale(.5);
-            this.add.image(1510, 675, 'burgercheese').setScale(.06);
-            this.add.image(1580, 680, 'arrow').setScale(2);
-            this.add.image(1650, 680, 'alienburger').setScale(.5);
+            this.add.image(1440, 720, 'alienbuns').setScale(.5);
+            this.add.image(1515, 720, 'alienpatty').setScale(.5);
+            this.add.image(1600, 720, 'burgercheese').setScale(.06);
+            this.add.image(1670, 720, 'arrow').setScale(2);
+            this.add.image(1740, 720, 'alienburger').setScale(.5);
             // sushi recipe
-            this.add.image(1350, 780, 'alienrice').setScale(.5);
-            this.add.image(1425, 780, 'fish').setScale(.5);
-            this.add.image(1510, 780, 'aliennori').setScale(.2);
-            this.add.image(1580, 780, 'arrow').setScale(2);
-            this.add.image(1650, 780, 'aliensushi').setScale(.5);
+            this.add.image(1440, 800, 'alienrice').setScale(.5);
+            this.add.image(1515, 800, 'fish').setScale(.5);
+            this.add.image(1600, 800, 'aliennori').setScale(.2);
+            this.add.image(1670, 800, 'arrow').setScale(2);
+            this.add.image(1740, 800, 'aliensushi').setScale(.5);
             // pizza recipe
-            this.add.image(1350, 880, 'pizzadough');
-            this.add.image(1425, 880, 'pizzacheese');
-            this.add.image(1510, 880, 'pizzapep').setScale(2);
-            this.add.image(1580, 880, 'arrow').setScale(2);
-            this.add.image(1650, 880, 'pizza')
+            this.add.image(1440, 890, 'pizzadough');
+            this.add.image(1515, 890, 'pizzacheese');
+            this.add.image(1600, 890, 'pizzapep').setScale(2);
+            this.add.image(1670, 890, 'arrow').setScale(2);
+            this.add.image(1740, 890, 'pizza')
             // parfait recipe
-            this.add.image(1350, 980, 'parfaitcream').setScale(3.5);
-            this.add.image(1425, 980, 'parfaitfruit').setScale(4.5);
-            this.add.image(1510, 980, 'parfaitwaffer').setScale(5);
-            this.add.image(1580, 980, 'arrow').setScale(2);
-            this.add.image(1650, 980, 'parfait').setScale(3);
+            this.add.image(1440, 980, 'parfaitcream').setScale(3.25);
+            this.add.image(1515, 980, 'parfaitfruit').setScale(4.25);
+            this.add.image(1600, 980, 'parfaitwaffer').setScale(4.75);
+            this.add.image(1670, 980, 'arrow').setScale(2);
+            this.add.image(1744, 980, 'parfait').setScale(2.5);
     }
 
     update() {

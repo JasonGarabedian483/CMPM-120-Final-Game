@@ -211,7 +211,7 @@ class Level1 extends Phaser.Scene {
             fill: '#ffffff'
         });
 
-        let menuImage = this.add.image(1700 - 110, 830, 'menu').setScale(5.4);
+        let menuImage = this.add.image(1590, 830, 'menu').setScale(5.4);
             this.add.text(1700 - 110, 650, "Recipes", {
                 fontSize: '40px',
                 fill: '#ff9327'
