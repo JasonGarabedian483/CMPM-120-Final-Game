@@ -88,7 +88,7 @@ class logoScene extends Phaser.Scene {
         this.time.delayedCall(8000, () => {
             this.cameras.main.fadeOut(1000);
             this.cameras.main.once('camerafadeoutcomplete', () => {
-                this.scene.start('loadingscene'); 
+                this.scene.start('mainmenu'); 
             });
         });
     }

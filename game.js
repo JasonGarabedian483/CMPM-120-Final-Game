@@ -27,7 +27,6 @@ const game = new Phaser.Game({
             debug: true
         }
     },
-    scene: [logoScene, loadingScene, mainMenu, Level1, Level2, Level3, Credits, ReplayScene, Audio, Timer, Summary, TestingUI, Options],
-    //scene: [Level3],
+    scene: [logoScene, mainMenu, Level1, Level2, Level3, Credits, ReplayScene, Audio, Timer, Summary, TestingUI, Options],
     title: "Placeholder Title",
 });
