@@ -211,23 +211,23 @@ class Level1 extends Phaser.Scene {
             fill: '#ffffff'
         });
 
-        let menuImage = this.add.image(1700, 830, 'menu').setScale(5.4);
-            this.add.text(1700, 650, "Recipes", {
+        let menuImage = this.add.image(1700 - 110, 830, 'menu').setScale(5.4);
+            this.add.text(1700 - 110, 650, "Recipes", {
                 fontSize: '40px',
                 fill: '#ff9327'
             }).setOrigin(0.5);
             // burger recipe
-            this.add.image(1550, 700, 'alienbuns').setScale(.5);
-            this.add.image(1625, 700, 'alienpatty').setScale(.5);
-            this.add.image(1710, 700, 'burgercheese').setScale(.06);
-            this.add.image(1780, 700, 'arrow').setScale(2);
-            this.add.image(1850, 700, 'alienburger').setScale(.5);
+            this.add.image(1440, 700, 'alienbuns').setScale(.5);
+            this.add.image(1515, 700, 'alienpatty').setScale(.5);
+            this.add.image(1600, 700, 'burgercheese').setScale(.06);
+            this.add.image(1670, 700, 'arrow').setScale(2);
+            this.add.image(1740, 700, 'alienburger').setScale(.5);
             // sushi recipe
-            this.add.image(1550, 780, 'alienrice').setScale(.5);
-            this.add.image(1625, 780, 'fish').setScale(.5);
-            this.add.image(1710, 780, 'aliennori').setScale(.2);
-            this.add.image(1780, 780, 'arrow').setScale(2);
-            this.add.image(1850, 780, 'aliensushi').setScale(.5);
+            this.add.image(1440, 780, 'alienrice').setScale(.5);
+            this.add.image(1515, 780, 'fish').setScale(.5);
+            this.add.image(1600, 780, 'aliennori').setScale(.2);
+            this.add.image(1670, 780, 'arrow').setScale(2);
+            this.add.image(1740, 780, 'aliensushi').setScale(.5);
     }
 
     update() {
