@@ -20,19 +20,12 @@ class Level1 extends Phaser.Scene {
         this.load.image('insidebg', 'insidebg.png')
         this.load.image('bell', 'servicebell.png')
         this.load.image('bellpressed', 'servicebell_pressed.png')
+        this.load.image('sparkle', 'sparkle.png')
     }
 
     create() {
         let background = this.add.image(1920 / 2, 540, 'insidebg');
             background.setScale(4);
-        
-        
-        let bell = this.add.image(1920/2 + 200, 550, 'bell').setScale(1).setInteractive({useHandCursor: true});
-            bell.on('pointerdown', () => {
-                bell.setTexture('bellpressed');
-                this.time.delayedCall(300, () => bell.setTexture('bell'));
-            });
-        
         
         this.scene.stop('timer');
         this.scene.launch('timer', {totalSeconds: 90, levelkey: 1});
@@ -44,6 +37,17 @@ class Level1 extends Phaser.Scene {
             fontSize: '32px',
             fill: '#ffffff'
         }).setOrigin(0.5);
+
+        let bell = this.add.image(1920/2 + 200, 550, 'bell').setScale(1).setInteractive({useHandCursor: true});
+
+        let sparkleParticles = this.add.particles(bell.x, bell.y,'sparkle', {
+            speed: { min: 100, max: 150 },
+            scale: { start: 1, end: 0 },
+            lifespan: 500,
+            quantity: 5,
+            frequency: 100,
+            emitting: false
+        });
 
         // creating conveyor and adding physics to it
         let conveyor = this.add.rectangle(1000, 150, 2000, 40, 0x666666);
@@ -185,18 +189,15 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(turnInStation, this.items, (box, item) => {
             if (item.texture.key === 'aliensushi' || item.texture.key === 'alienburger') {
                 currentTurnInItem = item;
-                turnInButton.setVisible(true);
+                sparkleParticles.start();
             }
         });
 
-        let turnInButton = this.add.text(1150, 400, "TURN IN", {
-            fontSize: '24px',
-            backgroundColor: '#00ff00',
-            color: '#000'
-        }).setInteractive().setVisible(false);
         let currentTurnInItem = null;
-
-        turnInButton.on('pointerdown', () => {
+        //let bell = this.add.image(1920/2 + 200, 550, 'bell').setScale(1).setInteractive({useHandCursor: true});
+            bell.on('pointerdown', () => {
+                bell.setTexture('bellpressed');
+                this.time.delayedCall(300, () => bell.setTexture('bell'));
             if (!currentTurnInItem) {
                 return;
             };
@@ -204,11 +205,13 @@ class Level1 extends Phaser.Scene {
                 turnedInSushi++;
                 window.levelItemsCount[1].sushi = turnedInSushi;
                 console.log("Sushi turned in:", turnedInSushi)
+                sparkleParticles.stop();
             };
             if (currentTurnInItem.texture.key === 'alienburger') {
                 turnedInBurger++;
                 window.levelItemsCount[1].burger = turnedInBurger;
                 console.log('Burgers turned in:', turnedInBurger);
+                sparkleParticles.stop();
             };
             if(turnedInBurger >= requiredBurger && turnedInSushi >= requiredSushi) {
                 window.levelCompleted[1].completed = true;
@@ -218,9 +221,8 @@ class Level1 extends Phaser.Scene {
 
             currentTurnInItem.destroy();
             currentTurnInItem = null;
-            turnInButton.setVisible(false);
             menu.setText(`Sushi: ${turnedInSushi}\nBurgers: ${turnedInBurger}`);
-        });
+            });
 
         let menu = this.add.text(200, 300, 'Sushi: 0\nBurgers: 0', {
             fontSize: '36px',
@@ -244,6 +246,7 @@ class Level1 extends Phaser.Scene {
             this.add.image(1600, 800, 'aliennori').setScale(.2);
             this.add.image(1670, 800, 'arrow').setScale(2);
             this.add.image(1740, 800, 'aliensushi').setScale(.5);
+
     }
 
     update() {

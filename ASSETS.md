@@ -16,7 +16,7 @@
 - Settings icon (assets/images/icons/settings.png) — creator: Alicia Zhang, tool: Procreate
 - Volume on (assets/images/icons/volume.png) — creator: Alicia Zhang, tool: Procreate
 - Volume off (assets/images/icons/volume_off.png) — creator: Alicia Zhang, tool: Procreate
-- Placeholder buttons: `placeholder_play.png`, `placeholder_options.png`, `placeholder_quit.png` (assets/images/) — creator: Jason Garabedian, tool: Placeholder
+- Placeholder buttons: `placeholder_play.png`, `placeholder_options.png`, `placeholder_quit.png` (assets/images/) — creator: Jason Garabedian, tool: Microsoft Paint
 
 ## Visual — Burger assets (assets/images/burger/)
 - Alien buns (assets/images/burger/alien_buns.png) — creator: Jose Baeza, tool: Piskel
@@ -48,7 +48,7 @@
 
 ## Audio
 - Alien invasion music (assets/audio/alien-invasion.mp3) — creator: Placeholder, source/tool: Placeholder
-- Button click sound (assets/audio/button.mp3) — creator: Placeholder, source/tool: Placeholder
+- Button click sound (assets/audio/button.mp3) — , source: Minecraft sound effect
 - Kitchen timer alarm (assets/audio/kitchen-timer-alarm.mp3) — creator: Placeholder, source/tool: Placeholder
 - Timer ticks (assets/audio/timer-ticks.mp3) — creator: Placeholder, source/tool: Placeholder
 

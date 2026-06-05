@@ -28,6 +28,7 @@ class Level3 extends Phaser.Scene {
         this.load.image('insidebg', 'insidebg.png')
         this.load.image('bell', 'servicebell.png')
         this.load.image('bellpressed', 'servicebell_pressed.png')
+        this.load.image('sparkle', 'sparkle.png')
     }
 
     create() {
@@ -35,11 +36,6 @@ class Level3 extends Phaser.Scene {
         let background = this.add.image(1920 / 2, 540, 'insidebg');
             background.setScale(4);
 
-        let bell = this.add.image(1920/2 + 200, 550, 'bell').setScale(1).setInteractive({useHandCursor: true});
-            bell.on('pointerdown', () => {
-                bell.setTexture('bellpressed');
-                this.time.delayedCall(300, () => bell.setTexture('bell'));
-            });
         this.scene.stop('timer');
         this.scene.launch('timer', {totalSeconds: 145, levelkey: 3});
         let centerX = this.cameras.main.width / 2;
@@ -50,6 +46,17 @@ class Level3 extends Phaser.Scene {
             fontSize: '32px',
             fill: '#ffffff'
         }).setOrigin(0.5);
+
+        let bell = this.add.image(1920/2 + 200, 550, 'bell').setScale(1).setInteractive({useHandCursor: true});
+
+        let sparkleParticles = this.add.particles(bell.x, bell.y,'sparkle', {
+            speed: { min: 100, max: 150 },
+            scale: { start: 1, end: 0 },
+            lifespan: 500,
+            quantity: 5,
+            frequency: 100,
+            emitting: false
+        });
 
         // creating conveyor and adding physics to it
         let conveyor1 = this.add.rectangle(1000, 150, 2000, 40, 0x666666);
@@ -267,48 +274,45 @@ class Level3 extends Phaser.Scene {
         this.physics.add.collider(turnInStation, this.items, (box, item) => {
             if (item.texture.key === 'aliensushi' || item.texture.key === 'alienburger' || item.texture.key === 'pizza' || item.texture.key === 'parfait') {
                 currentTurnInItem = item;
-                turnInButton.setVisible(true);
+                sparkleParticles.start();
             }
         });
 
-        let turnInButton = this.add.text(1150, 400, "TURN IN", {
-            fontSize: '24px',
-            backgroundColor: '#00ff00',
-            color: '#000'
-        }).setInteractive().setVisible(false);
         let currentTurnInItem = null;
-
-        turnInButton.on('pointerdown', () => {
-            if (!currentTurnInItem) {
-                return;
-            };
-            if (currentTurnInItem.texture.key === 'aliensushi') {
-                turnedInSushi++;
-                console.log("Sushi turned in:", turnedInSushi)
-            };
-            if (currentTurnInItem.texture.key === 'alienburger') {
-                turnedInBurger++;
-                console.log('Burgers turned in:', turnedInBurger);
-            };
-            if (currentTurnInItem.texture.key === 'pizza') {
-                turnedInPizza++;
-                console.log('Pizzas turned in:', turnedInPizza)
-            }
-            if (currentTurnInItem.texture.key === 'parfait') {
-                turnedInParfait++;
-                console.log('Parfaits turned in:', turnedInParfait)
-            }
-            if(turnedInBurger >= requiredBurger && turnedInSushi >= requiredSushi && turnedInPizza >= requiredPizza && turnedInParfait >= requiredParfait) {
-                window.levelCompleted[3].completed = true;
-                localStorage.setItem('level3completed', true);
-                this.time.delayedCall(1000, () => this.scene.get('timer').completed());
-            };
-
-            currentTurnInItem.destroy();
-            currentTurnInItem = null;
-            turnInButton.setVisible(false);
-            menu.setText(`Sushi: ${turnedInSushi}\nBurgers: ${turnedInBurger}\nPizzas: ${turnedInPizza}\nParfaits: ${turnedInParfait}`);
-        });
+                bell.setTexture('bellpressed');
+                this.time.delayedCall(300, () => bell.setTexture('bell'));
+                if (!currentTurnInItem) {
+                    return;
+                };
+                if (currentTurnInItem.texture.key === 'aliensushi') {
+                    turnedInSushi++;
+                    console.log("Sushi turned in:", turnedInSushi)
+                    sparkleParticles.stop();
+                };
+                if (currentTurnInItem.texture.key === 'alienburger') {
+                    turnedInBurger++;
+                    console.log('Burgers turned in:', turnedInBurger);
+                    sparkleParticles.stop();
+                }
+                if (currentTurnInItem.texture.key === 'pizza') {
+                    turnedInPizza++;
+                    console.log('Pizzas turned in:', turnedInPizza)
+                    sparkleParticles.stop();
+                }
+                if (currentTurnInItem.texture.key === 'parfait') {
+                    turnedInParfait++;
+                    console.log('Parfaits turned in:', turnedInParfait)
+                    sparkleParticles.stop();
+                }
+                if(turnedInBurger >= requiredBurger && turnedInSushi >= requiredSushi && turnedInPizza >= requiredPizza && turnedInParfait >= requiredParfait) {
+                    window.levelCompleted[3].completed = true;
+                    localStorage.setItem('level3completed', true);
+                    this.time.delayedCall(1000, () => this.scene.get('timer').completed());
+                };
+                currentTurnInItem.destroy();
+                currentTurnInItem = null;
+                menu.setText(`Sushi: ${turnedInSushi}\nBurgers: ${turnedInBurger}\nPizzas: ${turnedInPizza}\nParfaits: ${turnedInParfait}`);
+            });
 
         let menu = this.add.text(200, 300, 'Sushi: 0\nBurgers: 0\nPizzas: 0\nParfaits: 0', {
             fontSize: '36px',
