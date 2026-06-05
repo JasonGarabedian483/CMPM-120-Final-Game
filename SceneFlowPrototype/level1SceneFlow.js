@@ -4,7 +4,7 @@ class Level1SceneFlow extends Phaser.Scene {
     }
 
     preload() {
-        this.load.path = 'assets/images/';
+        this.load.path = 'assets/images/burger';
         this.load.image('alienbuns', 'alien_buns.png')
 
     }

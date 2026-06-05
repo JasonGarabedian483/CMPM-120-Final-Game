@@ -84,6 +84,29 @@ class logoScene extends Phaser.Scene {
             });
         });
 
+        // Rectangle frame: rectangle with no fill (centerX, centerY, width, height) border (width, color, opacity)
+        this.add.rectangle(centerX - 10, centerY + 200, 600, 50).setStrokeStyle(8, 0xffffff);
+
+        // Individual loading bars        
+        let bars = [] // Array of loading bars
+
+        //bar: rectangle(x, y, fade at x of bar, height, color).setOrigin(Left to Right)
+        for(let i = 0; i < 10; i++){
+            let bars = this.add.rectangle(centerX - 300 + i * 59, centerY + 200, 50, 30, 0xffffff)
+            .setOrigin(0, 0.5) // set origin
+            .setScale(0); // initalize rectangles as invisible
+
+            // Load individual Bars
+            this.tweens.add({
+                targets: bars, 
+                scaleX: 1, // make a loading bar visible horizontally
+                scaleY: 1, // make a loading bar visible vertically
+                alpha: 1, // Opacity: full
+                duration: 1000, //duration of action
+                delay: i * 500, // delay in between bars
+                ease: 'Power2', //rate of change of animation
+            });
+        }
        
         this.time.delayedCall(8000, () => {
             this.cameras.main.fadeOut(1000);

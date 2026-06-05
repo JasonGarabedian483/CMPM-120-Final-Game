@@ -10,7 +10,10 @@ class mainMenu extends Phaser.Scene {
         this.load.image('play', 'placeholder_play.png') // <- change placeholder play to actual play button
         this.load.image('options', 'placeholder_options.png') // <- change playholder options to actual options button
         this.load.image('quit', 'placeholder_quit.png') // <- change placeholder quit to actual quit button
-
+        this.load.image('press', 'buttonPress.png');
+        this.load.image('base', 'buttonBase.png');
+        this.load.image('rest', 'buttonRest.png');
+        
         this.load.path = 'assets/audio/';
         this.load.audio('backgroundMusic', 'alien-invasion.mp3');
         this.load.audio('button', 'button.mp3');
@@ -47,45 +50,17 @@ class mainMenu extends Phaser.Scene {
                 loop: -1
             });
 
-        let playButton = this.add.image(1920 / 2, 600, 'play').setScale(.5).setOrigin(.5);
-            playButton.setInteractive({useHandCursor: true});
-            playButton.on("pointerover", () => this.getBigger(playButton));
-            playButton.on("pointerdown", () => {
-                this.sound.play('button');
-                this.cameras.main.fade(1000, 0, 0, 0);
-                this.time.delayedCall(1000, () => this.scene.start('level1'));
-            });
-            playButton.on("pointerout", ()  => this.getSmaller(playButton))
-        let optionsButton = this.add.image(1920 / 2, 750, 'options').setScale(0.5).setOrigin(0.5);
-            optionsButton.setInteractive({useHandCursor: true});
-            optionsButton.on("pointerover", () => this.getBigger(optionsButton));
-            optionsButton.on("pointerdown", () => {
-                this.sound.play('button');
-                this.scene.launch('options');
-            });
-            optionsButton.on("pointerout", () => this.getSmaller(optionsButton));
-        let quitButton = this.add.image(1920 / 2, 900, 'quit').setScale(0.5).setOrigin(0.5);
-            quitButton.setInteractive({useHandCursor: true});
-            quitButton.on("pointerover", () => this.getBigger(quitButton));
-            quitButton.on("pointerdown", () => {
-                this.sound.play('button');
-                window.close();
-            })
-            quitButton.on("pointerout", () => this.getSmaller(quitButton));
+        //Add buttons
+        let playButton = new Button(this, 960, 490, 'Play', () => {
+            this.sound.play('button');
+            this.cameras.main.fade(1000, 0, 0, 0);
+            this.time.delayedCall(1000, () => this.scene.start('level1')); 
+        });
 
-        let creditsButton = this.add.rectangle(1920 / 2, 1010, 100, 40, 0xffffff).setScale(2).setOrigin(0.5);
-            creditsButton.setInteractive({useHandCursor: true});
-            creditsButton.on("pointerover", () => this.getBigger(creditsButton));
-            creditsButton.on("pointerdown", () => {
-                this.sound.play('button');
-                this.cameras.main.fade(1000, 0, 0, 0);
-                this.time.delayedCall(1000, () => this.scene.start('credits'));
-            });
-            creditsButton.on("pointerout", () => this.getSmaller(creditsButton));
-        let creditsText = this.add.text(1920 / 2, 1010, "Credits", {
-            fontSize: '32px',
-            fill: '#000000'
-        }).setOrigin(0.5);
+        let optionButton = new Button(this, 960, 650, 'Options', () => {
+            this.sound.play('button');
+            this.scene.launch('options');
+        });
 
         let levelSelectButton = this.add.text(1200, 1080 / 2, 'LEVEL SELECT', {
             fontSize: '64px',
@@ -95,6 +70,17 @@ class mainMenu extends Phaser.Scene {
             levelSelectButton.on('pointerdown', () => {
                 this.scene.launch('levelselect');
             });
+            
+        let quitButton = new Button(this, 960, 810, 'Quit', () => {
+            this.sound.play('button');
+            window.close();
+        });
+
+        let creditsButton = new Button(this, 960, 970, 'Credits', () => {
+            this.sound.play('button');
+            this.cameras.main.fade(1000, 0, 0, 0);
+            this.time.delayedCall(1000, () => this.scene.start('credits'));
+        });
 
     }
 
@@ -119,5 +105,59 @@ class mainMenu extends Phaser.Scene {
 
     update() {
 
+    }
+}
+
+// Shape for button
+class ButtonShape extends Phaser.GameObjects.Container {
+    constructor(scene, x, y) {
+        super(scene, x, y);
+        
+        // Shapes
+        let baseButton = scene.add.image(0, 0, 'base').setScale(7, 4);
+        let pressButton = scene.add.image(0, 0, 'press').setScale(7, 4);
+        let restButton = scene.add.image(0, 0, 'rest').setScale(7, 4);
+
+        // Container of shapes
+        this.add([baseButton, pressButton, restButton]);
+
+        // Add the container to the scene's display list
+        scene.add.existing(this);
+    }
+}
+
+//Interactive Button
+class Button extends Phaser.GameObjects.Container {
+    constructor(scene, x, y, text, callback) {
+        super(scene, x, y);
+
+        // Interactive button        
+        let pressButton = new ButtonShape(scene, 0, 0);
+
+        // Add label text: text(x,y,text,size, color).orgin(x, y)
+        let label = scene.add.text(0, -30, text, { 
+            font: "40px Pixelify Sans",
+            fill: '#1e3a8a' });
+
+        // center text inside button
+        label.setOrigin(0.5, 0.5);
+
+        // Add components to the container
+        this.add([pressButton, label]);
+        
+        // Make the whole container interactive // define interaction area
+        this.setSize(174, 103);
+        this.setInteractive();
+
+        // Add events (Hover effects and click)
+        this.on('pointerover', () => {this.setScale(1.2)});
+        this.on('pointerout', () => {this.setScale(1)});
+        this.on('pointerdown', () => {this.setScale(0.95)});
+        this.on('pointerup', () => {
+            callback();
+        }); 
+
+        // Add the container to the scene
+        scene.add.existing(this);
     }
 }

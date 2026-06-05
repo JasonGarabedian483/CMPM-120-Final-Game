@@ -18,11 +18,21 @@ class Level1 extends Phaser.Scene {
         this.load.image('menu', 'menu.png')
         this.load.image('arrow', 'arrow.png')
         this.load.image('insidebg', 'insidebg.png')
+        this.load.image('bell', 'servicebell.png')
+        this.load.image('bellpressed', 'servicebell_pressed.png')
     }
 
     create() {
         let background = this.add.image(1920 / 2, 540, 'insidebg');
             background.setScale(4);
+        
+        
+        let bell = this.add.image(1920/2 + 200, 550, 'bell').setScale(1).setInteractive({useHandCursor: true});
+            bell.on('pointerdown', () => {
+                bell.setTexture('bellpressed');
+                this.time.delayedCall(300, () => bell.setTexture('bell'));
+            });
+        
         
         this.scene.stop('timer');
         this.scene.launch('timer', {totalSeconds: 90, levelkey: 1});
@@ -115,12 +125,12 @@ class Level1 extends Phaser.Scene {
 
         let crafingText = this.add.text(300, 550, "Crafting").setOrigin(0.5);
         // creation of crafting station 1
-        this.crafting1 = this.add.image(300, 838, 'crafting').setScale(3.5);
+        this.crafting1 = this.add.image(280 + 120, 838, 'crafting').setScale(3.25);
             this.physics.add.existing(this.crafting1, true);
             this.crafting1.body.setSize(550, 300);
-            this.crafting1.body.setOffset(22, 290);
-            let sushiImage = this.add.image(93, 675, 'aliensushi').setScale(.75);
-            let burgerImage = this.add.image(503, 675, 'alienburger').setScale(.75);
+            this.crafting1.body.setOffset(0, 290);
+            let sushiImage = this.add.image(89 + 120, 690, 'aliensushi').setScale(.65);
+            let burgerImage = this.add.image(468 + 120, 690, 'alienburger').setScale(.65);
 
         // Food crafting and collision
         this.physics.add.collider(this.crafting1, this.items, (box, item) => {
@@ -170,7 +180,7 @@ class Level1 extends Phaser.Scene {
             }
         });
 
-        let turnInStation = this.add.rectangle(1000, 400, 200, 40, 0xff0000);
+        let turnInStation = this.add.rectangle(1590, 575, 300, 40, 0xff0000).setAlpha(0);
         this.physics.add.existing(turnInStation, true);
         this.physics.add.collider(turnInStation, this.items, (box, item) => {
             if (item.texture.key === 'aliensushi' || item.texture.key === 'alienburger') {
@@ -217,23 +227,23 @@ class Level1 extends Phaser.Scene {
             fill: '#ffffff'
         });
 
-        let menuImage = this.add.image(1500, 830, 'menu').setScale(5.8);
-            this.add.text(1500, 625, "Recipes", {
+        let menuImage = this.add.image(1590, 850, 'menu').setScale(5.4);
+            this.add.text(1700 - 110, 670, "Recipes", {
                 fontSize: '40px',
                 fill: '#ff9327'
             }).setOrigin(0.5);
             // burger recipe
-            this.add.image(1350, 680, 'alienbuns').setScale(.5);
-            this.add.image(1425, 680, 'alienpatty').setScale(.5);
-            this.add.image(1510, 675, 'burgercheese').setScale(.06);
-            this.add.image(1580, 680, 'arrow').setScale(2);
-            this.add.image(1650, 680, 'alienburger').setScale(.5);
+            this.add.image(1440, 720, 'alienbuns').setScale(.5);
+            this.add.image(1515, 720, 'alienpatty').setScale(.5);
+            this.add.image(1600, 720, 'burgercheese').setScale(.06);
+            this.add.image(1670, 720, 'arrow').setScale(2);
+            this.add.image(1740, 720, 'alienburger').setScale(.5);
             // sushi recipe
-            this.add.image(1350, 780, 'alienrice').setScale(.5);
-            this.add.image(1425, 780, 'fish').setScale(.5);
-            this.add.image(1510, 780, 'aliennori').setScale(.2);
-            this.add.image(1580, 780, 'arrow').setScale(2);
-            this.add.image(1650, 780, 'aliensushi').setScale(.5);
+            this.add.image(1440, 800, 'alienrice').setScale(.5);
+            this.add.image(1515, 800, 'fish').setScale(.5);
+            this.add.image(1600, 800, 'aliennori').setScale(.2);
+            this.add.image(1670, 800, 'arrow').setScale(2);
+            this.add.image(1740, 800, 'aliensushi').setScale(.5);
     }
 
     update() {
