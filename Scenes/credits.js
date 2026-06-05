@@ -12,7 +12,26 @@ class Credits extends Phaser.Scene {
         let centerY = this.cameras.main.height / 2;
     
         this.cameras.main.fadeIn(1000, 0, 0, 0);
-        this.cameras.main.setBackgroundColor('#003c73');
+        this.cameras.main.setBackgroundColor('#000000');
+
+        //starry bacckground
+        for(let i = 0; i < 100; i++) {
+            let star = this.add.circle(
+                Phaser.Math.Between(0, 1920),
+                Phaser.Math.Between(0, 1080),
+                Phaser.Math.Between(1, 3),
+                0xffffff,
+                Phaser.Math.FloatBetween(0.3, 1)
+            );
+
+            this.tweens.add({
+                targets: star,
+                alpha: 0.2,
+                duration: Phaser.Math.Between(500, 1500),
+                yoyo: true,
+                repeat: -1
+            });
+        }
 
         this.add.text(centerX, centerY, "[Credits go here]", {
             fontSize: '32px',
