@@ -66,6 +66,8 @@ class Level1 extends Phaser.Scene {
         let requiredSushi = 2;
         let requiredBurger = 2;
 
+        window.levelData[1].requiredSushi = requiredSushi;
+        window.levelData[1].requiredBurger = requiredBurger;
 
         // creation of items from the itemTypes list using the gameItem function
         this.spawnItem = () => {
@@ -190,13 +192,17 @@ class Level1 extends Phaser.Scene {
             };
             if (currentTurnInItem.texture.key === 'aliensushi') {
                 turnedInSushi++;
+                window.levelItemsCount[1].sushi = turnedInSushi;
                 console.log("Sushi turned in:", turnedInSushi)
             };
             if (currentTurnInItem.texture.key === 'alienburger') {
                 turnedInBurger++;
+                window.levelItemsCount[1].burger = turnedInBurger;
                 console.log('Burgers turned in:', turnedInBurger);
             };
             if(turnedInBurger >= requiredBurger && turnedInSushi >= requiredSushi) {
+                window.levelCompleted[1].completed = true;
+                localStorage.setItem('level1Completed', true);
                 this.time.delayedCall(1000, () => this.scene.get('timer').completed());
             };
 

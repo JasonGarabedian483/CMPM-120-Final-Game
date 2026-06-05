@@ -3,8 +3,9 @@ class Options extends Phaser.Scene {
         super('options')
     }
     preload(){
-        this.load.image('musicIcon', 'assets/images/music-icon.png');
-        this.load.image('sfxIcon', 'assets/images/volume.png');
+        this.load.path = 'assets/images/';
+        this.load.image('musicIcon', 'icons/music.png');
+        this.load.image('sfxIcon', 'icons/volume.png');
     }
 
     create(){
@@ -60,7 +61,7 @@ class Options extends Phaser.Scene {
 
         //music icon
         this.musicIcon =this.add.image(this.musicBar.x - 260, this.musicBar.y, 'musicIcon')
-            .setScale(0.1);
+            .setScale(2);
 
         //music volume down button
         this.musicDownButton = this.add.text(this.musicBar.x - 200, this.musicBar.y - 17, '-', {
@@ -93,7 +94,7 @@ class Options extends Phaser.Scene {
 
         //sound icon
         this.soundIcon = this.add.image(this.soundBar.x - 260, this.soundBar.y, 'sfxIcon')
-            .setScale(0.1);
+            .setScale(2.5);
 
         //alarm and ticker sound volume
         this.SoundDownButton = this.add.text(this.soundBar.x - 200, this.soundBar.y - 17, '-', {

@@ -87,6 +87,14 @@ class mainMenu extends Phaser.Scene {
             fill: '#000000'
         }).setOrigin(0.5);
 
+        let levelSelectButton = this.add.text(1200, 1080 / 2, 'LEVEL SELECT', {
+            fontSize: '64px',
+            color: '#1ea629'
+        });
+            levelSelectButton.setInteractive({useHandCursor: true});
+            levelSelectButton.on('pointerdown', () => {
+                this.scene.launch('levelselect');
+            });
 
     }
 

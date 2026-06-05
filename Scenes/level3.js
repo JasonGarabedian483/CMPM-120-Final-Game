@@ -33,7 +33,7 @@ class Level3 extends Phaser.Scene {
             background.setScale(4);
 
         this.scene.stop('timer');
-        this.scene.launch('timer', {totalSeconds: 45, levelkey: 3});
+        this.scene.launch('timer', {totalSeconds: 145, levelkey: 3});
         let centerX = this.cameras.main.width / 2;
         let centerY = this.cameras.main.height / 2;
         this.cameras.main.setBackgroundColor('#000000');
@@ -88,7 +88,12 @@ class Level3 extends Phaser.Scene {
         let requiredSushi = 1
         let requiredBurger = 3;
         let requiredPizza = 2;
-        let requiredParfaita = 2;
+        let requiredParfait = 2;
+
+        window.levelData[3].requiredSushi = requiredSushi;
+        window.levelData[3].requiredBurger = requiredBurger;
+        window.levelData[3].requiredPizza = requiredPizza;
+        window.levelData[3].requiredParfait = requiredParfait;
 
         // creation of items from the itemTypes list using the gameItem function
         this.spawnItem1 = () => {
@@ -285,6 +290,8 @@ class Level3 extends Phaser.Scene {
                 console.log('Parfaits turned in:', turnedInParfait)
             }
             if(turnedInBurger >= requiredBurger && turnedInSushi >= requiredSushi && turnedInPizza >= requiredPizza && turnedInParfait >= requiredParfait) {
+                window.levelCompleted[3].completed = true;
+                localStorage.setItem('level3completed', true);
                 this.time.delayedCall(1000, () => this.scene.get('timer').completed());
             };
 
