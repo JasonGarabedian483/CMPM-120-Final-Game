@@ -105,9 +105,9 @@ class ButtonShape extends Phaser.GameObjects.Container {
         super(scene, x, y);
         
         // Shapes
-        let baseButton = scene.add.image(0, 0, 'base').setScale(9, 4);
-        let pressButton = scene.add.image(0, 0, 'press').setScale(9, 4);
-        let restButton = scene.add.image(0, 0, 'rest').setScale(9, 4);
+        let baseButton = scene.add.image(0, 0, 'base').setScale(7, 4);
+        let pressButton = scene.add.image(0, 0, 'press').setScale(7, 4);
+        let restButton = scene.add.image(0, 0, 'rest').setScale(7, 4);
 
         // Container of shapes
         this.add([baseButton, pressButton, restButton]);
@@ -137,11 +137,11 @@ class Button extends Phaser.GameObjects.Container {
         this.add([pressButton, label]);
         
         // Make the whole container interactive // define interaction area
-        this.setSize(223, 103);
+        this.setSize(174, 103);
         this.setInteractive();
 
         // Add events (Hover effects and click)
-        this.on('pointerover', () => {this.setScale(1.5)});
+        this.on('pointerover', () => {this.setScale(1.2)});
         this.on('pointerout', () => {this.setScale(1)});
         this.on('pointerdown', () => {this.setScale(0.95)});
         this.on('pointerup', () => {
