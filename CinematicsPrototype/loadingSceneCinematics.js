@@ -7,11 +7,11 @@ class loadingSceneCinematics extends Phaser.Scene{
     }
     preload(){
         this.load.path = 'assets/images/';
-        this.load.image('background', 'main_menu.png')
+        this.load.image('background', 'newMenuBg.png')
     }
     create(){  
         let background = this.add.image(1920 / 2, 540, 'background');
-            background.setScale(2).setTint(0x7f7f7f);
+            background.setScale(4).setTint(0x7f7f7f);
         
         let screenCenterX = this.cameras.main.width / 2;
         let screenCenterY = this.cameras.main.height / 2;

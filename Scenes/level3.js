@@ -26,12 +26,19 @@ class Level3 extends Phaser.Scene {
         this.load.image('menu', 'menu.png')
         this.load.image('arrow', 'arrow.png')
         this.load.image('insidebg', 'insidebg.png')
+        this.load.image('bell', 'servicebell.png')
+        this.load.image('bellpressed', 'servicebell_pressed.png')
     }
 
     create() {
         let background = this.add.image(1920 / 2, 540, 'insidebg');
             background.setScale(4);
 
+        let bell = this.add.image(1920/2 + 200, 550, 'bell').setScale(1).setInteractive({useHandCursor: true});
+            bell.on('pointerdown', () => {
+                bell.setTexture('bellpressed');
+                this.time.delayedCall(300, () => bell.setTexture('bell'));
+            });
         this.scene.stop('timer');
         this.scene.launch('timer', {totalSeconds: 45, levelkey: 3});
         let centerX = this.cameras.main.width / 2;

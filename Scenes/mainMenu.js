@@ -127,7 +127,7 @@ class Button extends Phaser.GameObjects.Container {
 
         // Add label text: text(x,y,text,size, color).orgin(x, y)
         let label = scene.add.text(0, -30, text, { 
-            fontSize: '40px', 
+            font: "40px Pixelify Sans",
             fill: '#1e3a8a' });
 
         // center text inside button

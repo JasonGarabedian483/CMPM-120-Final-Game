@@ -4,8 +4,9 @@ class level2Gameplay extends Phaser.Scene {
     }
 
     preload() {
-        this.load.path = 'assets/images/';
+        this.load.path = 'assets/images/burger/';
         this.load.image('alienbuns', 'alien_buns.png');
+        this.load.path = 'assets/images/sushi/';
         this.load.image('alienrice', 'alien_rice.png');
     }
 
