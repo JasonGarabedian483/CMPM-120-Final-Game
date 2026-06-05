@@ -57,6 +57,42 @@ class Level3 extends Phaser.Scene {
             frequency: 100,
             emitting: false
         });
+        
+        let burgerSparkles = this.add.particles(468 + 120, 690,'sparkle', {
+            speed: { min: 100, max: 150 },
+            scale: { start: 1, end: 0 },
+            lifespan: 500,
+            quantity: 5,
+            frequency: 100,
+            emitting: false
+        }).setDepth(1).setAlpha(0.8);
+
+        let sushiSparkles = this.add.particles(89 + 120, 690,'sparkle', {
+            speed: { min: 100, max: 150 },
+            scale: { start: 1, end: 0 },
+            lifespan: 500,
+            quantity: 5,
+            frequency: 100,
+            emitting: false
+        }).setDepth(1).setAlpha(0.8);
+
+        let pizzaSparkles = this.add.particles(820, 694,'sparkle', {
+            speed: { min: 100, max: 150 },
+            scale: { start: 1, end: 0 },
+            lifespan: 500,
+            quantity: 5,
+            frequency: 100,
+            emitting: false
+        }).setDepth(1).setAlpha(0.8);
+
+        let parfaitSparkles = this.add.particles(1205, 690,'sparkle', {
+            speed: { min: 100, max: 150 },
+            scale: { start: 1, end: 0 },
+            lifespan: 500,
+            quantity: 5,
+            frequency: 100,
+            emitting: false
+        }).setDepth(1).setAlpha(0.8);
 
         // creating conveyor and adding physics to it
         let conveyor1 = this.add.rectangle(1000, 150, 2000, 40, 0x666666);
@@ -81,7 +117,7 @@ class Level3 extends Phaser.Scene {
             {key: 'parfaitwaffer', scale: 7}
         ];
 
-         // variables of ingredients in crafting zone
+        // variables of ingredients in crafting zone
         this.riceInBox = null;
         this.fishInBox = null;
         this.noriinBox = null;
@@ -134,18 +170,6 @@ class Level3 extends Phaser.Scene {
             item.setVelocityX(conveyor1Speed);
         });
  
-        // dragging of item
-        this.input.on('dragstart', (pointer, gameObject) => {
-            gameObject.body.enable = false;
-        });
-        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
-            gameObject.x = dragX
-            gameObject.y = dragY
-        });
-        this.input.on('dragend', (pointer, gameObject) => {
-            gameObject.body.enable = true;
-        });
-
         // trashbin that deletes items when they overlap it at end of conveyor
         this.trashBin = this.add.image(2150, 200, 'trashcan').setScale(4);
             this.physics.add.existing(this.trashBin, true);
@@ -203,7 +227,7 @@ class Level3 extends Phaser.Scene {
                 this.fishInBox = null;
                 this.noriinBox = null;
 
-                const sushi = new gameItem(this, this.crafting1.x - 20, this.crafting1.y - 30, 'aliensushi');
+                const sushi = new gameItem(this, this.crafting1.x - 150, this.crafting1.y - 30, 'aliensushi');
                 this.items.add(sushi);
             }
             // crafting of burger
@@ -215,7 +239,7 @@ class Level3 extends Phaser.Scene {
                 this.pattyinBox = null;
                 this.burgercheeseinBox = null;
 
-                const burger = new gameItem(this, this.crafting1.x + 20, this.crafting1.y - 30, 'alienburger');
+                const burger = new gameItem(this, this.crafting1.x + 150, this.crafting1.y - 30, 'alienburger');
                 this.items.add(burger);
             }
         });
@@ -250,7 +274,7 @@ class Level3 extends Phaser.Scene {
                 this.doughinBox = null;
                 this.pepinBox = null;
 
-                const pizza = new gameItem(this, this.crafting2.x - 20, this.crafting2.y - 30, 'pizza').setScale(2);
+                const pizza = new gameItem(this, this.crafting2.x - 150, this.crafting2.y - 30, 'pizza').setScale(2);
                 this.items.add(pizza);
             }
             // crafting of parfait
@@ -262,8 +286,7 @@ class Level3 extends Phaser.Scene {
                 this.parfaitFruitInBox = null;
                 this.parfaitWafferInBox = null;
 
-
-                const parfait = new gameItem(this, this.crafting2.x + 20, this.crafting2.y - 30, 'parfait').setScale(4);
+                const parfait = new gameItem(this, this.crafting2.x + 150, this.crafting2.y - 30, 'parfait').setScale(4);
                 this.items.add(parfait);
             }
         });
@@ -349,10 +372,38 @@ class Level3 extends Phaser.Scene {
             this.add.image(1600, 980, 'parfaitwaffer').setScale(4.75);
             this.add.image(1670, 980, 'arrow').setScale(2);
             this.add.image(1744, 980, 'parfait').setScale(2.5);
+        
+        // dragging of item
+        this.input.on('dragstart', (pointer, gameObject) => {
+            gameObject.body.enable = false;
+            if (gameObject.texture.key === 'alienbuns' || gameObject.texture.key === 'alienpatty' || gameObject.texture.key === 'burgercheese') {
+                burgerSparkles.start();
+            }
+            if (gameObject.texture.key === 'alienrice' || gameObject.texture.key === 'fish' || gameObject.texture.key === 'aliennori') {
+                sushiSparkles.start();
+            }
+            if (gameObject.texture.key === 'pizzacheese' || gameObject.texture.key === 'pizzadough' || gameObject.texture.key === 'pizzapep') {
+                pizzaSparkles.start();
+            }
+            if (gameObject.texture.key === 'parfaitcream' || gameObject.texture.key === 'parfaitfruit' || gameObject.texture.key === 'parfaitwaffer') {
+                parfaitSparkles.start();
+            }
+        });
+        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+            gameObject.x = dragX
+            gameObject.y = dragY
+        });
+        this.input.on('dragend', (pointer, gameObject) => {
+            gameObject.body.enable = true;
+            burgerSparkles.stop();
+            sushiSparkles.stop();
+            pizzaSparkles.stop();
+            parfaitSparkles.stop();
+        });
     }
 
     update() {
-
+        
     }
     
 }

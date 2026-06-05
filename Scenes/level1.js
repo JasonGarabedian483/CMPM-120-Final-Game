@@ -40,7 +40,7 @@ class Level1 extends Phaser.Scene {
 
         let bell = this.add.image(1920/2 + 200, 550, 'bell').setScale(1).setInteractive({useHandCursor: true});
 
-        let sparkleParticles = this.add.particles(bell.x, bell.y,'sparkle', {
+        let bellSparkles = this.add.particles(bell.x, bell.y,'sparkle', {
             speed: { min: 100, max: 150 },
             scale: { start: 1, end: 0 },
             lifespan: 500,
@@ -48,6 +48,24 @@ class Level1 extends Phaser.Scene {
             frequency: 100,
             emitting: false
         });
+
+        let burgerSparkles = this.add.particles(468 + 120, 690,'sparkle', {
+            speed: { min: 100, max: 150 },
+            scale: { start: 1, end: 0 },
+            lifespan: 500,
+            quantity: 5,
+            frequency: 100,
+            emitting: false
+        }).setDepth(1).setAlpha(0.8);
+
+        let sushiSparkles = this.add.particles(89 + 120, 690,'sparkle', {
+            speed: { min: 100, max: 150 },
+            scale: { start: 1, end: 0 },
+            lifespan: 500,
+            quantity: 5,
+            frequency: 100,
+            emitting: false
+        }).setDepth(1).setAlpha(0.8);
 
         // creating conveyor and adding physics to it
         let conveyor = this.add.rectangle(1000, 150, 2000, 40, 0x666666);
@@ -106,18 +124,6 @@ class Level1 extends Phaser.Scene {
             item.setVelocityX(conveyorSpeed);
         });
         
-        // dragging of item
-        this.input.on('dragstart', (pointer, gameObject) => {
-            gameObject.body.enable = false;
-        });
-        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
-            gameObject.x = dragX
-            gameObject.y = dragY
-        });
-        this.input.on('dragend', (pointer, gameObject) => {
-            gameObject.body.enable = true;
-        });
-
         // trashbin that deletes items when they overlap it at end of conveyor
         this.trashBin = this.add.image(2150, 200, 'trashcan').setScale(4);
             this.physics.add.existing(this.trashBin, true);
@@ -167,7 +173,7 @@ class Level1 extends Phaser.Scene {
                 this.fishInBox = null;
                 this.noriinBox = null;
 
-                const sushi = new gameItem(this, this.crafting1.x - 20, this.crafting1.y - 30, 'aliensushi');
+                const sushi = new gameItem(this, this.crafting1.x - 150, this.crafting1.y - 30, 'aliensushi');
                 this.items.add(sushi);
             }
             // crafting of burger
@@ -179,7 +185,7 @@ class Level1 extends Phaser.Scene {
                 this.pattyinBox = null;
                 this.burgercheeseinBox = null;
 
-                const burger = new gameItem(this, this.crafting1.x + 20, this.crafting1.y - 30, 'alienburger');
+                const burger = new gameItem(this, this.crafting1.x + 150, this.crafting1.y - 30, 'alienburger');
                 this.items.add(burger);
             }
         });
@@ -189,12 +195,11 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(turnInStation, this.items, (box, item) => {
             if (item.texture.key === 'aliensushi' || item.texture.key === 'alienburger') {
                 currentTurnInItem = item;
-                sparkleParticles.start();
+                bellSparkles.start();
             }
         });
 
         let currentTurnInItem = null;
-        //let bell = this.add.image(1920/2 + 200, 550, 'bell').setScale(1).setInteractive({useHandCursor: true});
             bell.on('pointerdown', () => {
                 bell.setTexture('bellpressed');
                 this.time.delayedCall(300, () => bell.setTexture('bell'));
@@ -205,13 +210,13 @@ class Level1 extends Phaser.Scene {
                 turnedInSushi++;
                 window.levelItemsCount[1].sushi = turnedInSushi;
                 console.log("Sushi turned in:", turnedInSushi)
-                sparkleParticles.stop();
+                bellSparkles.stop();
             };
             if (currentTurnInItem.texture.key === 'alienburger') {
                 turnedInBurger++;
                 window.levelItemsCount[1].burger = turnedInBurger;
                 console.log('Burgers turned in:', turnedInBurger);
-                sparkleParticles.stop();
+                bellSparkles.stop();
             };
             if(turnedInBurger >= requiredBurger && turnedInSushi >= requiredSushi) {
                 window.levelCompleted[1].completed = true;
@@ -246,6 +251,26 @@ class Level1 extends Phaser.Scene {
             this.add.image(1600, 800, 'aliennori').setScale(.2);
             this.add.image(1670, 800, 'arrow').setScale(2);
             this.add.image(1740, 800, 'aliensushi').setScale(.5);
+
+        // dragging of item
+        this.input.on('dragstart', (pointer, gameObject) => {
+            gameObject.body.enable = false;
+            if (gameObject.texture.key === 'alienbuns' || gameObject.texture.key === 'alienpatty' || gameObject.texture.key === 'burgercheese') {
+                burgerSparkles.start();
+            }
+            if (gameObject.texture.key === 'alienrice' || gameObject.texture.key === 'fish' || gameObject.texture.key === 'aliennori') {
+                sushiSparkles.start();
+            }
+        });
+        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+            gameObject.x = dragX
+            gameObject.y = dragY
+        });
+        this.input.on('dragend', (pointer, gameObject) => {
+            gameObject.body.enable = true;
+            burgerSparkles.stop();
+            sushiSparkles.stop();
+        });
 
     }
 
