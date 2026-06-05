@@ -279,6 +279,7 @@ class Level3 extends Phaser.Scene {
         });
 
         let currentTurnInItem = null;
+            bell.on('pointerdown', () => {
                 bell.setTexture('bellpressed');
                 this.time.delayedCall(300, () => bell.setTexture('bell'));
                 if (!currentTurnInItem) {
