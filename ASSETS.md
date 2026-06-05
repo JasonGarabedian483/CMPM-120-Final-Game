@@ -42,9 +42,17 @@
 - Alien sushi (assets/images/sushi/alien_sushi.png) — creator: Jose Baeza, tool: Piskel
 - Fish (assets/images/sushi/fish.png) — creator: Jose Baeza, tool: Piskel
 
+## Visual — Other
+- Service Bell (assets/images/servicebell.png) - creator: Alicia Zhang, tool: Procreate
+- Service Bell Pressed (assets/images/servicebell_pressed.png) - creator: Alicia Zhang, tool: Procreate
+
 ## Audio
 - Alien invasion music (assets/audio/alien-invasion.mp3) — creator: Placeholder, source/tool: Placeholder
 - Button click sound (assets/audio/button.mp3) — creator: Placeholder, source/tool: Placeholder
 - Kitchen timer alarm (assets/audio/kitchen-timer-alarm.mp3) — creator: Placeholder, source/tool: Placeholder
 - Timer ticks (assets/audio/timer-ticks.mp3) — creator: Placeholder, source/tool: Placeholder
+
+## Font
+- Pixelify Sans — source: Google Fonts; imported from https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap
+
 
