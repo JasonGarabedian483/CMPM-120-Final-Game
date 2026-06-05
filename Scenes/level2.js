@@ -149,7 +149,7 @@ class Level2 extends Phaser.Scene {
         this.crafting1 = this.add.image(280 + 120, 838, 'crafting').setScale(3.25);
             this.physics.add.existing(this.crafting1, true);
             this.crafting1.body.setSize(550, 300);
-            this.crafting1.body.setOffset(0, 290);
+            this.crafting1.body.setOffset(0, 270);
             let sushiImage = this.add.image(89 + 120, 690, 'aliensushi').setScale(.65);
             let burgerImage = this.add.image(468 + 120, 690, 'alienburger').setScale(.65);
 
@@ -157,7 +157,7 @@ class Level2 extends Phaser.Scene {
         this.crafting2 = this.add.image(950 + 60, 838, 'crafting').setScale(3.25);
             this.physics.add.existing(this.crafting2, true);
             this.crafting2.body.setSize(550, 300);
-            this.crafting2.body.setOffset(0, 290);
+            this.crafting2.body.setOffset(0, 270);
             let pizzaImage = this.add.image(820, 694, 'pizza').setScale(1.5);
 
         // Food crafting station 1 collision / crafting
@@ -234,7 +234,7 @@ class Level2 extends Phaser.Scene {
         });
 
         // Turn in station WIP
-        let turnInStation = this.add.rectangle(1590, 575, 300, 40, 0xff0000).setAlpha(0);
+        let turnInStation = this.add.rectangle(1590, 585, 300, 40, 0xff0000).setAlpha(0);
         this.physics.add.existing(turnInStation, true);
         this.physics.add.collider(turnInStation, this.items, (box, item) => {
             if (item.texture.key === 'aliensushi' || item.texture.key === 'alienburger' || item.texture.key === 'pizza') {
