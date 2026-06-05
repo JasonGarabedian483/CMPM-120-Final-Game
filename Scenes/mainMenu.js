@@ -57,25 +57,26 @@ class mainMenu extends Phaser.Scene {
             this.time.delayedCall(1000, () => this.scene.start('level1')); 
         });
 
+        let levelSelectButton = new Button(this, 960, 810, 'Levels', () => {
+            this.sound.play('button');
+            this.scene.launch('levelselect'); 
+        });
+
         let optionButton = new Button(this, 960, 650, 'Options', () => {
             this.sound.play('button');
             this.scene.launch('options');
         });
 
-        let levelSelectButton = this.add.text(1200, 1080 / 2, 'LEVEL SELECT', {
+/*
+        let levelSelectButton2 = this.add.text(1200, 1080 / 2, 'LEVEL SELECT', {
             fontSize: '64px',
             color: '#1ea629'
         });
-            levelSelectButton.setInteractive({useHandCursor: true});
-            levelSelectButton.on('pointerdown', () => {
+            levelSelectButton2.setInteractive({useHandCursor: true});
+            levelSelectButton2.on('pointerdown', () => {
                 this.scene.launch('levelselect');
             });
-            
-        let quitButton = new Button(this, 960, 810, 'Quit', () => {
-            this.sound.play('button');
-            window.close();
-        });
-
+*/
         let creditsButton = new Button(this, 960, 970, 'Credits', () => {
             this.sound.play('button');
             this.cameras.main.fade(1000, 0, 0, 0);
