@@ -25,7 +25,7 @@ class Level3 extends Phaser.Scene {
         this.load.image('crafting', 'craftingstation.png')
         this.load.image('menu', 'menu.png')
         this.load.image('arrow', 'arrow.png')
-        this.load.image('insidebg', 'insidebg.png')
+        this.load.image('insidebg', 'insidebg3.png')
         this.load.image('bell', 'servicebell.png')
         this.load.image('bellpressed', 'servicebell_pressed.png')
         this.load.image('sparkle', 'sparkle.png')
