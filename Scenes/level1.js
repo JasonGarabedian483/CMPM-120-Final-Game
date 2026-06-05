@@ -27,6 +27,9 @@ class Level1 extends Phaser.Scene {
         let background = this.add.image(1920 / 2, 540, 'insidebg');
             background.setScale(4);
         
+        this.add.image(1070, 265, 'alienburger').setScale(.25);
+        this.add.image(1175, 265, 'aliensushi').setScale(.25);
+
         this.scene.stop('timer');
         this.scene.launch('timer', {totalSeconds: 90, levelkey: 1});
         let centerX = this.cameras.main.width / 2;
@@ -97,6 +100,9 @@ class Level1 extends Phaser.Scene {
 
         let requiredSushi = 2;
         let requiredBurger = 2;
+
+        let neededBurgerText = this.add.text(1080, 275, `x${requiredBurger - turnedInBurger}`);
+        let neededSushiText = this.add.text(1185, 275, `x${requiredSushi - turnedInSushi}`);
 
         window.levelData[1].requiredSushi = requiredSushi;
         window.levelData[1].requiredBurger = requiredBurger;
@@ -227,6 +233,8 @@ class Level1 extends Phaser.Scene {
             currentTurnInItem.destroy();
             currentTurnInItem = null;
             menu.setText(`Sushi: ${turnedInSushi}\nBurgers: ${turnedInBurger}`);
+            neededBurgerText.setText(`x${Math.max(0, requiredBurger - turnedInBurger)}`);
+            neededSushiText.setText(`x${Math.max(0, requiredSushi - turnedInSushi)}`);
             });
 
         let menu = this.add.text(200, 300, 'Sushi: 0\nBurgers: 0', {

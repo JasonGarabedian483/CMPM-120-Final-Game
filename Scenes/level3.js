@@ -36,6 +36,11 @@ class Level3 extends Phaser.Scene {
         let background = this.add.image(1920 / 2, 540, 'insidebg');
             background.setScale(4);
 
+        this.add.image(1070, 265, 'alienburger').setScale(.25);
+        this.add.image(1175, 265, 'aliensushi').setScale(.25);
+        this.add.image(1270, 265, 'pizza').setScale(.75);// FIX X VALUE
+        this.add.image(1370, 265, 'parfait').setScale(1.3); // FIX X VALUE
+
         this.scene.stop('timer');
         this.scene.launch('timer', {totalSeconds: 145, levelkey: 3});
         let centerX = this.cameras.main.width / 2;
@@ -140,6 +145,11 @@ class Level3 extends Phaser.Scene {
         let requiredBurger = 3;
         let requiredPizza = 2;
         let requiredParfait = 2;
+
+        let neededBurgerText = this.add.text(1080, 275, `x${requiredBurger - turnedInBurger}`);
+        let neededSushiText = this.add.text(1185, 275, `x${requiredSushi - turnedInSushi}`);
+        let neededPizzaText = this.add.text(1290, 275, `x${requiredPizza - turnedInPizza}`); // FIX X VALUE
+        let neededParfaitText = this.add.text(1390, 275, `x${requiredParfait - turnedInParfait}`); // FIX X VALUE
 
         window.levelData[3].requiredSushi = requiredSushi;
         window.levelData[3].requiredBurger = requiredBurger;
@@ -336,6 +346,10 @@ class Level3 extends Phaser.Scene {
                 currentTurnInItem.destroy();
                 currentTurnInItem = null;
                 menu.setText(`Sushi: ${turnedInSushi}\nBurgers: ${turnedInBurger}\nPizzas: ${turnedInPizza}\nParfaits: ${turnedInParfait}`);
+                neededBurgerText.setText(`x${Math.max(0, requiredBurger - turnedInBurger)}`);
+                neededSushiText.setText(`x${Math.max(0, requiredSushi - turnedInSushi)}`);
+                neededPizzaText.setText(`x${Math.max(0, requiredPizza - turnedInPizza)}`);
+                neededParfaitText.setText(`x${Math.max(0, requiredParfait - turnedInParfait)}`);
             });
 
         let menu = this.add.text(200, 300, 'Sushi: 0\nBurgers: 0\nPizzas: 0\nParfaits: 0', {
