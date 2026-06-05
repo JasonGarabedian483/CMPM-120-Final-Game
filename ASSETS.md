@@ -45,6 +45,7 @@
 ## Visual — Other
 - Service Bell (assets/images/servicebell.png) - creator: Alicia Zhang, tool: Procreate
 - Service Bell Pressed (assets/images/servicebell_pressed.png) - creator: Alicia Zhang, tool: Procreate
+- Sparkle (assets/iamges/sparkle.png) - creator: Jason Garabedian, tool: PixilArt.com
 
 ## Audio
 - Alien invasion music (assets/audio/alien-invasion.mp3) — creator: Placeholder, source/tool: Placeholder
