@@ -101,8 +101,8 @@ class Level1 extends Phaser.Scene {
         let requiredSushi = 2;
         let requiredBurger = 2;
 
-        let neededBurgerText = this.add.text(1080, 275, `x${requiredBurger - turnedInBurger}`);
-        let neededSushiText = this.add.text(1185, 275, `x${requiredSushi - turnedInSushi}`);
+        let neededBurgerText = this.add.text(1070, 270, `x${requiredBurger - turnedInBurger}`, { fontSize: '24px', stroke: '#0000000', strokeThickness: 3 });
+        let neededSushiText = this.add.text(1175, 270, `x${requiredSushi - turnedInSushi}`, { fontSize: '24px', stroke: '#0000000', strokeThickness: 3 });
 
         window.levelData[1].requiredSushi = requiredSushi;
         window.levelData[1].requiredBurger = requiredBurger;
@@ -139,7 +139,6 @@ class Level1 extends Phaser.Scene {
                 console.log('destroyed');
             });
 
-        let crafingText = this.add.text(300, 550, "Crafting").setOrigin(0.5);
         // creation of crafting station 1
         this.crafting1 = this.add.image(280 + 120, 838, 'crafting').setScale(3.25);
             this.physics.add.existing(this.crafting1, true);
@@ -232,15 +231,9 @@ class Level1 extends Phaser.Scene {
 
             currentTurnInItem.destroy();
             currentTurnInItem = null;
-            menu.setText(`Sushi: ${turnedInSushi}\nBurgers: ${turnedInBurger}`);
             neededBurgerText.setText(`x${Math.max(0, requiredBurger - turnedInBurger)}`);
             neededSushiText.setText(`x${Math.max(0, requiredSushi - turnedInSushi)}`);
             });
-
-        let menu = this.add.text(200, 300, 'Sushi: 0\nBurgers: 0', {
-            fontSize: '36px',
-            fill: '#ffffff'
-        });
 
         let menuImage = this.add.image(1590, 850, 'menu').setScale(5.4);
             this.add.text(1700 - 110, 670, "Recipes", {
