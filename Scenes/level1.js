@@ -30,6 +30,8 @@ class Level1 extends Phaser.Scene {
         this.add.image(1070, 265, 'alienburger').setScale(.25);
         this.add.image(1175, 265, 'aliensushi').setScale(.25);
 
+        this.scene.stop('options');
+        this.scene.stop('levelselect');
         this.scene.stop('timer');
         let centerX = this.cameras.main.width / 2;
         let centerY = this.cameras.main.height / 2;

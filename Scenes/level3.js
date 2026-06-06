@@ -41,6 +41,8 @@ class Level3 extends Phaser.Scene {
         this.add.image(975, 265, 'pizza').setScale(.7);
         this.add.image(860, 265, 'parfait').setScale(1.5);
 
+        this.scene.stop('options');
+        this.scene.stop('levelselect');
         this.scene.stop('timer');
         this.scene.launch('timer', {totalSeconds: 145, levelkey: 3});
         let centerX = this.cameras.main.width / 2;

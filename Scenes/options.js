@@ -6,9 +6,11 @@ class Options extends Phaser.Scene {
         this.load.path = 'assets/images/';
         this.load.image('musicIcon', 'icons/music.png');
         this.load.image('sfxIcon', 'icons/volume.png');
+        this.load.image('home', 'icons/home.png');
     }
 
     create(){
+        this.scene.stop('levelselect')
         const w = this.scale.width;
         const h = this.scale.height;
 
@@ -17,14 +19,14 @@ class Options extends Phaser.Scene {
         this.ticker = window.volume.ticker;
 
         //background
-        this.add.rectangle(w / 2, h / 2, 750, 500, 0x160d2e, 0.9)
+        this.add.rectangle(w / 2, h / 2, w, h, 0x160d2e, 0.9)
             .setInteractive();
 
         //starry background
          for(let i = 0; i < 100; i++) {
             let star = this.add.circle(
-                Phaser.Math.Between(590, 1350),
-                Phaser.Math.Between(270, 790),
+                Phaser.Math.Between(0, 1920),
+                Phaser.Math.Between(0, 1080),
                 Phaser.Math.Between(1, 3),
                 0xffffff,
                 Phaser.Math.FloatBetween(0.3, 1)
@@ -39,8 +41,8 @@ class Options extends Phaser.Scene {
             });
         }
 
-        this.closeButton = this.add.text(w / 2 + 325, h / 2 - 230, 'X', {
-            fontSize: '42px',
+        this.closeButton = this.add.text(w - 120, 50, 'X', {
+            fontSize: '72px',
             color: '#f62f2f'
         })
         .setInteractive()
@@ -48,23 +50,23 @@ class Options extends Phaser.Scene {
             this.scene.stop('options');
         });
 
-        //Title text settings
-        this.add.text(w / 2, h / 2 - 150, 'Settings', {
-            fontSize: '48px',
+        //Title text options
+        this.add.text(w / 2, 150, 'Options', {
+            fontSize: '64px',
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
 
 
         //music volume slider
-        this.musicBar = this.add.rectangle(w / 2 + 25, h / 2  - 50, 300, 5, 0x0BE8F4);
+        this.musicBar = this.add.rectangle(w / 2 + 25, h / 2  - 150, 1000, 5, 0x0BE8F4);
 
         //music icon
-        this.musicIcon =this.add.image(this.musicBar.x - 260, this.musicBar.y, 'musicIcon')
+        this.musicIcon =this.add.image(this.musicBar.x - 600, this.musicBar.y, 'musicIcon')
             .setScale(2);
 
         //music volume down button
-        this.musicDownButton = this.add.text(this.musicBar.x - 200, this.musicBar.y - 17, '-', {
+        this.musicDownButton = this.add.text(this.musicBar.x - 550, this.musicBar.y - 17, '-', {
             fontSize: '42px',
             color: '#f7f2f2'
         })
@@ -73,11 +75,11 @@ class Options extends Phaser.Scene {
             this.music = Math.max(0, Math.round((this.music - 0.1) * 10) / 10);
             window.volume.music = this.music;
             this.sound.get('backgroundMusic').setVolume(this.music);
-            this.musicBar.width = 300 * this.music;
+            this.musicBar.width = 1000 * this.music;
         });
 
         //music volume up button
-        this.musicUpButton = this.add.text(this.musicBar.x + 180, this.musicBar.y - 19, '+', {
+        this.musicUpButton = this.add.text(this.musicBar.x + 530, this.musicBar.y - 19, '+', {
             fontSize: '42px',
             color: '#f6f8f6'
         })
@@ -86,18 +88,18 @@ class Options extends Phaser.Scene {
             this.music = Math.min(1, Math.round((this.music + 0.1) * 10) / 10);
             window.volume.music = this.music;
             this.sound.get('backgroundMusic').setVolume(this.music);
-            this.musicBar.width = 300 * this.music;
+            this.musicBar.width = 1000 * this.music;
         });
 
          //sound/fx volume slider
-        this.soundBar = this.add.rectangle(w / 2 + 25, h / 2  + 100, 300, 5, 0xE637F6);
+        this.soundBar = this.add.rectangle(w / 2 + 25, h / 2  + 100, 1000, 5, 0xE637F6);
 
         //sound icon
-        this.soundIcon = this.add.image(this.soundBar.x - 260, this.soundBar.y, 'sfxIcon')
+        this.soundIcon = this.add.image(this.soundBar.x - 610, this.soundBar.y, 'sfxIcon')
             .setScale(2.5);
 
         //alarm and ticker sound volume
-        this.SoundDownButton = this.add.text(this.soundBar.x - 200, this.soundBar.y - 17, '-', {
+        this.SoundDownButton = this.add.text(this.soundBar.x - 550, this.soundBar.y - 17, '-', {
             fontSize: '42px',
             color: '#f7f2f2'
         })
@@ -114,10 +116,10 @@ class Options extends Phaser.Scene {
                 };
             });
             Tone.getDestination().volume.value = Tone.gainToDb(this.ticker);
-            this.soundBar.width = 300 * this.alarm;
+            this.soundBar.width = 1000 * this.alarm;
         });
 
-        this.SoundUpButton = this.add.text(this.soundBar.x + 180, this.soundBar.y - 19, '+', {
+        this.SoundUpButton = this.add.text(this.soundBar.x + 530, this.soundBar.y - 19, '+', {
             fontSize: '42px',
             color: '#f6f8f6'
         })
@@ -136,11 +138,22 @@ class Options extends Phaser.Scene {
             Tone.getDestination().volume.value = Tone.gainToDb(this.ticker);
         });
 
+        if(!this.scene.isActive('mainmenu')){
+            this.homeButton = this.add.image(w / 2, h / 2 + 300, 'home')
+                .setInteractive()
+                .on('pointerdown', () => {
+                    this.cameras.main.fade(1000, 0, 0, 0);
+                    this.time.delayedCall(1000, () => {
+                    this.scene.start('mainmenu');
+                });
+            });
+        };
+
        
     }
 
     update(){
-            this.soundBar.width = 300 * window.volume.alarm;
-            this.musicBar.width = 300 * window.volume.music;
+            this.soundBar.width = 1000 * window.volume.alarm;
+            this.musicBar.width = 1000 * window.volume.music;
         }
 }

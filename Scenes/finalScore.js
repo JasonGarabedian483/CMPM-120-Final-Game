@@ -3,8 +3,15 @@ class FinalScore extends Phaser.Scene{
         super('finalscore');
     }
 
+    preload(){
+        this.load.path = 'assets/images/';
+        this.load.image('home', 'icons/home.png');
+    }
+
     create(){
-          //make sure audio scene is running so the mute button is available
+        this.scene.stop('options');
+        this.scene.stop('levelselect');
+        //make sure audio scene is running so the mute button is available
         if(!this.scene.isActive('audio')){
             this.scene.launch('audio');
         } else {
@@ -105,15 +112,26 @@ class FinalScore extends Phaser.Scene{
         })
         .setOrigin(0.5, 0.5);
 
-         //menu
-        this.add.text(centerX - 200, centerY + 280, 'Menu', {
-            fontSize: '38px', 
-            color: '#f70909'
-        })
+        //  //menu
+        // this.add.text(centerX - 200, centerY + 280, 'Menu', {
+        //     fontSize: '38px', 
+        //     color: '#f70909'
+        // })
+        // .setInteractive()
+        // .on('pointerdown', () => {
+        //     this.scene.stop('finalscore');
+        //     this.scene.start('mainmenu');
+        // });
+
+        //home icon for menu
+         this.add.image(centerX - 160, centerY + 290, 'home')
         .setInteractive()
         .on('pointerdown', () => {
-            this.scene.stop('finalscore');
-            this.scene.start('mainmenu');
+            this.cameras.main.fade(1000, 0, 0, 0);
+            this.time.delayedCall(1000, () => {
+                this.scene.stop('finalscore');
+                this.scene.start('mainmenu');  
+            });
         });
 
         //continue to credits

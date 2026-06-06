@@ -4,18 +4,19 @@ class LevelSelect extends Phaser.Scene{
     }
 
     create(){
+        this.scene.stop('options')
         const w = this.scale.width;
         const h = this.scale.height;
 
         //background
-        this.add.rectangle(w / 2, h / 2, 750, 500, 0x160d2e, 0.9)
+        this.add.rectangle(w / 2, h / 2, w, h, 0x160d2e, 0.9)
             .setInteractive();
 
         //starry background
          for(let i = 0; i < 100; i++) {
             let star = this.add.circle(
-                Phaser.Math.Between(590, 1350),
-                Phaser.Math.Between(270, 790),
+                Phaser.Math.Between(0, 1920),
+                Phaser.Math.Between(0, 1080),
                 Phaser.Math.Between(1, 3),
                 0xffffff,
                 Phaser.Math.FloatBetween(0.3, 1)
@@ -30,8 +31,8 @@ class LevelSelect extends Phaser.Scene{
             });
         }
 
-        this.closeButton = this.add.text(w / 2 + 325, h / 2 - 230, 'X', {
-            fontSize: '42px',
+        this.closeButton = this.add.text(w - 120, 50, 'X', {
+            fontSize: '72px',
             color: '#f62f2f'
         })
         .setInteractive()
@@ -40,14 +41,14 @@ class LevelSelect extends Phaser.Scene{
         });
 
         //Title text Levels
-        this.add.text(w / 2, h / 2 - 150, 'LEVEL SELECT', {
-            fontSize: '48px',
+        this.add.text(w / 2, 200, 'LEVEL SELECT', {
+            fontSize: '64px',
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
 
         //level 1
-        this.add.text(w / 2, h / 2 - 50, 'Level 1', {
+        this.add.text(w / 2, h / 2 - 150, 'Level 1', {
             fontSize: '64px',
             color: '#0bdce0',
         })
@@ -60,7 +61,7 @@ class LevelSelect extends Phaser.Scene{
             };
         });
         //level 2
-        this.add.text(w / 2, h / 2 + 50, 'Level 2', {
+        this.add.text(w / 2, h / 2, 'Level 2', {
             fontSize: '64px',
             color: '#0bdce0',
         })

@@ -20,6 +20,8 @@ class mainMenu extends Phaser.Scene {
     }
 
     create() {
+        this.scene.stop('options');
+        this.scene.stop('levelselect');
         this.scene.stop('level1');
         this.scene.stop('level2');
         this.scene.stop('level3');

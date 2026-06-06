@@ -10,6 +10,7 @@ class Summary extends Phaser.Scene{
     preload(){
         this.load.path = 'assets/images/';
         this.load.image('retry', 'icons/retry.png');
+        this.load.image('home', 'icons/home.png');
     }
 
     create(){
@@ -141,13 +142,27 @@ ${window.levelData[this.levelkey].requiredParfait} Alien Parfait`, {
         .setScale(3)
         .setInteractive()
         .on('pointerdown', () => {
-            this.scene.stop('summary');
-            this.scene.start(window.levelData[this.levelkey].currLevel);
+            this.cameras.main.fade(1000, 0, 0, 0);
+            this.time.delayedCall(1000, () => {
+                this.scene.stop('summary');
+                this.scene.start(window.levelData[this.levelkey].currLevel);  
+            });
+        });
+
+        //home icon for menu
+         this.add.image(centerX - 10, centerY + 310, 'home')
+        .setInteractive()
+        .on('pointerdown', () => {
+            this.cameras.main.fade(1000, 0, 0, 0);
+            this.time.delayedCall(1000, () => {
+                this.scene.stop('summary');
+                this.scene.start('mainmenu');  
+            });
         });
 
         //continue to next level if under time limit
         if(window.levelData[this.levelkey].time < window.levelData[this.levelkey].limit){
-            this.add.text(centerX + 40, centerY + 260, 'Continue', {
+            this.add.text(centerX + 70, centerY + 260, 'Continue', {
                 fontSize: '38px', 
                 color: '#09f709'
             })

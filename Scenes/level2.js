@@ -30,6 +30,7 @@ class Level2 extends Phaser.Scene {
 
     create() {
         this.scene.stop('level1');
+        
         let background = this.add.image(1920 / 2, 540, 'insidebg2');
             background.setScale(4);
         
@@ -37,8 +38,11 @@ class Level2 extends Phaser.Scene {
         this.add.image(1175, 265, 'aliensushi').setScale(.25);
         this.add.image(975, 265, 'pizza').setScale(.7);
       
+        this.scene.stop('options');
+        this.scene.stop('levelselect');
         this.scene.stop('timer');
         this.scene.launch('timer', {totalSeconds: 60, levelkey: 2});
+
         let centerX = this.cameras.main.width / 2;
         let centerY = this.cameras.main.height / 2;
         this.cameras.main.setBackgroundColor('#000000');

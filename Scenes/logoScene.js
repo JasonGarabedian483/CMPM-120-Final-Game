@@ -10,7 +10,7 @@ class logoScene extends Phaser.Scene {
     }
 
     create() {
-        this.scene.launch('testingui');
+        //this.scene.launch('testingui');
         let centerX = this.cameras.main.width / 2;
         let centerY = this.cameras.main.height / 2;
 

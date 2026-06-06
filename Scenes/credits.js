@@ -4,6 +4,8 @@ class Credits extends Phaser.Scene {
     }
     
     create() {
+        this.scene.stop('options');
+        this.scene.stop('levelselect');
         this.scene.stop('timer');
         this.scene.stop('level1');
         this.scene.stop('level2');
