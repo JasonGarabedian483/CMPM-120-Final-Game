@@ -35,7 +35,7 @@ const game = new Phaser.Game({
         default: 'arcade',
         arcade: {
             gravity: { y: 500 },
-            debug: true
+            debug: false
         }
     },
     scene: [logoScene, mainMenu, Level1, Level2, Level3, Credits, ReplayScene, Audio, Timer, Summary, FinalScore, TestingUI, Options, LevelSelect],
