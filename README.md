@@ -60,3 +60,16 @@ Progression:
 Prefabs:
 - AlienBun prefab object in level1.js
 - Button prefab object in mainMenu.js
+
+# Selectable Requirements
+
+Advaned Visual assets:
+- Video tutorial at beginning of level 1
+
+Procedural audio:
+- Timer ticking sound effect generated using tone.Synth
+
+Procedural graphics:
+- Loading bar on loading screen
+- Stary background on loading screen
+- Timer bar at top of gameplay
