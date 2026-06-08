@@ -116,8 +116,8 @@ class logoScene extends Phaser.Scene {
                 scaleX: 1, // make a loading bar visible horizontally
                 scaleY: 1, // make a loading bar visible vertically
                 alpha: 1, // Opacity: full
-                duration: 1000, //duration of action
-                delay: i * 500, // delay in between bars
+                duration: 100, //duration of action
+                delay: i * 700, // delay in between bars
                 ease: 'Power2', //rate of change of animation
             });
         }
