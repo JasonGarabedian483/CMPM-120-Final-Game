@@ -15,12 +15,9 @@ Jose Baeza
     - [LINK TO PLAY](https://jasongarabedian483.github.io/CMPM-120-Final-Game/)
 
 - [Prototypes]
-    - [Cinematic Prototype]
-        - LINK GOES HERE
-    - [Core Gameplay Prototype]
-        - LINK GOES HERE
-    - [Scene Flow Prototype]
-        - LINK GOES HERE
+    - [Cinematics Prototype](https://jasongarabedian483.github.io/CMPM-120-Final-Game/cinematics-1.html)
+    - [Scene Flow Prototype](https://jasongarabedian483.github.io/CMPM-120-Final-Game/scene-flow-1.html)
+    - [Core Gameplay Prototype](https://jasongarabedian483.github.io/CMPM-120-Final-Game/core-gameplay-1.html)
 
 - [Theme]
     - Galaxy Grub is a futuristic sci-fi based cooking game that takes place on a nearby   moon in the far off future
@@ -76,8 +73,6 @@ Jose Baeza
 --------------------------------------
 # Cinematics Prototype Requirements
 
-Playable Link: [Cinematics Prototype](https://jasongarabedian483.github.io/CMPM-120-Final-Game/cinematics-1.html)
-
 Non-interactive cinematic: 
 - (Scenes/loadingScene.js): Game loading feedback and scene transition
 - (Scenes/logoScene.js): Showcases game logo with transitions
@@ -90,8 +85,6 @@ Choreography in code:
 
 -----------------------------------
 # Scene Flow Prototype Requirements
-
-Playable Link: [Scene Flow Prototype](https://jasongarabedian483.github.io/CMPM-120-Final-Game/scene-flow-1.html)
 
 Scene types:
 - Main title/logo scene and loading scene
@@ -110,8 +103,6 @@ Transitions:
 - Coordinated fade to black and fade from black between main menu and credits screen
 
 # Core Gameplay Prototype Requirements
-
-Playable Link: [Core Gameplay Prototype](https://jasongarabedian483.github.io/CMPM-120-Final-Game/core-gameplay-1.html)
 
 Audio:
 - Looping background sound (Menu music)
