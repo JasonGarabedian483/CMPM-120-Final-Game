@@ -108,7 +108,7 @@ class logoScene extends Phaser.Scene {
         for(let i = 0; i < 10; i++){
             let bars = this.add.rectangle(centerX - 300 + i * 59, centerY + 200, 50, 30, 0xffffff)
             .setOrigin(0, 0.5) // set origin
-            .setScale(0); // initalize rectangles as invisible
+            .setAlpha(0); // initalize rectangles as invisible
 
             // Load individual Bars
             this.tweens.add({
