@@ -1,6 +1,6 @@
-# CMPM-120-Final-Game
+# Galaxy Grub
 
-Game Credits
+Made by
 ----------------
 Jason Garabedian,
 Alexander Flores,
