@@ -42,14 +42,14 @@ class LevelSelect extends Phaser.Scene{
 
         //Title text Levels
         this.add.text(w / 2, 200, 'LEVEL SELECT', {
-            fontSize: '64px',
+            font: "75px Pixelify Sans",
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
 
         //level 1
         this.add.text(w / 2, h / 2 - 150, 'Level 1', {
-            fontSize: '64px',
+            font: "70px Pixelify Sans",
             color: '#0bdce0',
         })
         .setOrigin(0.5, 0.5)
@@ -62,7 +62,7 @@ class LevelSelect extends Phaser.Scene{
         });
         //level 2
         this.add.text(w / 2, h / 2, 'Level 2', {
-            fontSize: '64px',
+            font: "70px Pixelify Sans",
             color: '#0bdce0',
         })
         .setOrigin(0.5, 0.5)
@@ -76,7 +76,7 @@ class LevelSelect extends Phaser.Scene{
 
         //level 3
         this.add.text(w / 2, h / 2 + 150, 'Level 3', {
-            fontSize: '64px',
+            font: "70px Pixelify Sans",
             color: '#0bdce0',
         })
         .setOrigin(0.5, 0.5)

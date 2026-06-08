@@ -3,10 +3,12 @@ class Options extends Phaser.Scene {
         super('options')
     }
     preload(){
-        this.load.path = 'assets/images/';
-        this.load.image('musicIcon', 'icons/music.png');
-        this.load.image('sfxIcon', 'icons/volume.png');
-        this.load.image('home', 'icons/home.png');
+        this.load.path = 'assets/images/icons/';
+        this.load.image('musicIcon', 'music.png');
+        this.load.image('sfxIcon', 'volume.png');
+        this.load.image('home', 'home.png');
+        this.load.image('musicOff', 'music_off.png');
+        this.load.image('sfxOff', 'volume_off.png');
     }
 
     create(){
@@ -51,8 +53,8 @@ class Options extends Phaser.Scene {
         });
 
         //Title text options
-        this.add.text(w / 2, 150, 'Options', {
-            fontSize: '64px',
+        this.add.text(w / 2, 150, 'SETTINGS', {
+            font: "70px Pixelify Sans",
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
@@ -76,6 +78,7 @@ class Options extends Phaser.Scene {
             window.volume.music = this.music;
             this.sound.get('backgroundMusic').setVolume(this.music);
             this.musicBar.width = 1000 * this.music;
+            this.updateIcons();
         });
 
         //music volume up button
@@ -89,6 +92,7 @@ class Options extends Phaser.Scene {
             window.volume.music = this.music;
             this.sound.get('backgroundMusic').setVolume(this.music);
             this.musicBar.width = 1000 * this.music;
+            this.updateIcons();
         });
 
          //sound/fx volume slider
@@ -117,6 +121,7 @@ class Options extends Phaser.Scene {
             });
             Tone.getDestination().volume.value = Tone.gainToDb(this.ticker);
             this.soundBar.width = 1000 * this.alarm;
+            this.updateIcons();
         });
 
         this.SoundUpButton = this.add.text(this.soundBar.x + 530, this.soundBar.y - 19, '+', {
@@ -136,6 +141,7 @@ class Options extends Phaser.Scene {
                 };
             });
             Tone.getDestination().volume.value = Tone.gainToDb(this.ticker);
+            this.updateIcons();
         });
 
         if(!this.scene.isActive('mainmenu')){
@@ -149,11 +155,15 @@ class Options extends Phaser.Scene {
             });
         };
 
-       
+        this.updateIcons();
     }
-
     update(){
             this.soundBar.width = 1000 * window.volume.alarm;
             this.musicBar.width = 1000 * window.volume.music;
         }
+    
+    updateIcons(){
+    this.musicIcon.setTexture(this.music <= 0 ? 'musicOff' : 'musicIcon');
+    this.soundIcon.setTexture(this.alarm <= 0 ? 'sfxOff' : 'sfxIcon');
+    }
 }

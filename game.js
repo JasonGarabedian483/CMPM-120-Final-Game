@@ -30,6 +30,7 @@ const game = new Phaser.Game({
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
+        expandParent: true
     },
     physics: {
         default: 'arcade',
@@ -38,7 +39,7 @@ const game = new Phaser.Game({
             debug: false
         }
     },
-    scene: [logoScene, mainMenu, Level1, Level2, Level3, Credits, ReplayScene, Audio, Timer, Summary, FinalScore, TestingUI, Options, LevelSelect],
-    //scene: [Level3],
-    title: "Placeholder Title",
+    scene: [logoScene, mainMenu, Level1, Level2, Level3, Credits, Audio, Timer, Summary, FinalScore, TestingUI, Options, LevelSelect],
+    //scene: [FinalScore],
+    title: "Galaxy Grub",
 });

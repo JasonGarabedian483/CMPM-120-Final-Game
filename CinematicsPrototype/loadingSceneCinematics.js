@@ -6,12 +6,12 @@ class loadingSceneCinematics extends Phaser.Scene{
         this.nextScene = (data && data.next) ? data.next : 'mainmenucinematics';
     }
     preload(){
-        this.load.path = 'assets/images/';
-        this.load.image('background', 'newMenuBg.png')
+        this.load.path = 'prototypeAssets/';
+        this.load.image('background', 'placeholderBg.jpg')
     }
     create(){  
         let background = this.add.image(1920 / 2, 540, 'background');
-            background.setScale(4).setTint(0x7f7f7f);
+            background.setScale(2).setTint(0x7f7f7f);
         
         let screenCenterX = this.cameras.main.width / 2;
         let screenCenterY = this.cameras.main.height / 2;

@@ -48,7 +48,7 @@ class Level2 extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#000000');
 
         this.add.text(centerX, 100, "[Level 2]", {
-            fontSize: '32px',
+            font: '32px Pixelify Sans',
             fill: '#ffffff'
         }).setOrigin(0.5);
 
@@ -310,7 +310,7 @@ class Level2 extends Phaser.Scene {
         // recipe board
         let menuImage = this.add.image(1700 - 110, 850, 'menu').setScale(5.4);
             this.add.text(1700 - 110, 670, "Recipes", {
-                fontSize: '40px',
+                font: "40px Pixelify Sans",
                 fill: '#ff9327'
             }).setOrigin(0.5);
             // burger recipe

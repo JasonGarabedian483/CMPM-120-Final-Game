@@ -56,15 +56,15 @@ class Summary extends Phaser.Scene{
         window.totalDishes = this.totalDishesLevel1 + this.totalDishesLevel2 + this.totalDishesLevel3;
 
         //level title
-        this.add.text(centerX, centerY - 280, `level ${this.levelkey}`, {
-            fontSize: '48px',
+        this.add.text(centerX, centerY - 280, `Level ${this.levelkey}`, {
+            font: "48px Pixelify Sans",
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
 
         //Level time limit
         this.add.text(centerX, centerY - 200, `Time Limit: ${this.formatTime(window.levelData[this.levelkey].limit)}`, {
-            fontSize: '38px', 
+            font: "38px Pixelify Sans",
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
@@ -76,14 +76,14 @@ Dishes Needed:
 
 ${window.levelData[this.levelkey].requiredSushi} Alien Sushi
 ${window.levelData[this.levelkey].requiredBurger} Alien Burger`, {
-                fontSize: '38px',
+                font: "38px Pixelify Sans",
                 color: '#ffffff'
             })
             .setOrigin(0.5, 0.5);
 
             //total dishes made
             this.add.text(centerX, centerY + 170, `Dishes Made: ${this.totalDishesLevel1}`, {
-                fontSize: '38px',
+                font: "38px Pixelify Sans",
                 color: '#ffffff'
             })
             .setOrigin(0.5, 0.5);
@@ -96,14 +96,14 @@ Dishes Needed:
 ${window.levelData[this.levelkey].requiredSushi} Alien Sushi
 ${window.levelData[this.levelkey].requiredBurger} Alien Burger
 ${window.levelData[this.levelkey].requiredPizza} Alien Pizza`, {
-                fontSize: '38px',
+                font: "38px Pixelify Sans",
                 color: '#ffffff'
             })
             .setOrigin(0.5, 0.5);
 
             //total dishes made
             this.add.text(centerX, centerY + 170, `Dishes Made: ${this.totalDishesLevel2}`, {
-                fontSize: '38px',
+                font: "38px Pixelify Sans",
                 color: '#ffffff'
             })
             .setOrigin(0.5, 0.5);
@@ -117,14 +117,14 @@ ${window.levelData[this.levelkey].requiredSushi} Alien Sushi
 ${window.levelData[this.levelkey].requiredBurger} Alien Burger
 ${window.levelData[this.levelkey].requiredPizza} Alien Pizza
 ${window.levelData[this.levelkey].requiredParfait} Alien Parfait`, {
-                fontSize: '38px',
+                font: "38px Pixelify Sans",
                 color: '#ffffff'
             })
             .setOrigin(0.5, 0.5);
 
             //total dishes made
             this.add.text(centerX, centerY + 170, `Dishes Made: ${this.totalDishesLevel3}`, {
-                fontSize: '38px',
+                font: "38px Pixelify Sans",
                 color: '#ffffff'
             })
             .setOrigin(0.5, 0.5);
@@ -132,7 +132,7 @@ ${window.levelData[this.levelkey].requiredParfait} Alien Parfait`, {
 
         //Time finish
         this.add.text(centerX, centerY + 110, `Time: ${this.formatTime(window.levelData[this.levelkey].time)}`, {
-            fontSize: '38px',
+            font: "38px Pixelify Sans",
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
@@ -163,7 +163,7 @@ ${window.levelData[this.levelkey].requiredParfait} Alien Parfait`, {
         //continue to next level if under time limit
         if(window.levelData[this.levelkey].time < window.levelData[this.levelkey].limit){
             this.add.text(centerX + 70, centerY + 260, 'Continue', {
-                fontSize: '38px', 
+                font: "38px Pixelify Sans",
                 color: '#09f709'
             })
             .setInteractive()

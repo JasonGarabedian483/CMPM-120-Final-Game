@@ -38,7 +38,7 @@ class Level1 extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#000000');
 
         this.add.text(centerX, 100, "[Level 1]", {
-            fontSize: '32px',
+            font: "32px Pixelify Sans",
             fill: '#ffffff'
         }).setOrigin(0.5);
 
@@ -239,7 +239,7 @@ class Level1 extends Phaser.Scene {
 
         let menuImage = this.add.image(1590, 850, 'menu').setScale(5.4);
             this.add.text(1700 - 110, 670, "Recipes", {
-                fontSize: '40px',
+                font: "40px Pixelify Sans",
                 fill: '#ff9327'
             }).setOrigin(0.5);
             // burger recipe
@@ -311,7 +311,7 @@ class Level1 extends Phaser.Scene {
 
         // Use an HTML video element for stable playback and sizing across renderers.
         const videoEl = document.createElement('video');
-        videoEl.src = 'assets/how to play.mp4';
+        videoEl.src = 'assets/how_to_play.mp4';
         videoEl.muted = true;
         videoEl.loop = true;
         videoEl.autoplay = true;
@@ -354,7 +354,7 @@ class Level1 extends Phaser.Scene {
             // If autoplay is blocked, the overlay still closes on tap-to-continue.
         });
 
-        const continueText = this.add.text(centerX, centerY + 315, 'tap to conitnue', {
+        const continueText = this.add.text(centerX, centerY + 315, 'tap to continue', {
             fontFamily: '"Pixelify Sans"',
             fontSize: '48px',
             color: '#ffffff'

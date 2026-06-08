@@ -35,6 +35,21 @@ class logoScene extends Phaser.Scene {
             });
         }
 
+        //fullscreen button
+        const fullscreenButton = this.add.text(15, 1030, '⛶', {
+            fontSize: '40px'
+        });
+
+        fullscreenButton.setInteractive();
+
+        fullscreenButton.on('pointerdown', () => {
+            if (this.scale.isFullscreen) {
+                this.scale.stopFullscreen();
+            } else {
+                this.scale.startFullscreen();
+            }
+        });
+
         //logo starts invisible
         let logo = this.add.image(centerX - 60, centerY, 'titleLogo');
         logo.setScale(1).setOrigin(0.5);
@@ -58,10 +73,9 @@ class logoScene extends Phaser.Scene {
                 scale: 1.8,
                 duration: 1000,
                 yoyo: true,
-                repeat: 2
+                repeat: -1
             });
 
-            // camera shake
             this.cameras.main.shake(300, 0.002);
         });
 
@@ -108,10 +122,33 @@ class logoScene extends Phaser.Scene {
             });
         }
        
-        this.time.delayedCall(8000, () => {
-            this.cameras.main.fadeOut(1000);
-            this.cameras.main.once('camerafadeoutcomplete', () => {
-                this.scene.start('mainmenu'); 
+        this.time.delayedCall(7000, () => {
+             this.tweens.add({
+                targets: text,
+                alpha: 0,
+                duration: 200
+            });
+
+            let tapText = this.add.text(
+                centerX,
+                900,
+                "TAP TO TAKEOFF",
+                {
+                    font: "48px Pixelify Sans",
+                }
+            ).setOrigin(0.5).setAlpha(0);
+
+            this.tweens.add({
+                targets: tapText,
+                alpha: 1,
+                duration: 800
+            });
+
+            this.input.once('pointerdown', () => {
+                this.cameras.main.fadeOut(1000);
+                this.cameras.main.once('camerafadeoutcomplete', () => {
+                    this.scene.start('mainmenu');
+                });
             });
         });
     }

@@ -65,56 +65,56 @@ class FinalScore extends Phaser.Scene{
 
          //Final Score title
         this.add.text(centerX, centerY - 290, 'Final Score', {
-            fontSize: '48px',
+            font: "48px Pixelify Sans",
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
 
         //level 1 time finish
         this.add.text(centerX, centerY - 200, `Level 1 Time: ${this.formatTime(window.levelData[1].time)}`, {
-            fontSize: '38px',
+            font: "38px Pixelify Sans",
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
 
         //level 2 time finish
         this.add.text(centerX, centerY - 120, `Level 2 Time: ${this.formatTime(window.levelData[2].time)}`, {
-            fontSize: '38px',
+            font: "38px Pixelify Sans",
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
 
         //level 3 time finish
         this.add.text(centerX, centerY - 40, `Level 3 Time: ${this.formatTime(window.levelData[3].time)}`, {
-            fontSize: '38px',
+            font: "38px Pixelify Sans",
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
 
         //total time finish
         this.add.text(centerX, centerY + 50, `Total Time: ${this.formatTime(this.totalTime)}`, {
-            fontSize: '38px',
+            font: "38px Pixelify Sans",
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
 
         //total dishes
         this.add.text(centerX, centerY + 120, `Total Dishes Made: ${window.totalDishes}`, {
-            fontSize: '38px',
+            font: "38px Pixelify Sans",
             color: '#ffffff'
         })
         .setOrigin(0.5, 0.5);
 
         //best Time
          this.add.text(centerX, centerY + 200, `Best Time: ${this.formatTime(this.bestTime)}`, {
-            fontSize: '38px',
+            font: "38px Pixelify Sans",
             color: '#ffd502'
         })
         .setOrigin(0.5, 0.5);
 
         //  //menu
         // this.add.text(centerX - 200, centerY + 280, 'Menu', {
-        //     fontSize: '38px', 
+        //     font: "38px Pixelify Sans",
         //     color: '#f70909'
         // })
         // .setInteractive()
@@ -136,7 +136,7 @@ class FinalScore extends Phaser.Scene{
 
         //continue to credits
         this.add.text(centerX + 50, centerY + 280, 'Continue', {
-            fontSize: '38px', 
+            font: "38px Pixelify Sans",
             color: '#09f709'
         })
         .setInteractive()
@@ -150,7 +150,7 @@ class FinalScore extends Phaser.Scene{
 
         //resets local storage - best time and mute state
         this.add.text(1400, 50, 'Reset local storage', {
-            fontSize: '38px',
+            font: "38px Pixelify Sans",
             color: '#f70303'
         })
         .setInteractive()

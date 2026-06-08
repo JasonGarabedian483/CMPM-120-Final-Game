@@ -29,7 +29,7 @@ class Timer extends Phaser.Scene{
             .setDepth(100);
 
         this.timerText = this.add.text(w / 2, 50, this.formatTime(0), {
-            fontSize: '24px',
+            font: '30px Pixelify Sans',
             color: '#ffffff',
         })
             .setOrigin(0.5)

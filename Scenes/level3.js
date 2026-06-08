@@ -25,7 +25,7 @@ class Level3 extends Phaser.Scene {
         this.load.image('crafting', 'craftingstation.png')
         this.load.image('menu', 'menu.png')
         this.load.image('arrow', 'arrow.png')
-        this.load.image('insidebg2', 'insidebg2.png')
+        this.load.image('insidebg3', 'insidebg3.png')
         this.load.image('bell', 'servicebell.png')
         this.load.image('bellpressed', 'servicebell_pressed.png')
         this.load.image('sparkle', 'sparkle.png')
@@ -33,7 +33,7 @@ class Level3 extends Phaser.Scene {
 
     create() {
         this.scene.stop('level2');
-        let background = this.add.image(1920 / 2, 540, 'insidebg2');
+        let background = this.add.image(1920 / 2, 540, 'insidebg3');
             background.setScale(4);
 
         this.add.image(1070, 265, 'alienburger').setScale(.25);
@@ -50,7 +50,7 @@ class Level3 extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#000000');
 
         let levelText = this.add.text(centerX, 100, "[Level 3]", {
-            fontSize: '32px',
+            font: '32px Pixelify Sans',
             fill: '#ffffff'
         }).setOrigin(0.5);
 
@@ -354,7 +354,7 @@ class Level3 extends Phaser.Scene {
 
         let menuImage = this.add.image(1700 - 110, 850, 'menu').setScale(5.4);
             this.add.text(1700 - 110, 670, "Recipes", {
-                fontSize: '40px',
+                font: "40px Pixelify Sans",
                 fill: '#ff9327'
             }).setOrigin(0.5);
             // burger recipe

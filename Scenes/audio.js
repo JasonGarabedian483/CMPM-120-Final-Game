@@ -48,5 +48,20 @@ class Audio extends Phaser.Scene{
             settingBtn.on('pointerdown', () => {
                 this.scene.launch('options');
         });
+
+        //fullscreen button
+        const fullscreenButton = this.add.text(15, 1030, '⛶', {
+            fontSize: '40px'
+        });
+
+        fullscreenButton.setInteractive();
+
+        fullscreenButton.on('pointerdown', () => {
+            if (this.scale.isFullscreen) {
+                this.scale.stopFullscreen();
+            } else {
+                this.scale.startFullscreen();
+            }
+        });
     }
 }

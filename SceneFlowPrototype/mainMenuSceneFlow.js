@@ -7,6 +7,8 @@ class mainMenuSceneFlow extends Phaser.Scene {
         this.load.path = 'assets/images/';
         this.load.image('background', 'newMenuBg.png')
         this.load.image('menuicon', 'titleLogo.png')  //<- change alien rice to menu icon
+
+        this.load.path = 'prototypeAssets/';
         this.load.image('play', 'placeholder_play.png') // <- change placeholder play to actual play button
         this.load.image('options', 'placeholder_options.png') // <- change playholder options to actual options button
         this.load.image('quit', 'placeholder_quit.png') // <- change placeholder quit to actual quit button
@@ -28,7 +30,7 @@ class mainMenuSceneFlow extends Phaser.Scene {
         this.scene.stop('timer');
 
         let background = this.add.image(1920 / 2, 540, 'background');
-            background.setScale(4);
+            background.setScale(2);
         
         let menuIcon = this.add.image(1920 / 2 - 60, 300, 'menuicon');
             menuIcon.setScale(1.5);
