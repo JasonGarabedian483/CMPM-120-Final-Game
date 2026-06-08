@@ -82,6 +82,12 @@ class Level1 extends Phaser.Scene {
         const conveyorSpeed = 150;
         conveyor.body.setSize(2000, 40);
 
+        //Spinning conveyor belt gears
+        let gears = [];
+        for(let i = 0; i < 12; i++){
+            gears.push(new SpinningGear(this, 100 + (i * 160), 160));
+        }
+
         // Creating key for each item and group
         this.items = this.physics.add.group();
         this.itemTypes = [
@@ -413,3 +419,27 @@ class gameItem extends Phaser.Physics.Arcade.Image {
     });
   }
 }
+
+//spinning gear animation
+class SpinningGear extends Phaser.GameObjects.Sprite {
+    constructor(scene, x, y) {
+        super(scene, x, y, 'gear');
+
+        scene.add.existing(this);
+
+        this.setScale(2);
+
+        if (!scene.anims.exists('spin')) {
+            scene.anims.create({
+                key: 'spin',
+                frames: scene.anims.generateFrameNumbers('gear', {
+                    start: 0,
+                    end: 3
+                }),
+                frameRate: 10,
+                repeat: -1
+            });
+        }
+        this.play('spin');
+    }
+} 
