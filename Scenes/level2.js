@@ -96,6 +96,12 @@ class Level2 extends Phaser.Scene {
             const conveyorSpeed = 225;
             conveyor.body.setSize(2000, 40);
 
+        //Spinning conveyor belt gears
+        let gears = [];
+        for(let i = 0; i < 12; i++){
+            gears.push(new SpinningGear(this, 100 + (i * 160), 160));
+        }
+        
         // creating item group for spawning
         this.items = this.physics.add.group();
         this.itemTypes = [
