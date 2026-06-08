@@ -21,6 +21,11 @@ class Level1 extends Phaser.Scene {
         this.load.image('bell', 'servicebell.png')
         this.load.image('bellpressed', 'servicebell_pressed.png')
         this.load.image('sparkle', 'sparkle.png')
+
+        this.load.spritesheet('gear', 'greyGearSpriteSheet.png', {
+            frameWidth: 50,
+            frameHeight: 50,
+        });
     }
 
     create() {
