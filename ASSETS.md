@@ -49,7 +49,7 @@
 
 ## Audio
 - Alien invasion music (assets/audio/alien-invasion.mp3) — creator: u_kw4gx9l0hh, source/tool: Pixabay.com
-- Button click sound (assets/audio/button.mp3) — , source: Minecraft sound effect
+- Button click sound (assets/audio/button.mp3) — creator: mojang, source: Minecraft
 - Kitchen timer alarm (assets/audio/kitchen-timer-alarm.mp3) — creator: freesound_community, source/tool: Pixabay.com
 - Timer ticks (assets/audio/timer-ticks.mp3) — creator: Alexander Flores, source/tool: Tone.js
 

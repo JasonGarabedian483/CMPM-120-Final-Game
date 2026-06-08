@@ -9,6 +9,71 @@ Alicia Zhang,
 Jose Baeza
 
 -----------------------------------
+
+# CORE REQUIREMENTS
+- [Main Game]
+    - [LINK TO PLAY](https://jasongarabedian483.github.io/CMPM-120-Final-Game/)
+
+- [Prototypes]
+    - [Cinematic Prototype]
+        - LINK GOES HERE
+    - [Core Gameplay Prototype]
+        - LINK GOES HERE
+    - [Scene Flow Prototype]
+        - LINK GOES HERE
+
+- [Theme]
+    - Galaxy Grub is a futuristic sci-fi based cooking game that takes place on a nearby   moon in the far off future
+
+- [Selectable Requirements]
+    - Advaned Visual assets:
+        - Video tutorial at beginning of level 1
+    - Procedural audio:
+        - Timer ticking sound effect generated using tone.Synth
+    - Procedural graphics:
+        - Loading bar on loading screen
+        - Stary background on loading screen
+        - Timer bar at top of gameplay
+    
+- [Contributor Credits]
+    - Alicia Zhang - Production lead
+    - Alexander Flores - Testing Lead
+    - Jason Garabedian - Technology Lead
+    - Jenny Wong - Technology Backup
+    - Jose Baeza - Production  Backup
+
+- [Asset Credits]
+    - Alicia Zhang
+        - Main Menu / In game background
+        - Settings menu UI buttons (Music, Volume, Settings, Retry, Home)
+        - Parfait and parfait ingredients drawings
+        - Pizza and pizza ingredients drawings
+        - Service bell
+    
+    - Alexander Flores
+        - Timer ticking sound effect
+
+    - Jason Garabedian
+        - Recipe board background / arrow
+        - Crafting station 1 and 2
+        - Placeholder Play, Options, and Quit in prototypes
+        - Sparkle asset
+
+    - Jenny Wong
+        - No assets
+    
+    - Jose Baeza
+        - Title / Logo icons
+        - Alien burger and alien burger ingredient drawings
+        - Alien sushi and alien sushi ingredient drawings
+
+    - OTHER SOURCES
+        - Alien invasion music - creator: u_kw4gx9l0hh, source/tool: Pixabay.com
+        - Button sound effect — creator: mojang, source: Minecraft
+        - Kitchen timer alarm - creator: freesound_community, source/tool: Pixabay.com
+        - Pixelify Sans font - source: [Google Fonts](https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap)
+
+--------------------------------------
 # Cinematics Prototype Requirements
 
 Non-interactive cinematic: 
@@ -60,16 +125,3 @@ Progression:
 Prefabs:
 - AlienBun prefab object in level1.js
 - Button prefab object in mainMenu.js
-
-# Selectable Requirements
-
-Advaned Visual assets:
-- Video tutorial at beginning of level 1
-
-Procedural audio:
-- Timer ticking sound effect generated using tone.Synth
-
-Procedural graphics:
-- Loading bar on loading screen
-- Stary background on loading screen
-- Timer bar at top of gameplay
