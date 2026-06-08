@@ -5,15 +5,15 @@ class Audio extends Phaser.Scene{
 
     preload(){
         this.load.path = 'assets/images/'
-        this.load.image('soundOn', 'icons/volume.png');
-        this.load.image('soundOff', 'icons/volume_off.png');
+        this.load.image('musicOn', 'icons/music.png');
+        this.load.image('musicOff', 'icons/music_off.png');
         this.load.image('settingsIcon', 'icons/settings.png');
     }
 
     create(){
         //window.isMuted to show the correct icon
         //this ensure the button reflects the saved state when relaunched
-        let soundBtn = this.add.image(1795, 1042, window.isMuted ? 'soundOff' : 'soundOn')
+        let soundBtn = this.add.image(1795, 1042, window.isMuted ? 'musicOff' : 'musicOn')
             soundBtn.setInteractive({useHandCursor: true});
             soundBtn.setScale(2);
             soundBtn.setDepth(67);
@@ -22,11 +22,20 @@ class Audio extends Phaser.Scene{
                 window.isMuted = !window.isMuted;
                 localStorage.setItem('isMuted', window.isMuted);
 
-                soundBtn.setTexture(window.isMuted ? 'soundOff' : 'soundOn');
+                soundBtn.setTexture(window.isMuted ? 'musicOff' : 'musicOn');
 
                 if(window.bgMusic){
                     window.bgMusic.mute = window.isMuted;
                 };
+
+                if(window.isMuted){
+                    window.savedMusicVolume = window.volume.music;
+                    localStorage.setItem('savedMusicVolume', window.savedMusicVolume);
+                    window.volume.music = 0;
+                } else {
+                    window.volume.music = window.savedMusicVolume;
+                };
+
 
                 //this loops though every active Phaser scene and applies the mute state
                 //scene.sound is Phaser's sound manager for that scene

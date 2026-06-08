@@ -76,6 +76,8 @@ class Options extends Phaser.Scene {
         .on('pointerdown', () => {
             this.music = Math.max(0, Math.round((this.music - 0.1) * 10) / 10);
             window.volume.music = this.music;
+            window.savedMusicVolume = this.music;
+            localStorage.setItem('savedMusicVolume', this.music);
             this.sound.get('backgroundMusic').setVolume(this.music);
             this.musicBar.width = 1000 * this.music;
             this.updateIcons();
@@ -90,6 +92,8 @@ class Options extends Phaser.Scene {
         .on('pointerdown', () => {
             this.music = Math.min(1, Math.round((this.music + 0.1) * 10) / 10);
             window.volume.music = this.music;
+            window.savedMusicVolume = this.music;
+            localStorage.setItem('savedMusicVolume', this.music);
             this.sound.get('backgroundMusic').setVolume(this.music);
             this.musicBar.width = 1000 * this.music;
             this.updateIcons();

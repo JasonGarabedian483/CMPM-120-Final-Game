@@ -148,15 +148,15 @@ class FinalScore extends Phaser.Scene{
             });
         });
 
-        //resets local storage - best time and mute state
-        this.add.text(1400, 50, 'Reset local storage', {
-            font: "38px Pixelify Sans",
-            color: '#f70303'
-        })
-        .setInteractive()
-        .on('pointerdown', () => {
-            localStorage.clear();
-        });
+        // //resets local storage - best time and mute state
+        // this.add.text(1400, 50, 'Reset local storage', {
+        //     font: "38px Pixelify Sans",
+        //     color: '#f70303'
+        // })
+        // .setInteractive()
+        // .on('pointerdown', () => {
+        //     localStorage.clear();
+        // });
     }
 
     formatTime(seconds){

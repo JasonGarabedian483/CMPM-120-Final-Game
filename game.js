@@ -6,6 +6,7 @@ window.volume = {
     alarm: 1, //alarm audio file
     ticker: 1,
 }
+window.savedMusicVolume = Number(localStorage.getItem('savedMusicVolume'));
 window.levelData = {
     1: {time: 0, limit: 60, requiredSushi: 0, requiredBurger: 0, dishes: 0, currLevel: 'level1', nextLevel: 'level2'},
     2: {time: 0, limit: 45, requiredSushi: 0, requiredBurger: 0, requiredPizza: 0, dishes: 0, currLevel: 'level2', nextLevel: 'level3'},

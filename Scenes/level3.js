@@ -321,21 +321,25 @@ class Level3 extends Phaser.Scene {
                 };
                 if (currentTurnInItem.texture.key === 'aliensushi') {
                     turnedInSushi++;
+                    window.levelItemsCount[3].sushi = turnedInSushi;
                     console.log("Sushi turned in:", turnedInSushi)
                     sparkleParticles.stop();
                 };
                 if (currentTurnInItem.texture.key === 'alienburger') {
                     turnedInBurger++;
+                    window.levelItemsCount[3].burger = turnedInBurger;
                     console.log('Burgers turned in:', turnedInBurger);
                     sparkleParticles.stop();
                 }
                 if (currentTurnInItem.texture.key === 'pizza') {
                     turnedInPizza++;
+                    window.levelItemsCount[3].pizza = turnedInPizza;
                     console.log('Pizzas turned in:', turnedInPizza)
                     sparkleParticles.stop();
                 }
                 if (currentTurnInItem.texture.key === 'parfait') {
                     turnedInParfait++;
+                    window.levelItemsCount[3].parfait = turnedInParfait;
                     console.log('Parfaits turned in:', turnedInParfait)
                     sparkleParticles.stop();
                 }
