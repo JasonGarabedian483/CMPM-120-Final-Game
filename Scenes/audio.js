@@ -36,18 +36,6 @@ class Audio extends Phaser.Scene{
                     window.volume.music = window.savedMusicVolume;
                 };
 
-
-                //this loops though every active Phaser scene and applies the mute state
-                //scene.sound is Phaser's sound manager for that scene
-                //setting .mute = true, mutes all sounds in that scene instantly
-                // this.scene.manager.scenes.forEach(scene => {
-                //     if(scene.sound) {
-                //         scene.sound.mute = window.isMuted;
-                //     }
-                // });
-
-                //mute Tone.js separately since it is not part of Phaser's sound system
-                //Tone.getDestination().mute = window.isMuted;
             });
 
         let settingBtn = this.add.image(1880, 1040, 'settingsIcon')

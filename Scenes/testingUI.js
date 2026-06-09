@@ -53,6 +53,16 @@ class TestingUI extends Phaser.Scene {
             this.scene.launch('credits');
         });
 
+        this.add.text(w - 220, h - 50, 'finalscore', {
+            fontSize: '32px',
+            color: '#ffffff',
+        })
+        .setInteractive()
+        .on('pointerdown', () => {
+            this.scene.launch('finalscore');
+        });
+
+
         
 
         

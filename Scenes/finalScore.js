@@ -112,19 +112,8 @@ class FinalScore extends Phaser.Scene{
         })
         .setOrigin(0.5, 0.5);
 
-        //  //menu
-        // this.add.text(centerX - 200, centerY + 280, 'Menu', {
-        //     font: "38px Pixelify Sans",
-        //     color: '#f70909'
-        // })
-        // .setInteractive()
-        // .on('pointerdown', () => {
-        //     this.scene.stop('finalscore');
-        //     this.scene.start('mainmenu');
-        // });
-
         //home icon for menu
-         this.add.image(centerX - 160, centerY + 290, 'home')
+         this.add.image(centerX, centerY + 290, 'home')
         .setInteractive()
         .on('pointerdown', () => {
             this.cameras.main.fade(1000, 0, 0, 0);
@@ -134,29 +123,6 @@ class FinalScore extends Phaser.Scene{
             });
         });
 
-        //continue to credits
-        this.add.text(centerX + 50, centerY + 280, 'Continue', {
-            font: "38px Pixelify Sans",
-            color: '#09f709'
-        })
-        .setInteractive()
-        .on('pointerdown', () => {
-            this.cameras.main.fade(1000, 0, 0, 0);
-            this.time.delayedCall(1000, () => {
-                this.scene.stop('finalscore');
-                this.scene.start('credits');
-            });
-        });
-
-        // //resets local storage - best time and mute state
-        // this.add.text(1400, 50, 'Reset local storage', {
-        //     font: "38px Pixelify Sans",
-        //     color: '#f70303'
-        // })
-        // .setInteractive()
-        // .on('pointerdown', () => {
-        //     localStorage.clear();
-        // });
     }
 
     formatTime(seconds){
