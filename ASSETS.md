@@ -2,21 +2,22 @@
 
 ## Visual — Backgrounds
 - Main menu background (assets/images/newMenuBg.png) — creator: Alicia Zhang, tool: Procreate
-- Inside background (assets/images/insidebg.png) — creator: Alicia Zhang, tool: Procreate
+- Inside background (assets/images/): `insidebg.png`, `insidebg2.png`, `insidebg3.png` — creator: Alicia Zhang, tool: Procreate
 
 ## Visual — UI & Icons
 - Arrow graphic (assets/images/arrow.png) — creator: Jason Garabedian, tool: PixilArt.com
 - Menu / recipe board (assets/images/menu.png) — creator: Jason Garabedian, tool: PixilArt.com
 - Crafting station (assets/images/craftingstation.png) — creator: Jason Garabedian, tool: PixilArt.com
 - Title/logo (assets/images/titleLogo.png) — creator: Jose Baeza, tool: Piskel
-- Trashcan (assets/images/trashcan.png) — creator: Placeholder, tool: Placeholder
+- Trashcan (assets/images/trashcan.png) — creator: Jason Garabedian, tool: Microsoft Paint
 - Music on (assets/images/icons/music.png) — creator: Alicia Zhang, tool: Procreate
 - Music off (assets/images/icons/music_off.png) — creator: Alicia Zhang, tool: Procreate
 - Retry icon (assets/images/icons/retry.png) — creator: Alicia Zhang, tool: Procreate
 - Settings icon (assets/images/icons/settings.png) — creator: Alicia Zhang, tool: Procreate
 - Volume on (assets/images/icons/volume.png) — creator: Alicia Zhang, tool: Procreate
 - Volume off (assets/images/icons/volume_off.png) — creator: Alicia Zhang, tool: Procreate
-- Placeholder buttons: `placeholder_play.png`, `placeholder_options.png`, `placeholder_quit.png` (assets/images/) — creator: Jason Garabedian, tool: Microsoft Paint
+- Buttons (assets/images/): `buttonBase.png`, `buttonPress.png`, `buttonRest.png` - creator: Jenny Wong, tool: PixilArt.com
+- Placeholder buttons (assets/images/): `placeholder_play.png`, `placeholder_options.png`, `placeholder_quit.png` — creator: Jason Garabedian, tool: Microsoft Paint
 
 ## Visual — Burger assets (assets/images/burger/)
 - Alien buns (assets/images/burger/alien_buns.png) — creator: Jose Baeza, tool: Piskel
@@ -46,11 +47,13 @@
 - Service Bell (assets/images/servicebell.png) - creator: Alicia Zhang, tool: Procreate
 - Service Bell Pressed (assets/images/servicebell_pressed.png) - creator: Alicia Zhang, tool: Procreate
 - Sparkle (assets/iamges/sparkle.png) - creator: Jason Garabedian, tool: PixilArt.com
+- Conveyer Belt Gears (assets/images/greyGearSpriteSheet.png) - creator: Jenny Wong, tool: PixilArt.com
 
 ## Audio
-- Alien invasion music (assets/audio/alien-invasion.mp3) — creator: u_kw4gx9l0hh, source/tool: Pixabay.com
-- Button click sound (assets/audio/button.mp3) — creator: mojang, source: Minecraft
-- Kitchen timer alarm (assets/audio/kitchen-timer-alarm.mp3) — creator: freesound_community, source/tool: Pixabay.com
+- Alien invasion music (assets/audio/alien-invasion.mp3) — creator: u_kw4gx9l0hh, source: [Pixabay.com](https://pixabay.com/sound-effects/musical-alien-invasion-276471/)
+- Button click sound (assets/audio/buttonsfx.mp3) — creator: u_uev3l0tolc, source: [Pixabay.com](https://pixabay.com/sound-effects/technology-buttonon-521345/)
+- Rocket launch sound (assets/audio/rocketlaunch.mp3) - creator: SoundReality, source: [Pixabay.com](https://pixabay.com/sound-effects/film-special-effects-space-rocket-319230/)
+- Kitchen timer alarm (assets/audio/kitchen-timer-alarm.mp3) — creator: freesound_community, source: [Pixabay.com](https://pixabay.com/sound-effects/household-kitchen-timer-87485/)
 - Timer ticks (assets/audio/timer-ticks.mp3) — creator: Alexander Flores, source/tool: Tone.js
 
 ## Font

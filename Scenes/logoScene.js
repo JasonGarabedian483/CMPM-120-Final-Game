@@ -7,10 +7,12 @@ class logoScene extends Phaser.Scene {
         this.load.path = 'assets/images/';
         this.load.image('titleLogo', 'titleLogo.png');
 
+        this.load.path = 'assets/audio/';
+        this.load.audio('rocketlaunch', 'rocketlaunch.mp3');
+
     }
 
     create() {
-        //this.scene.launch('testingui');
         let centerX = this.cameras.main.width / 2;
         let centerY = this.cameras.main.height / 2;
 
@@ -67,7 +69,7 @@ class logoScene extends Phaser.Scene {
         });
 
         //pulsing effect for logo
-        this.time.delayedCall(3000, () => {
+        this.time.delayedCall(2500, () => {
             this.tweens.add({
                 targets: logo,
                 scale: 1.8,
@@ -90,7 +92,7 @@ class logoScene extends Phaser.Scene {
             }
         ).setOrigin(0.5).setAlpha(0);
 
-        this.time.delayedCall(3500, () => {
+        this.time.delayedCall(2500, () => {
             this.tweens.add({
                 targets: text,
                 alpha: 1,
@@ -116,13 +118,13 @@ class logoScene extends Phaser.Scene {
                 scaleX: 1, // make a loading bar visible horizontally
                 scaleY: 1, // make a loading bar visible vertically
                 alpha: 1, // Opacity: full
-                duration: 100, //duration of action
-                delay: i * 700, // delay in between bars
+                duration: 1100, //duration of action
+                delay: i * 400, // delay in between bars
                 ease: 'Power2', //rate of change of animation
             });
         }
        
-        this.time.delayedCall(7000, () => {
+        this.time.delayedCall(4500, () => {
              this.tweens.add({
                 targets: text,
                 alpha: 0,
@@ -135,6 +137,7 @@ class logoScene extends Phaser.Scene {
                 "TAP TO TAKEOFF",
                 {
                     font: "48px Pixelify Sans",
+                    color: "#78e166"
                 }
             ).setOrigin(0.5).setAlpha(0);
 
@@ -144,8 +147,34 @@ class logoScene extends Phaser.Scene {
                 duration: 800
             });
 
+            this.tweens.add({
+                targets: tapText,
+                alpha: 0.4,
+                duration: 800,
+                yoyo: true,
+                repeat: -1,
+                delay: 800
+            });
+
             this.input.once('pointerdown', () => {
-                this.cameras.main.fadeOut(1000);
+                this.cameras.main.fadeOut(1500);
+                this.rocketSound = this.sound.add('rocketlaunch', {
+                    volume: 0.5
+                });
+
+                this.rocketSound.play();
+
+                this.cameras.main.fadeOut(1500);
+
+                this.tweens.add({
+                    targets: this.rocketSound,
+                    volume: 0,
+                    duration: 1500,
+                    ease: 'Linear',
+                    onComplete: () => {
+                        this.rocketSound.stop();
+                    }
+                });
                 this.cameras.main.once('camerafadeoutcomplete', () => {
                     this.scene.start('mainmenu');
                 });

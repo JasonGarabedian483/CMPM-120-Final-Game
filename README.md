@@ -23,7 +23,7 @@ Jose Baeza
     - Galaxy Grub is a futuristic sci-fi based cooking game that takes place on a nearby   moon in the far off future
 
 - [Selectable Requirements]
-    - Advaned Visual assets:
+    - Advanced Visual assets:
         - Video tutorial at beginning of level 1
     - Procedural audio:
         - Timer ticking sound effect generated using tone.Synth
@@ -57,7 +57,8 @@ Jose Baeza
         - Sparkle asset
 
     - Jenny Wong
-        - No assets
+        - Buttons
+        - Conveyer Belt Gears
     
     - Jose Baeza
         - Title / Logo icons
@@ -65,9 +66,9 @@ Jose Baeza
         - Alien sushi and alien sushi ingredient drawings
 
     - OTHER SOURCES
-        - Alien invasion music - creator: u_kw4gx9l0hh, source/tool: Pixabay.com
-        - Button sound effect — creator: mojang, source: Minecraft
-        - Kitchen timer alarm - creator: freesound_community, source/tool: Pixabay.com
+        - Alien invasion music - creator: u_kw4gx9l0hh, source: [Pixabay.com](https://pixabay.com/sound-effects/musical-alien-invasion-276471/)
+        - Button sound effect — creator: u_uev3l0tolc, source: [Pixabay.com](https://pixabay.com/sound-effects/technology-buttonon-521345/)
+        - Kitchen timer alarm - creator: freesound_community, source: [Pixabay.com](https://pixabay.com/sound-effects/household-kitchen-timer-87485/)
         - Pixelify Sans font - source: [Google Fonts](https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap)
 
 --------------------------------------

@@ -4,6 +4,8 @@ class Level1 extends Phaser.Scene {
     }
 
     preload() {
+        this.load.video('howToPlay', 'assets/how_to_play.mp4');
+
         this.load.path = 'assets/images/';
         this.load.image('alienbuns', 'burger/alien_buns.png')
         this.load.image('alienburger', 'burger/alien_burger.png')
@@ -21,6 +23,7 @@ class Level1 extends Phaser.Scene {
         this.load.image('bell', 'servicebell.png')
         this.load.image('bellpressed', 'servicebell_pressed.png')
         this.load.image('sparkle', 'sparkle.png')
+        
 
         this.load.spritesheet('gear', 'greyGearSpriteSheet.png', {
             frameWidth: 50,
@@ -291,111 +294,80 @@ class Level1 extends Phaser.Scene {
     }
 
     showHowToPlayOverlay() {
-        const width = this.cameras.main.width;
-        const height = this.cameras.main.height;
-        const centerX = width / 2;
-        const centerY = height / 2;
+            const width = this.cameras.main.width;
+            const height = this.cameras.main.height;
+            const centerX = width / 2;
+            const centerY = height / 2;
 
-        this.physics.world.pause();
+            this.physics.world.pause();
 
-        const overlayBlocker = this.add.rectangle(centerX, centerY, width, height, 0x000000, 0.45)
-            .setDepth(9000)
-            .setInteractive({ useHandCursor: true });
+            const overlayBlocker = this.add.rectangle(centerX, centerY, width, height, 0x000000, 0.45)
+                .setDepth(9000)
+                .setInteractive({ useHandCursor: true });
 
-        const panel = this.add.rectangle(centerX, centerY, 1120, 760, 0x0f52ba, 0.96)
-            .setDepth(9001);
-        const panelBorder = this.add.rectangle(centerX, centerY, 1120, 760)
-            .setStrokeStyle(10, 0xffffff, 1)
-            .setDepth(9002);
+            const panel = this.add.rectangle(centerX, centerY - 40, 1120, 760, 0x0f52ba, 0.96)
+                .setDepth(9001);
+            const panelBorder = this.add.rectangle(centerX, centerY - 40, 1120, 760)
+                .setStrokeStyle(10, 0xffffff, 1)
+                .setDepth(9002);
 
-        const title = this.add.text(centerX, centerY - 330, 'How To Play', {
-            fontFamily: '"Pixelify Sans"',
-            fontSize: '72px',
-            color: '#ffffff'
-        }).setOrigin(0.5).setDepth(9003);
+            const title = this.add.text(centerX, centerY - 370, 'How To Play', {
+                fontFamily: '"Pixelify Sans"',
+                fontSize: '72px',
+                color: '#ffffff'
+            }).setOrigin(0.5).setDepth(9003);
 
-        const panelWidth = 1120;
-        const panelHeight = 760;
-        const videoFrameWidth = 920;
-        const videoFrameHeight = 500;
-        const videoCenterY = centerY - 20;
+            //Use Phaser's built-in video
+           const video = this.add.video(centerX, centerY - 60, 'howToPlay')
+                .setDepth(9004)
+                .setOrigin(0.5)
+                .setVisible(false)
+                .setMute(true);
 
-        // Use an HTML video element for stable playback and sizing across renderers.
-        const videoEl = document.createElement('video');
-        videoEl.src = 'assets/how_to_play.mp4';
-        videoEl.muted = true;
-        videoEl.loop = true;
-        videoEl.autoplay = true;
-        videoEl.playsInline = true;
-        videoEl.preload = 'auto';
-        videoEl.controls = false;
-        videoEl.style.position = 'fixed';
-        videoEl.style.objectFit = 'contain';
-        videoEl.style.background = '#000000';
-        videoEl.style.border = '6px solid #ffffff';
-        videoEl.style.zIndex = '9999';
-        videoEl.style.pointerEvents = 'none';
+            const videoEl = video.video;
+            const applySize = () => {
+                const nativeW = videoEl.videoWidth || 1920;
+                const nativeH = videoEl.videoHeight || 1080;
+                const scaleX = 880 / nativeW;
+                const scaleY = 480 / nativeH;
+                const scale = Math.min(scaleX, scaleY);
+                video.setScale(scale);
+                video.setVisible(true);
+                video.play(true);
+            };
 
-        const updateVideoPosition = () => {
-            const rect = this.game.canvas.getBoundingClientRect();
-            const scaleX = rect.width / this.cameras.main.width;
-            const scaleY = rect.height / this.cameras.main.height;
-
-            // Clamp to panel bounds in game space and then convert to CSS pixels.
-            const clampedVideoWidth = Math.min(videoFrameWidth, panelWidth - 40);
-            const clampedVideoHeight = Math.min(videoFrameHeight, panelHeight - 180);
-
-            const cssWidth = Math.round(clampedVideoWidth * scaleX);
-            const cssHeight = Math.round(clampedVideoHeight * scaleY);
-            const left = rect.left + Math.round((centerX - (clampedVideoWidth / 2)) * scaleX);
-            const top = rect.top + Math.round((videoCenterY - (clampedVideoHeight / 2)) * scaleY);
-
-            videoEl.style.width = `${cssWidth}px`;
-            videoEl.style.height = `${cssHeight}px`;
-            videoEl.style.left = `${Math.round(left)}px`;
-            videoEl.style.top = `${Math.round(top)}px`;
-        };
-
-        updateVideoPosition();
-        window.addEventListener('resize', updateVideoPosition);
-        window.addEventListener('scroll', updateVideoPosition);
-        document.body.appendChild(videoEl);
-
-        videoEl.play().catch(() => {
-            // If autoplay is blocked, the overlay still closes on tap-to-continue.
-        });
-
-        const continueText = this.add.text(centerX, centerY + 315, 'tap to continue', {
-            fontFamily: '"Pixelify Sans"',
-            fontSize: '48px',
-            color: '#ffffff'
-        }).setOrigin(0.5).setDepth(9003);
-
-        const closeOverlay = () => {
-            window.removeEventListener('resize', updateVideoPosition);
-            window.removeEventListener('scroll', updateVideoPosition);
-            videoEl.pause();
-            if (videoEl.parentNode) {
-                videoEl.parentNode.removeChild(videoEl);
+            if (videoEl.readyState >= 1) {
+                applySize();
+            } else {
+                videoEl.addEventListener('loadedmetadata', applySize, { once: true });
             }
-            overlayBlocker.destroy();
-            panel.destroy();
-            panelBorder.destroy();
-            title.destroy();
-            continueText.destroy();
 
-            this.physics.world.resume();
-            this.scene.launch('timer', {totalSeconds: 90, levelkey: 1});
-            if (this.itemSpawner) {
-                this.itemSpawner.paused = false;
-            }
-        };
+            const continueText = this.add.text(centerX, centerY + 270, 'tap to continue', {
+                fontFamily: '"Pixelify Sans"',
+                fontSize: '48px',
+                color: '#ffffff'
+            }).setOrigin(0.5).setDepth(9003);
 
-        overlayBlocker.once('pointerdown', closeOverlay);
-        panel.setInteractive({ useHandCursor: true }).once('pointerdown', closeOverlay);
-        continueText.setInteractive({ useHandCursor: true }).once('pointerdown', closeOverlay);
-    }
+            const closeOverlay = () => {
+                video.stop();
+                video.destroy();
+                overlayBlocker.destroy();
+                panel.destroy();
+                panelBorder.destroy();
+                title.destroy();
+                continueText.destroy();
 
+                this.physics.world.resume();
+                this.scene.launch('timer', { totalSeconds: 90, levelkey: 1 });
+                if (this.itemSpawner) {
+                    this.itemSpawner.paused = false;
+                }
+            };
+
+            overlayBlocker.once('pointerdown', closeOverlay);
+            panel.setInteractive({ useHandCursor: true }).once('pointerdown', closeOverlay);
+            continueText.setInteractive({ useHandCursor: true }).once('pointerdown', closeOverlay);
+        }
     update() {
 
     }

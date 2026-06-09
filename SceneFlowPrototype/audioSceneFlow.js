@@ -4,8 +4,9 @@ class AudioSceneFlow extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image('soundOn', 'assets/images/volume.png');
-        this.load.image('soundOff', 'assets/images/mute.png');
+        this.load.path = 'prototypeAssets/';
+        this.load.image('soundOn', 'volume.png');
+        this.load.image('soundOff', 'mute.png');
     }
 
     create(){

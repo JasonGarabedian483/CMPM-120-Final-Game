@@ -35,8 +35,12 @@ class Audio extends Phaser.Scene{
                 } else {
                     window.volume.music = window.savedMusicVolume;
                 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> b36c588 (Cleaned up code, replaced button sfx, refined readMe and ASSETS.md, organized assets, fixed how to play video, refined logo scene, removed credits.)
             });
+        
 
         let settingBtn = this.add.image(1880, 1040, 'settingsIcon')
             settingBtn.setInteractive({useHandCursor: true});

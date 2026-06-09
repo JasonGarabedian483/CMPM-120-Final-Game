@@ -112,6 +112,7 @@ class FinalScore extends Phaser.Scene{
         })
         .setOrigin(0.5, 0.5);
 
+
         //home icon for menu
          this.add.image(centerX, centerY + 290, 'home')
         .setInteractive()
@@ -122,10 +123,9 @@ class FinalScore extends Phaser.Scene{
                 this.scene.start('mainmenu');  
             });
         });
-
     }
 
-    formatTime(seconds){
+    formatTime(seconds) {
         const minute = Math.floor(seconds / 60);
         const secs = Math.floor(seconds % 60);
         return `${minute}:${secs.toString().padStart(2, 0)}`;

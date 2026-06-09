@@ -16,6 +16,8 @@ class mainMenuGameplay extends Phaser.Scene {
 
         this.load.path = 'assets/audio/';
         this.load.audio('backgroundMusic', 'alien-invasion.mp3');
+
+        this.load.path = 'prototypeAssets/';
         this.load.audio('button', 'button.mp3');
     }
 

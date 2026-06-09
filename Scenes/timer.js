@@ -48,31 +48,6 @@ class Timer extends Phaser.Scene{
 
         this.alarm = this.sound.add('alarm', {loop: true, volume: window.volume.alarm});
 
-
-    //     //force stop
-    //     this.add.text(w / 2, 100, 'LOSE', {
-    //         fontSize: '42px',
-    //         color: '#f80202',
-    //     })
-    //     .setOrigin(0.5)
-    //     .setDepth(101)
-    //     .setInteractive()
-    //     .on('pointerdown', () => {
-    //         this.timeUp();
-    //     });
-
-    //     //force win
-    //     this.add.text(w / 2, 150, 'WIN', {
-    //         fontSize: '42px',
-    //         color: '#02f83b',
-    //     })
-    //     .setOrigin(0.5)
-    //     .setDepth(101)
-    //     .setInteractive()
-    //     .on('pointerdown', () => {
-    //         this.completed();
-    //     });
-
     }
 
     update(time, delta){
@@ -168,7 +143,7 @@ class Timer extends Phaser.Scene{
 `Level ${this.levelkey} Complete!
 
 Time: ${this.formatTime(window.levelData[this.levelkey].time)}`, {
-    fontSize: '24px',
+    font: '24px Pixelify Sans',
     color: '#04d018'
 })
     .setOrigin(0.5)

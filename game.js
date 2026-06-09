@@ -40,7 +40,6 @@ const game = new Phaser.Game({
             debug: false
         }
     },
-    scene: [logoScene, mainMenu, Level1, Level2, Level3, Credits, Audio, Timer, Summary, FinalScore, TestingUI, Options, LevelSelect],
-    //scene: [FinalScore],
+    scene: [logoScene, mainMenu, Level1, Level2, Level3, Audio, Timer, Summary, FinalScore, TestingUI, Options, LevelSelect],
     title: "Galaxy Grub",
 });

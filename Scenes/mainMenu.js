@@ -13,7 +13,7 @@ class mainMenu extends Phaser.Scene {
         
         this.load.path = 'assets/audio/';
         this.load.audio('backgroundMusic', 'alien-invasion.mp3');
-        this.load.audio('button', 'button.mp3');
+        this.load.audio('button', 'buttonsfx.mp3');
     }
 
     create() {
@@ -27,11 +27,23 @@ class mainMenu extends Phaser.Scene {
         if(!this.scene.isActive('audio')){
             this.scene.launch('audio');
         };
+
         if(!this.sound.get('backgroundMusic')){
-           window.bgMusic = this.sound.add('backgroundMusic', {loop: true, volume: window.volume.music});
-           window.bgMusic.play();
-           window.bgMusic.mute = window.isMuted;
-        };
+            window.bgMusic = this.sound.add('backgroundMusic', {
+                loop: true,
+                volume: 0
+            });
+
+            window.bgMusic.play();
+            window.bgMusic.mute = window.isMuted;
+
+            this.tweens.add({
+                targets: window.bgMusic,
+                volume: window.volume.music,
+                duration: 2000,
+                ease: 'Linear'
+            });
+        }
         this.scene.stop('timer');
 
         let background = this.add.image(1920 / 2, 540, 'background');
@@ -61,25 +73,14 @@ class mainMenu extends Phaser.Scene {
             this.scene.launch('levelselect'); 
         });
 
-        let optionButton = new Button(this, 960, 650, 'Options', () => {
+        let optionButton = new Button(this, 960, 650, 'Settings', () => {
             this.sound.play('button');
             this.scene.launch('options');
         });
 
-/*
-        let levelSelectButton2 = this.add.text(1200, 1080 / 2, 'LEVEL SELECT', {
-            fontSize: '64px',
-            color: '#1ea629'
-        });
-            levelSelectButton2.setInteractive({useHandCursor: true});
-            levelSelectButton2.on('pointerdown', () => {
-                this.scene.launch('levelselect');
-            });
-*/
-        let creditsButton = new Button(this, 960, 970, 'Credits', () => {
+        let quitButton = new Button(this, 960, 970, 'Quit', () => {
             this.sound.play('button');
-            this.cameras.main.fade(1000, 0, 0, 0);
-            this.time.delayedCall(1000, () => this.scene.start('credits'));
+            window.close();
         });
 
     }
