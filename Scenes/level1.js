@@ -32,6 +32,7 @@ class Level1 extends Phaser.Scene {
     }
 
     create() {
+        this.scene.stop('mainmenu');
         let background = this.add.image(1920 / 2, 540, 'insidebg');
             background.setScale(4);
         

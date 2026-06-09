@@ -38,6 +38,8 @@ class Level3 extends Phaser.Scene {
 
     create() {
         this.scene.stop('level2');
+        this.scene.stop('mainmenu');
+        
         let background = this.add.image(1920 / 2, 540, 'insidebg3');
             background.setScale(4);
 
@@ -356,7 +358,7 @@ class Level3 extends Phaser.Scene {
                 }
                 if(turnedInBurger >= requiredBurger && turnedInSushi >= requiredSushi && turnedInPizza >= requiredPizza && turnedInParfait >= requiredParfait) {
                     window.levelCompleted[3].completed = true;
-                    localStorage.setItem('level3completed', true);
+                    localStorage.setItem('level3Completed', true);
                     this.time.delayedCall(1000, () => this.scene.get('timer').completed());
                 };
                 currentTurnInItem.destroy();

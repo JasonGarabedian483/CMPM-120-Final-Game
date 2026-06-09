@@ -30,9 +30,9 @@ class FinalScore extends Phaser.Scene{
         this.bestTime = localStorage.getItem('bestTime');
         
 
-        if(this.bestTime === null){
-            localStorage.setItem('bestTime', this.MaxTime);
-            this.bestTime = this.MaxTime;
+        if(this.bestTime === null || this.bestTime === '0' || Number(this.bestTime) <= 0){
+            localStorage.setItem('bestTime', 900);
+            this.bestTime = 900;
         };
         
         if(this.totalTime < Number(this.bestTime)) {
