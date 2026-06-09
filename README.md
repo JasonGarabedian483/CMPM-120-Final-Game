@@ -20,7 +20,7 @@ Jose Baeza
     - [Core Gameplay Prototype](https://jasongarabedian483.github.io/CMPM-120-Final-Game/core-gameplay-1.html)
 
 - [Theme]
-    - Galaxy Grub is a futuristic sci-fi based cooking game that takes place on a nearby   moon in the far off future
+    - Galaxy Grub is a futuristic sci-fi based cooking game that takes place on a nearby moon in the far off future
 
 - [Selectable Requirements]
     - Advanced Visual assets:
